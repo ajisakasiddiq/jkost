@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 
@@ -17,15 +20,15 @@ class profileAdminController extends Controller
 
         if (request()->ajax()) {
             $query = User::query();
-            return Yajra\DataTables\Facades\DataTables::of($query)
+            return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
                     <div class="btn-group">
                       <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle mr-1 mb-1" type="button" data-toggle="dropdown">Aksi</button>
                         <div class="dropdown-menu">
-                          <a href="' . route('categories.edit', $item->id) . '" method="POST" class="dropdown-item">Edit</a>
-                          <form action="' . route('categories.destroy', $item->id) . '" method="POST">
+                          <a href="/" method="POST" class="dropdown-item">Edit</a>
+                          <form action="/" method="POST">
                           ' . method_field('delete') . csrf_field() . '
                           <button type="submit" class="dropdown-item text-danger">Hapus</button>
                           </form>

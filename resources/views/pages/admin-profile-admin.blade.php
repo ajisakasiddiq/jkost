@@ -13,8 +13,6 @@
 
 @section('content')
 <div id="main">
-
-
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
@@ -31,17 +29,22 @@
             </div>
         </div>
     </div>
-
+</div>
+<div class="page-content">
+    
     <!-- Basic Tables start -->
     <section class="section">
         <div class="card">
             <div class="card-header">
-                Jquery Datatable
+                <a href="" class="btn btn-primary mb-3">
+                    + Tambah Admin
+                </a>
             </div>
             <div class="card-body">
                 <table class="table" id="ProfileUserTable">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Foto</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -50,6 +53,7 @@
                             <th>Alamat</th>
                             <th>No Hp</th>
                             <th>Jenis Kelamin</th>
+                            <th>action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -94,14 +98,15 @@
             serverSide: true,
             ajax: '{{ url()->current() }}',
             columns : [
+                {data: 'id', name: 'id'},
                 {data: 'foto', name: 'foto'},
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'username', name: 'username'},
                 {data: 'nik', name: 'nik'},
                 {data: 'alamat', name: 'alamat'},
-                {data: 'no_hp', name: 'no hp'},
-                {data: 'jenis_kelamin', name: 'jenis kelamin'},
+                {data: 'no_hp', name: 'no_hp'},
+                {data: 'jenis_kelamin', name: 'jenis_kelamin'},
                 {
                     data: 'action', 
                     name:'action',
