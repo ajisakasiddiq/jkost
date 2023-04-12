@@ -22,7 +22,15 @@ Route::get('/', function () {
 });
 
 // Route::get('/dashboard', [admindashboardController::class, 'index'])->name('dashboard-admin');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-admin');
+
 Route::get('/profile', [ProfileController::class, 'index'])->name('profileAdmin-admin');
 Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction-admin');
 Route::get('/data-kost', [DataKostController::class, 'index'])->name('DataKost-admin');
+Route::prefix('admin')
+    ->namespace('App\Http\Controllers\Admin')
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard-admin');
+        Route::resource('profile', ProfileController::class);;
+        Route::resource('transaction', TransactionController::class);;
+        Route::resource('datakost', DataKostController::class);;
+    });
