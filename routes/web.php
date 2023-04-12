@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\profileAdminController;
-use App\Http\Controllers\transactionController;
+use App\Http\Controllers\Admin\DataKostController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +23,6 @@ Route::get('/', function () {
 
 // Route::get('/dashboard', [admindashboardController::class, 'index'])->name('dashboard-admin');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-admin');
-Route::get('/profile', [profileAdminController::class, 'index'])->name('profileAdmin-admin');
-Route::get('/transaction', [transactionController::class, 'index'])->name('transaction-admin');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profileAdmin-admin');
+Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction-admin');
+Route::get('/data-kost', [DataKostController::class, 'index'])->name('DataKost-admin');

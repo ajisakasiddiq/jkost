@@ -57,8 +57,8 @@
                                 <span>Transaction</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
+                        <li class="sidebar-item {{ (request()->is('/data-kost')) ? 'active' : ''}}">
+                            <a href="{{ route('DataKost-admin')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Data Rumah Kost</span>
                             </a>
