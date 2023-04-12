@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\admindashboardController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\profileAdminController;
 use App\Http\Controllers\transactionController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [admindashboardController::class, 'index'])->name('dashboard-admin');
+// Route::get('/dashboard', [admindashboardController::class, 'index'])->name('dashboard-admin');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard-admin');
 Route::get('/profile', [profileAdminController::class, 'index'])->name('profileAdmin-admin');
 Route::get('/transaction', [transactionController::class, 'index'])->name('transaction-admin');

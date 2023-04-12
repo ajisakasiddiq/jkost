@@ -47,7 +47,7 @@
                         </li>
                         <li class="sidebar-item {{ (request()->is('/profile')) ? 'active' : ''}}">
                             <a href="{{ route('profileAdmin-admin')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="iconly-boldProfile"></i>
                                 <span>Profile Admin</span>
                             </a>
                         </li>

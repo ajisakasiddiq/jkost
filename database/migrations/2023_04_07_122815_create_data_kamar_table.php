@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('img_ketiga');
             $table->string('img_keempat');
             $table->string('deskripsi');
+            $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
         });
