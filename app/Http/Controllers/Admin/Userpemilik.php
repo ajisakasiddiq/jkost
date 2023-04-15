@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Yajra\DataTables\Facades\DataTables;
-use App\Models\User;
+use Yajra\DataTables\DataTables;
 
-class ProfileController extends Controller
+class Userpemilik extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,22 +16,22 @@ class ProfileController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = User::where('level', 1)->get();
+            $query = User::where('level', 2)->get();
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
-                    <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                     Aksi
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                      <li><a href="' . route('profile.edit', $item->id) . '" method="POST" class="dropdown-item">Edit</a></li>
-                                      <form action="' . route('profile.destroy', $item->id) . '" method="POST">
-                                        ' . method_field('delete') . csrf_field() . '
-                                      <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
-                                    </form>
-                                    </ul>
-                                  </div>';
+                <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                 Aksi
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a href="' . route('profile.edit', $item->id) . '" method="POST" class="dropdown-item">Edit</a></li>
+                                  <form action="' . route('profile.edit', $item->id) . '" method="POST">
+                                    ' . method_field('delete') . csrf_field() . '
+                                  <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
+                                </form>
+                                </ul>
+                              </div>';
                 })
                 ->editColumn('photo', function ($item) {
                     return $item->photo ? '<img src="' . Storage::url($item->photo) . '" style="max-height: 48px;" alt="">' : '';
@@ -39,7 +39,7 @@ class ProfileController extends Controller
                 ->rawColumns(['action', 'photo'])
                 ->make();
         }
-        return view('pages.admin-profile-admin');
+        return view('pages.admin-user-pemilik');
     }
 
     /**
@@ -87,9 +87,6 @@ class ProfileController extends Controller
      */
     public function destroy(string $id)
     {
-        $item = User::findOrFail($id);
-        $item->delete();
-
-        return redirect()->route('profileAdmin-admin');
+        //
     }
 }
