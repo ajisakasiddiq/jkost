@@ -39,7 +39,7 @@ class ProfileController extends Controller
                 ->rawColumns(['action', 'photo'])
                 ->make();
         }
-        return view('pages.admin-profile-admin');
+        return view('pages.admin.admin-profile-admin');
     }
 
     /**

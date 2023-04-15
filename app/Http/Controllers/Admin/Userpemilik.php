@@ -39,7 +39,7 @@ class Userpemilik extends Controller
                 ->rawColumns(['action', 'photo'])
                 ->make();
         }
-        return view('pages.admin-user-pemilik');
+        return view('pages.admin.admin-user-pemilik');
     }
 
     /**

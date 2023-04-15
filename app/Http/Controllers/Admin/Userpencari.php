@@ -39,7 +39,7 @@ class Userpencari extends Controller
                 ->rawColumns(['action', 'photo'])
                 ->make();
         }
-        return view('pages.admin-user-pencari');
+        return view('pages.admin.admin-user-pencari');
     }
 
     /**
