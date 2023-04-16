@@ -68,7 +68,7 @@ class ProfileController extends Controller
 
         User::create($data);
 
-        return redirect()->route('profile.index');
+        return redirect()->route('admin.profile.index');
     }
 
     /**
