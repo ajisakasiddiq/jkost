@@ -90,6 +90,7 @@
        $('#TransactionTable').DataTable({
             processing: true,
             serverSide: true,
+            scrollX: true,
             ajax: '{{ url()->current() }}',
             columns : [
                 {data: 'foto', name: 'foto'},

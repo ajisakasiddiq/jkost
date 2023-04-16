@@ -38,7 +38,11 @@ class ProfileController extends Controller
                 })
                 ->rawColumns(['action', 'photo'])
                 ->make();
+            return response()->json([
+                'data' => $query
+            ]);
         }
+
         return view('pages.admin.admin-profile-admin');
     }
 

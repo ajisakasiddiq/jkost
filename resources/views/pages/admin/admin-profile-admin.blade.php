@@ -111,6 +111,7 @@
        $('#ProfileUserTable').DataTable({
             processing: true,
             serverSide: true,
+            scrollX: true,
             ajax: '{{ url()->current() }}',
             columns : [
                 {data: 'id', name: 'id'},
