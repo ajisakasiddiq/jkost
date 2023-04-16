@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\User;
+use illuminate\Support\Str;
+use Illuminate\Auth\Events\Validated;
 
 class ProfileController extends Controller
 {
@@ -34,9 +37,9 @@ class ProfileController extends Controller
                                   </div>';
                 })
                 ->editColumn('photo', function ($item) {
-                    return $item->photo ? '<img src="' . Storage::url($item->photo) . '" style="max-height: 48px;" alt="">' : '';
+                    return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="">' : '';
                 })
-                ->rawColumns(['action', 'photo'])
+                ->rawColumns(['action', 'foto'])
                 ->make();
             return response()->json([
                 'data' => $query
@@ -57,9 +60,15 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+        $data['foto'] = $request->file('foto')->store('assets/user', 'public');
+
+        User::create($data);
+
+        return redirect()->route('profile.index');
     }
 
     /**
@@ -81,7 +90,7 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
         //
     }
@@ -94,6 +103,6 @@ class ProfileController extends Controller
         $item = User::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('profileAdmin-admin');
+        return redirect()->route('profile.index');
     }
 }
