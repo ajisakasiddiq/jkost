@@ -44,3 +44,7 @@ Route::prefix('admin')
         Route::get('/pencari', [Userpencari::class, 'index'])->name('UserPencari-admin');
         Route::get('/pemilik', [Userpemilik::class, 'index'])->name('UserPemilik-admin');
     });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
