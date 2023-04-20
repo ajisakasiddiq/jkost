@@ -24,6 +24,9 @@ return new class extends Migration
             $table->string('jenis_kelamin')->nullable();
             $table->string('bukti_kontrak')->nullable();
             $table->string('statusUser')->nullable();
+            $table->string('rekening_namebank')->nullable();
+            $table->string('rekening_name')->nullable();
+            $table->string('rekening_no')->nullable();
             $table->string('slug')->nullable();
             $table->softDeletes();
             $table->timestamp('email_verified_at')->nullable();
