@@ -42,15 +42,18 @@
                 <table class="table" id="TransactionTable">
                     <thead>
                         <tr>
-                            <th>Foto</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Username</th>
-                            <th>NIK</th>
-                            <th>Alamat</th>
-                            <th>No Hp</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Action</th>
+                            <th>No</th>
+                            <th>Kode Pemesanan</th>
+                            <th>Nama Kost</th>
+                            <th>No.kamar</th>
+                            <th>Nama Penyewa</th>
+                            <th>No Hp Penyewa</th>
+                            <th>Durasi Sewa</th>
+                            <th>Tanggal Mulai Ngekos</th>
+                            <th>Total Harga</th>
+                            <th>Status</th>
+                            <th>Bukti Pembayaran</th>
+                            <th>action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
