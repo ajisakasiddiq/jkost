@@ -10,6 +10,7 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Models\User;
 use illuminate\Support\Str;
 use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -28,8 +29,8 @@ class ProfileController extends Controller
                                      Aksi
                                     </button>
                                     <ul class="dropdown-menu">
-                                      <li><a href="' . route('profile.edit', $item->id) . '" method="POST" class="dropdown-item">Edit</a></li>
-                                      <form action="' . route('profile.destroy', $item->id) . '" method="POST">
+                                      <li><a data-bs-toggle="modal" data-bs-target="#editAdmin{' . route('profile.edit', $item->id) . '" class="dropdown-item">Edit</a></li>
+                                      <form action="' . route('profile.destroy', Auth::user()->id) . '" method="POST">
                                         ' . method_field('delete') . csrf_field() . '
                                       <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
                                     </form>
@@ -37,7 +38,7 @@ class ProfileController extends Controller
                                   </div>';
                 })
                 ->editColumn('photo', function ($item) {
-                    return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="">' : '';
+                    return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="" />' : '';
                 })
                 ->rawColumns(['action', 'foto'])
                 ->make();
@@ -46,7 +47,7 @@ class ProfileController extends Controller
             ]);
         }
 
-        return view('pages.admin.admin-profile-admin');
+        return view('pages.admin.profile-admin');
     }
 
     /**
@@ -76,15 +77,19 @@ class ProfileController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $profile = User::findOrFail($id);
+        return view('Profile.show')->with('User', $profile);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $profile = User::findOrFail($id);
+        return view('pages.admin.admin-profile-admin', [
+            'profile' => $profile
+        ]);
     }
 
     /**

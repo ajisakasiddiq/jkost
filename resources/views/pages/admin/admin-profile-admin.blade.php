@@ -125,7 +125,7 @@
 </div>
 
 {{-- modals edit --}}
-<div class="modal fade" id="editAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editAdmin{{ route('profile.edit', Auth::user()->id) }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

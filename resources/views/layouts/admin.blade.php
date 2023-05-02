@@ -39,25 +39,25 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item {{ (request()->is('/dashboard')) ? 'active' : ''}} ">
+                        <li class="sidebar-item  {{ (request()->is('/admin')) ? 'active' : ''}} ">
                             <a href="{{ route('dashboard-admin')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('/profile')) ? 'active' : ''}}">
+                        <li class="sidebar-item {{ (request()->is('profile')) ? 'active' : ''}}">
                             <a href="{{ route('profileAdmin-admin')}}" class='sidebar-link'>
                                 <i class="iconly-boldProfile"></i>
                                 <span>Profile Admin</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('/transaction')) ? 'active' : ''}}">
+                        <li class="sidebar-item {{ (request()->is('transaction')) ? 'active' : ''}}">
                             <a href="{{ route('transaction-admin')}}" class='sidebar-link'>
                                <i class="bi bi-grid-fill"></i>
                                 <span>Transaction</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('/data-kost')) ? 'active' : ''}}">
+                        <li class="sidebar-item {{ (request()->is('data-kost')) ? 'active' : ''}}">
                             <a href="{{ route('DataKost-admin')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Data Rumah Kost</span>
@@ -69,10 +69,10 @@
                                 <span>Users</span>
                             </a>
                             <ul class="submenu ">
-                                <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
+                                <li class="submenu-item {{ (request()->is('pemilik')) ? 'active' : ''}}">
                                     <a href="{{ route('UserPemilik-admin')}}">Pemilik Kost</a>
                                 </li>
-                                <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
+                                <li class="submenu-item {{ (request()->is('pencari')) ? 'active' : ''}}">
                                     <a href="{{ route('UserPencari-admin')}}">Pencari Kost</a>
                                 </li>
                             </ul>
