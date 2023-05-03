@@ -30,11 +30,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/Tentang-Kami', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/Pelayanan', [App\Http\Controllers\PelayananController::class, 'index'])->name('pelayanan');
 Route::get('/Pemesanan', [App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan');
-Route::get('/Pemesanan/detail/{id}', [App\Http\Controllers\PemesananController::class, 'order'])->name('pemesanan-detail');
+Route::get('/Pemesanan/detail/{id}', [App\Http\Controllers\PemesananController::class, 'details'])->name('details');
 
 
 Route::prefix('admin')
-    // ->middleware('auth', 'isAdmin')
+    ->middleware('auth', 'isAdmin')
     ->namespace('App\Http\Controllers\Admin')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard-admin');

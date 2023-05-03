@@ -56,7 +56,7 @@
                         <!-- <a href="contact.php" class="nav-item nav-link">Contact</a> -->
                     </div>
                     <div class="ml-auto">
-                            <a href="{{ route('home') }}" class="btn-regis ">Register</a>
+                            <a href="{{ route('register') }}" class="btn-regis ">Register</a>
                             <a href="{{ route('login') }}" class="btn btn-custom">Login</a>
                     </div>
 
