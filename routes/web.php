@@ -31,6 +31,7 @@ Route::get('/Tentang-Kami', [App\Http\Controllers\AboutController::class, 'index
 Route::get('/Pelayanan', [App\Http\Controllers\PelayananController::class, 'index'])->name('pelayanan');
 Route::get('/Pemesanan', [App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan');
 Route::get('/Pemesanan/details/{slug}', [App\Http\Controllers\PemesananController::class, 'details'])->name('pemesanan-details');
+Route::get('/Pemesanan/details/{slug}/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout');
 
 
 
