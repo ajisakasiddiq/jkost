@@ -30,7 +30,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/Tentang-Kami', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/Pelayanan', [App\Http\Controllers\PelayananController::class, 'index'])->name('pelayanan');
 Route::get('/Pemesanan', [App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan');
-Route::get('/Pemesanan/detail/{id}', [App\Http\Controllers\PemesananController::class, 'details'])->name('details');
+Route::get('/Pemesanan/details/{slug}', [App\Http\Controllers\PemesananController::class, 'details'])->name('pemesanan-details');
+
 
 
 Route::prefix('admin')
@@ -59,3 +60,8 @@ Route::get('/dashboard', [App\Http\Controllers\Pemilik\dashboardController::clas
 Route::get('/data-kost', [App\Http\Controllers\Pemilik\KostController::class, 'index'])->name('data-kost');
 Route::get('/data-kamar', [App\Http\Controllers\Pemilik\KamarController::class, 'index'])->name('data-kamar');
 Route::get('/transaction', [App\Http\Controllers\Pemilik\transactionController::class, 'index'])->name('transaction');
+
+
+Route::get('/home-kost', [App\Http\Controllers\Pencari\DashboardKostController::class, 'index'])->name('Home-Kost');
+Route::get('/transaction-kost', [App\Http\Controllers\Pencari\PembayaranController::class, 'index'])->name('Pembayaran-Kost');
+Route::get('/riwayat-transaction', [App\Http\Controllers\Pencari\RiwayatController::class, 'index'])->name('riwayat-Kost');

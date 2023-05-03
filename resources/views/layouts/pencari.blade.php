@@ -39,28 +39,11 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item {{ (request()->is('/dashboard')) ? 'active' : ''}} ">
-                            <a href="{{ route('dashboard-admin')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ (request()->is('/transaction')) ? 'active' : ''}}">
-                            <a href="{{ route('transaction-admin')}}" class='sidebar-link'>
-                               <i class="bi bi-grid-fill"></i>
-                                <span>Pembayaran</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ (request()->is('/data-kost')) ? 'active' : ''}}">
-                            <a href="{{ route('DataKost-admin')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Riwayat Transaksi</span>
-                            </a>
-                        </li>
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
-                                <span>Setting</span>
+                                {{-- <span>Hi, {{ Auth::user()->name }}</span> --}}
+                                <span>Hi,</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
@@ -74,6 +57,26 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="sidebar-item {{ (request()->is('/home-kost')) ? 'active' : ''}} ">
+                            <a href="{{ route('Home-Kost')}}" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item {{ (request()->is('/transaction-kost')) ? 'active' : ''}}">
+                            <a href="{{ route('Pembayaran-Kost')}}" class='sidebar-link'>
+                               <i class="bi bi-grid-fill"></i>
+                                <span>Pembayaran</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item {{ (request()->is('/riwayat-transaction')) ? 'active' : ''}}">
+                            <a href="{{ route('riwayat-Kost')}}" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Riwayat Transaksi</span>
+                            </a>
+                        </li>
+                        
                     </ul>
                     <!-- dashboard -->
                 </div>

@@ -12,7 +12,7 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.pencari.pencari-transaksi');
     }
 
     /**

@@ -39,6 +39,24 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-collection-fill"></i>
+                                <span>Hi, {{ Auth::user()->name }}</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
+                                    <a href="{{ route('UserPemilik-admin')}}">My Profile</a>
+                                </li>
+                                <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
+                                    <a href="{{ route('UserPencari-admin')}}">Setting account</a>
+                                </li>
+                                <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
+                                    <a href="{{ route('UserPencari-admin')}}">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="sidebar-item {{ (request()->is('/dashboard')) ? 'active' : ''}} ">
                             <a href="{{ route('dashboard')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
@@ -63,23 +81,7 @@
                                 <span>Transaksi</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
-                                <span>Setting</span>
-                            </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
-                                    <a href="{{ route('UserPemilik-admin')}}">My Profile</a>
-                                </li>
-                                <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
-                                    <a href="{{ route('UserPencari-admin')}}">Setting account</a>
-                                </li>
-                                <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
-                                    <a href="{{ route('UserPencari-admin')}}">Logout</a>
-                                </li>
-                            </ul>
-                        </li>
+           
                     </ul>
                     <!-- dashboard -->
                 </div>

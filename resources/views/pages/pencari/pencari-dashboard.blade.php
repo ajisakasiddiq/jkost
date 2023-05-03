@@ -1,7 +1,7 @@
 @extends('layouts.pencari')
 
 @section('title')
-    Transaction | Admin
+    Dashboard| Pencari
 @endsection
 
 @push('addon-style')
@@ -14,10 +14,17 @@
 @section('content')
 <div id="main">
 
+    <div class="row column1">
+        <div class="col-lg-12">
+            <div class="white_shd full margin_bottom_30">
+                <div class="full graph_head">
+                    <div class="table_section padding_infor_info">
+                        <h2 class="m-2 text-center text-primary">Kost Anda</h2>
 
+                        <div class="row">
     <div class="col-3">
         <div class="card" style="width: 18rem; max-width: 250px;">
-            <img src="img/blog-1.jpg" class="card-img-top" alt="...">
+            <img src="assets-home/img/blog-1.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">Kos mami</h5>
                
@@ -30,15 +37,23 @@
                         <a href="checkout.php?id_kamar" class=" btn btn-primary">Lanjut Sewa</a>
                     </div>
                     <div class="col-6">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#Stopsewa<?= $idPesan; ?>" class="btn btn-danger">Stop Sewa</a>
+                        <a href="#"  class="btn btn-danger">Stop Sewa</a>
                     </div>
                 </div>
 
 
             </div>
         </div>
+        
+    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- end row -->
+</div>
 
-    <?php } ?>
+
     <!-- table section -->
     </div>
 

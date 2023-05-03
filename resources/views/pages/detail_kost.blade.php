@@ -46,7 +46,7 @@
                         <div class="price">Rp.350.000</div> -->
                     </div>
                     <div class="col-lg-2" data-aos="zoom-in">
-                                <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="checkout?id_kamar=<?= $idKamar; ?>">Sewa</a>
+                                <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="checkout?id_kamar">Sewa</a>
 
                             <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="" onclick="alert('Akses hanya untuk akun penyewa')">Sewa</a>
                      
@@ -88,37 +88,6 @@
 </div>
 @endsection
 
-@push('addon-script')
-<script>
-    var gallery = new Vue({
-        el: "#gallery",
-        mounted() {
-            AOS.init();
-        },
-        data: {
-            activePhoto: 0,
-            photos: [{
-                id: 1,
-                url: "assets-home/img/blog-1.jpg",
-            }, {
-                id: 2,
-                url: "assets-home/img/blog-1.jpg",
-            }, {
-                id: 3,
-                url: "assets-home/img/blog-1.jpg",
-            }, {
-                id: 4,
-                url: "assets-home/img/blog-1.jpg",
-            }, ],
-        },
-        methods: {
-            changeActive(id) {
-                this.activePhoto = id;
-            },
-        },
-    });
-</script>
-@endpush
 
 
 
