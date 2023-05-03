@@ -49,10 +49,6 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Username</th>
-                            <th>NIK</th>
-                            <th>Alamat</th>
-                            <th>No Hp</th>
-                            <th>Jenis Kelamin</th>
                             <th>action</th>
                         </tr>
                     </thead>
@@ -214,7 +210,6 @@
        $('#ProfileUserTable').DataTable({
             processing: true,
             serverSide: true,
-            scrollX: true,
             ajax: '{{ url()->current() }}',
             columns : [
                 {data: 'id', name: 'id'},
@@ -222,10 +217,6 @@
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'username', name: 'username'},
-                {data: 'nik', name: 'nik'},
-                {data: 'alamat', name: 'alamat'},
-                {data: 'no_hp', name: 'no_hp'},
-                {data: 'jenis_kelamin', name: 'jenis_kelamin'},
                 {
                     data: 'action', 
                     name:'action',

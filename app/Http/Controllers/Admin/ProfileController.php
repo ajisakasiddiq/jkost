@@ -25,17 +25,17 @@ class ProfileController extends Controller
                 ->addColumn('action', function ($item) {
                     return '
                     <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                     Aksi
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                      <li><a data-bs-toggle="modal" data-bs-target="#editAdmin{' . route('profile.edit', $item->id) . '" class="dropdown-item">Edit</a></li>
-                                      <form action="' . route('profile.destroy', Auth::user()->id) . '" method="POST">
-                                        ' . method_field('delete') . csrf_field() . '
-                                      <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
-                                    </form>
-                                    </ul>
-                                  </div>';
+                      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       Aksi
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a data-bs-toggle="modal" data-bs-target="#editAdmin{' . route('profile.edit', $item->id) . '" class="dropdown-item">Edit</a></li>
+                        <form action="' . route('profile.destroy', Auth::user()->id) . '" method="POST">
+                          ' . method_field('delete') . csrf_field() . '
+                        <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
+                      </form>
+                      </ul>
+                    </div>';
                 })
                 ->editColumn('photo', function ($item) {
                     return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="" />' : '';
@@ -47,7 +47,7 @@ class ProfileController extends Controller
             ]);
         }
 
-        return view('pages.admin.profile-admin');
+        return view('pages.admin.admin-profile-admin');
     }
 
     /**
@@ -65,7 +65,7 @@ class ProfileController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-        $data['foto'] = $request->file('foto')->store('assets/user', 'public');
+        $data['foto'] = $request->file('foto')->store('/assets/user', 'public');
 
         User::create($data);
 
