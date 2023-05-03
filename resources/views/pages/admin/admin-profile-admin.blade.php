@@ -92,7 +92,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             {{-- <label for="">Level</label> --}}
-                            <input value="0" type="hidden" name="level" class="form-control" required>
+                            <input value="1" type="hidden" name="level" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">

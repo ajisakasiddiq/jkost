@@ -45,37 +45,17 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('/profile')) ? 'active' : ''}}">
-                            <a href="{{ route('profileAdmin-admin')}}" class='sidebar-link'>
-                                <i class="iconly-boldProfile"></i>
-                                <span>Profile Admin</span>
-                            </a>
-                        </li>
                         <li class="sidebar-item {{ (request()->is('/transaction')) ? 'active' : ''}}">
                             <a href="{{ route('transaction-admin')}}" class='sidebar-link'>
                                <i class="bi bi-grid-fill"></i>
-                                <span>Transaction</span>
+                                <span>Pembayaran</span>
                             </a>
                         </li>
                         <li class="sidebar-item {{ (request()->is('/data-kost')) ? 'active' : ''}}">
                             <a href="{{ route('DataKost-admin')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
-                                <span>Data Rumah Kost</span>
+                                <span>Riwayat Transaksi</span>
                             </a>
-                        </li>
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
-                                <span>Users</span>
-                            </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
-                                    <a href="{{ route('UserPemilik-admin')}}">Pemilik Kost</a>
-                                </li>
-                                <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
-                                    <a href="{{ route('UserPencari-admin')}}">Pencari Kost</a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
