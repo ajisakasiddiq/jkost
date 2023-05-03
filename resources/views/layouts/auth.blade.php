@@ -8,16 +8,38 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/auth.css') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.svg') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png') }}" type="image/png">
-    <!-- Scripts -->
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    <script>
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+    
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    
+    <!-- Custom Theme files -->
+    <link href="assets-login/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="assets-login/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- //Custom Theme files -->
+    
+    <!-- web font -->
+    <link href="//fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
+    <!-- //web font -->
+    
+    <style>
+        .header-main {
+            max-width: 310px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 999;
+            padding: 3em 2em;
+            background: rgba(255, 255, 255, 0.04);
+            -webkit-box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
+        }
+    </style>
 </head>
 <body>
     <div id="app">
