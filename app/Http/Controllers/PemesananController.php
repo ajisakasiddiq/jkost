@@ -10,4 +10,8 @@ class PemesananController extends Controller
     {
         return view('pages.pemesanan');
     }
+    public function order()
+    {
+        return view('pages.detail_kost');
+    }
 }
