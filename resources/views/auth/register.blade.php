@@ -31,10 +31,10 @@
                                     </span>
                                 @enderror
                         </div>
-                        {{-- <div class="icon1">
+                        <div class="icon1">
                             <span class="fa fa-user"></span>
                             <input type="text" placeholder="Username" name="username" required />
-                        </div> --}}
+                        </div>
                         <div class="icon1">
                             <span class="fa fa-lock"></span>
                             <input placeholder="Password" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -51,13 +51,13 @@
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
-                        {{-- <div class="icon1">
+                        <div class="icon1">
                             <select class="option" placeholder="Pilih Daftar Sebagai" class="form-control  form-select" name="level" id="OptionLevel">
                                 <option>Daftar sebagai</option>
                                 <option value="2">Pemilik</option>
                                 <option value="3">Pencari</option>
                             </select>
-                        </div> --}}
+                        </div>
                         <div class="login-check">
                             <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Keep me logged in</label>
                         </div>
