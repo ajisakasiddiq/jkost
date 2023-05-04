@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Pemesanan | Jkost
+    Details | Jkost
 @endsection
 
 
@@ -48,7 +48,7 @@
                     <div class="col-lg-2" data-aos="zoom-in">
                                 <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="checkout?id_kamar">Sewa</a>
 
-                            <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="" onclick="alert('Akses hanya untuk akun penyewa')">Sewa</a>
+                            {{-- <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="" onclick="alert('Akses hanya untuk akun penyewa')">Sewa</a> --}}
                      
                     </div>
                 </div>
@@ -87,7 +87,6 @@
     </div>
 </div>
 @endsection
-
 
 
 

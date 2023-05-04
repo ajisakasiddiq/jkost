@@ -4,19 +4,19 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="assets-home/lib/easing/easing.min.js"></script>
-    <script src="assets-home/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="assets-home/lib/waypoints/waypoints.min.js"></script>
-    <script src="assets-home/lib/counterup/counterup.min.js"></script>
+    <script src="{{ asset('assets-home/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('assets-home/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets-home/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets-home/lib/counterup/counterup.min.js') }}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="assets-home/mail/jqBootstrapValidation.min.js"></script>
-    <script src="assets-home/mail/contact.js"></script>
+    <script src="{{ asset('assets-home/mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ asset('assets-home/mail/contact.js') }}"></script>
 
     <!-- Template Javascript -->
-    <script src="assets-home/js/main.js"></script>
-    <script src="assets-home/js/vue/vue.js"></script>
+    <script src="{{ asset('assets-home/js/main.js') }}"></script>
+    <script src="{{ asset('assets-home/js/vue/vue.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <!-- Template Javascript -->
     <script>
@@ -32,16 +32,16 @@
                 activePhoto: 0,
                 photos: [{
                     id: 1,
-                    url: "assets-home/img/blog-1.jpg",
+                    url: "{{ asset('assets-home/img/blog-1.jpg') }}",
                 }, {
                     id: 2,
-                    url: "assets-home/img/blog-1.jpg",
+                    url: "{{ asset('assets-home/img/blog-1.jpg') }}",
                 }, {
                     id: 3,
-                    url: "assets-home/img/blog-1.jpg",
+                    url: "{{ asset('assets-home/img/blog-1.jpg') }}",
                 }, {
                     id: 4,
-                    url: "assets-home/img/blog-1.jpg",
+                    url: "{{ asset('assets-home/img/blog-1.jpg') }}",
                 }, ],
             },
             methods: {

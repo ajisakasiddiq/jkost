@@ -12,6 +12,6 @@ class PemesananController extends Controller
     }
     public function details()
     {
-        return view('pages.detail_kost');
+        return view('pages.details');
     }
 }
