@@ -67,10 +67,12 @@ class ProfileController extends Controller
         $data['slug'] = Str::slug($request->name);
         $data['foto'] = $request->file('foto')->store('/assets/user', 'public');
 
-        User::create($data);
+        $user =  User::create($data);
 
-        return redirect()->route('dashboard-admin');
+        $user->assignRole('admin');
+        return redirect()->route('profileAdmin-admin');
     }
+    // profileAdmin-admin
 
     /**
      * Display the specified resource.

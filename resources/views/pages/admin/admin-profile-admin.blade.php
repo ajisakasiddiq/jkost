@@ -91,12 +91,6 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            {{-- <label for="">Level</label> --}}
-                            <input value="1" type="hidden" name="level" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
                             <label for="">Password</label>
                             <input type="password" name="password" class="form-control" required>
                         </div>
@@ -210,6 +204,7 @@
        $('#ProfileUserTable').DataTable({
             processing: true,
             serverSide: true,
+            scrollX: true,
             ajax: '{{ url()->current() }}',
             columns : [
                 {data: 'id', name: 'id'},
