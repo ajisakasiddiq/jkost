@@ -51,7 +51,7 @@
                                     <a href="{{ route('UserPencari-admin')}}">Setting account</a>
                                 </li>
                                 
-                                <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
+                                <li class="submenu-item">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
