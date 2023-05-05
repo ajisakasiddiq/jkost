@@ -60,14 +60,22 @@
                             <li class="nav-item dropdown">
                                 <a href="" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
                                     Hi, {{Auth::user()->name}}
-                                    <img src="img/" alt="" class="rounded-circle m-0 p-0 profile-picture" height="50px">
+                                    <img src="{{ Auth::user()->foto }}" alt="" class="rounded-circle m-0 p-0 profile-picture" height="50px">
                                 </a>
                                 <div class="dropdown-menu bg-dark">
 
-                                    
+                                    @if(Auth::user()->role == 'admin')
                                         <a href="{{ route('dashboard-admin') }}" class="dropdown-item text-danger">Dashboard</a>
                                         <a href="ResetPass" class="dropdown-item text-danger">Setting</a>
-                                    
+                                    @endif
+                                    @if(Auth::user()->role == 'pemilik')
+                                        <a href="{{ route('dashboard') }}" class="dropdown-item text-danger">Dashboard</a>
+                                        <a href="ResetPass" class="dropdown-item text-danger">Setting</a>
+                                    @endif
+                                    @if(Auth::user()->role == 'pencari')
+                                        <a href="{{ route('Home-Kost') }}" class="dropdown-item text-danger">Dashboard</a>
+                                        <a href="ResetPass" class="dropdown-item text-danger">Setting</a>
+                                    @endif
                                     
                                     <div class="dropdown-divider"></div>
 

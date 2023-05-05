@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class DashboardKostController extends Controller
 {
+
     public function index()
     {
         return view('pages.pencari.pencari-dashboard');
