@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('bukti_kontrak')->nullable();
             $table->string('statusUser')->nullable();
             $table->string('slug')->nullable();
+            $table->enum('role', ['admin', 'pemilik', 'pencari'])->default('pencari');
             $table->softDeletes();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascacadeOnDelete()->cascacadeOnUpdate();
             $table->foreignId('kamar_id')->references('id')->on('data_kamar')->constrained()->cascacadeOnDelete()->cascacadeOnUpdate();
-            $table->foreignId('rekening_id')->references('id')->on('rekening')->constrained()->cascacadeOnDelete()->cascacadeOnUpdate();
+            // $table->foreignId('rekening_id')->references('id')->on('rekening')->constrained()->cascacadeOnDelete()->cascacadeOnUpdate();
             $table->string('kode_pemesanan');
             $table->string('nama_pemesan');
             $table->string('nik');

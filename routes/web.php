@@ -37,7 +37,7 @@ Route::get('/Pemesanan/details/{slug}/checkout', [App\Http\Controllers\CheckoutC
 
 
 Route::prefix('admin')
-    ->middleware('role:admin')
+    ->middleware('checkrole:admin')
     ->namespace('App\Http\Controllers\Admin')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard-admin');
@@ -58,14 +58,14 @@ Route::prefix('admin')
 Auth::routes();
 
 // controller user
-Route::middleware('role:pemilik')->group(function () {
+Route::middleware('checkrole:pemilik')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Pemilik\dashboardController::class, 'index'])->name('dashboard');
     Route::get('/data-kost', [App\Http\Controllers\Pemilik\KostController::class, 'index'])->name('data-kost');
     Route::get('/data-kamar', [App\Http\Controllers\Pemilik\KamarController::class, 'index'])->name('data-kamar');
     Route::get('/transaction', [App\Http\Controllers\Pemilik\transactionController::class, 'index'])->name('transaction');
 });
 
-Route::middleware('role:pencari')->group(function () {
+Route::middleware('checkrole:pencari')->group(function () {
     Route::get('/home-kost', [App\Http\Controllers\Pencari\DashboardKostController::class, 'index'])->name('Home-Kost');
     Route::get('/transaction-kost', [App\Http\Controllers\Pencari\PembayaranController::class, 'index'])->name('Pembayaran-Kost');
     Route::get('/riwayat-transaction', [App\Http\Controllers\Pencari\RiwayatController::class, 'index'])->name('riwayat-Kost');
