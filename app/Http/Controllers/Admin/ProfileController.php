@@ -11,6 +11,7 @@ use App\Models\User;
 use illuminate\Support\Str;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -37,7 +38,7 @@ class ProfileController extends Controller
                       </ul>
                     </div>';
                 })
-                ->editColumn('photo', function ($item) {
+                ->editColumn('foto', function ($item) {
                     return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="" />' : '';
                 })
                 ->rawColumns(['action', 'foto'])
@@ -66,7 +67,7 @@ class ProfileController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
         $data['foto'] = $request->file('foto')->store('/assets/user', 'public');
-
+        $data['password'] = Hash::make($data['password']);
         $user =  User::create($data);
 
         $user->assignRole('admin');
@@ -79,8 +80,8 @@ class ProfileController extends Controller
      */
     public function show(string $id)
     {
-        $profile = User::findOrFail($id);
-        return view('Profile.show')->with('User', $profile);
+        $data = User::findOrFail($id);
+        return view('Profile.show')->with('User', $data);
     }
 
     /**
@@ -88,9 +89,9 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $profile = User::findOrFail($id);
+        $data = User::findOrFail($id);
         return view('pages.admin.admin-profile-admin', [
-            'profile' => $profile
+            'profile' => $data
         ]);
     }
 
@@ -107,8 +108,8 @@ class ProfileController extends Controller
      */
     public function destroy(string $id)
     {
-        $item = User::findOrFail($id);
-        $item->delete();
+        $data = User::findOrFail($id);
+        $data->delete();
 
         return redirect()->route('profile.index');
     }
