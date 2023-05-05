@@ -16,7 +16,7 @@ class Userpemilik extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = User::where('level', 2)->get();
+            $query = User::where('role', 'pemilik')->get();
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
@@ -33,8 +33,8 @@ class Userpemilik extends Controller
                                 </ul>
                               </div>';
                 })
-                ->editColumn('photo', function ($item) {
-                    return $item->photo ? '<img src="' . Storage::url($item->photo) . '" style="max-height: 48px;" alt="">' : '';
+                ->editColumn('foto', function ($item) {
+                    return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="">' : '';
                 })
                 ->rawColumns(['action', 'photo'])
                 ->make();

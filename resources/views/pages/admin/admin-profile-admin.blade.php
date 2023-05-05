@@ -93,6 +93,7 @@
                         <div class="form-group">
                             <label for="">Password</label>
                             <input type="password" name="password" class="form-control" required>
+                            <input type="hidden" value="admin" name="role" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">

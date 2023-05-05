@@ -21,7 +21,7 @@ class ProfileController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = User::where('level', 1)->get();
+            $query = User::where('level', 'admin')->get();
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
@@ -68,9 +68,9 @@ class ProfileController extends Controller
         $data['slug'] = Str::slug($request->name);
         $data['foto'] = $request->file('foto')->store('/assets/user', 'public');
         $data['password'] = Hash::make($data['password']);
-        $user =  User::create($data);
+        User::create($data);
 
-        $user->assignRole('admin');
+        // $user->assignRole('admin');
         return redirect()->route('profileAdmin-admin');
     }
     // profileAdmin-admin
