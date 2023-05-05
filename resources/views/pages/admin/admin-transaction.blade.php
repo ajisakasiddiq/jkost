@@ -39,7 +39,7 @@
                 Jquery Datatable
             </div>
             <div class="card-body">
-                <table class="table" id="TransactionTable">
+                <table class="table" id="transactionadmin">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -90,14 +90,14 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-       $('#TransactionTable').DataTable({
+       $('#transactionadmin').DataTable({
             processing: true,
             serverSide: true,
             scrollX: true,
             ajax: '{{ url()->current() }}',
             columns : [
-                {data: 'foto', name: 'foto'},
-                {data: 'name', name: 'name'},
+                {data: 'no', name: 'no'},
+                {data: 'kode_pemesanan', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'username', name: 'username'},
                 {data: 'nik', name: 'nik'},
