@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Transaction|Admin
+    User Pemilik | Admin
 @endsection
 
 @push('addon-style')
@@ -47,7 +47,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Username</th>
-                            <th>NIK</th>
+                            {{-- <th>NIK</th> --}}
                             <th>Alamat</th>
                             <th>No Hp</th>
                             <th>Jenis Kelamin</th>
@@ -99,7 +99,7 @@
                 {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
                 {data: 'username', name: 'username'},
-                {data: 'nik', name: 'nik'},
+                // {data: 'nik', name: 'nik'},
                 {data: 'alamat', name: 'alamat'},
                 {data: 'no_hp', name: 'no hp'},
                 {data: 'jenis_kelamin', name: 'jenis kelamin'},
