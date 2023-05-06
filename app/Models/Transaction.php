@@ -5,10 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DataKamar extends Model
+class Transaction extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        ""
-    ]
+        'kamar_id',
+        'kode_pemesanan',
+        'email',
+        'password',
+        'foto',
+        'level',
+        'slug',
+    ];
 }
