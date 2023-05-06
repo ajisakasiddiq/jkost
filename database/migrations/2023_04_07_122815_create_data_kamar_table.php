@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kost_id')->references('id')->on('data_kost')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('jenis_kamar');
-            $table->string('no_kamar');
-            $table->string('harga');
+            $table->integer('no_kamar');
+            $table->integer('harga');
             $table->integer('status');
             $table->string('img_pertama');
             $table->string('img_kedua');

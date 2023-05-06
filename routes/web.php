@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\Userpemilik;
 use App\Http\Controllers\Admin\Userpencari;
+use App\Http\Controllers\Pemilik\KamarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,9 @@ Route::get('/Pemesanan/details/{slug}/checkout', [App\Http\Controllers\CheckoutC
 
 
 
+
+
+
 Route::prefix('admin')
     ->middleware('checkrole:admin')
     ->namespace('App\Http\Controllers\Admin')
@@ -63,6 +67,7 @@ Route::middleware('checkrole:pemilik')->group(function () {
     Route::get('/data-kost', [App\Http\Controllers\Pemilik\KostController::class, 'index'])->name('data-kost');
     Route::get('/data-kamar', [App\Http\Controllers\Pemilik\KamarController::class, 'index'])->name('data-kamar');
     Route::get('/transaction', [App\Http\Controllers\Pemilik\transactionController::class, 'index'])->name('transaction');
+    // Route::resource('kamar', KamarController::class);
 });
 
 Route::middleware('checkrole:pencari')->group(function () {
@@ -70,3 +75,8 @@ Route::middleware('checkrole:pencari')->group(function () {
     Route::get('/transaction-kost', [App\Http\Controllers\Pencari\PembayaranController::class, 'index'])->name('Pembayaran-Kost');
     Route::get('/riwayat-transaction', [App\Http\Controllers\Pencari\RiwayatController::class, 'index'])->name('riwayat-Kost');
 });
+
+
+Route::post('/kamarkost-add', [App\Http\Controllers\Pemilik\KamarController::class, 'tambah']);
+Route::delete('/kamarkost-delete{id}', [App\Http\Controllers\Pemilik\KamarController::class, 'destroy']);
+Route::post('/kostkamar-add', [App\Http\Controllers\Pemilik\KostController::class, 'store']);

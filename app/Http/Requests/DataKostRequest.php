@@ -11,7 +11,7 @@ class DataKostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class DataKostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => 'required|int|max:50',
+            'nama_kost' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'deskripsi' => 'required|string|max:255',
         ];
     }
 }

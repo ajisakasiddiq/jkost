@@ -34,7 +34,7 @@
 <div class="page-content">
     
     <!-- Basic Tables start -->
-    <section class="section">
+    {{-- <section class="section">
         <div class="card">
             <div class="card-body">
                 <form id="bookingForm" action="" method="post" class="needs-validation" novalidate autocomplete="off" enctype="multipart/form-data">
@@ -110,7 +110,177 @@
             </div>
         </div>
 
+    </section> --}}
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addAdmin">
+                    + Tambah Data Kamar
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table" id="datakamar">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama kos</th>
+                            <th>alamat</th>
+                            <th>Deskripsi</th>
+                            <th>Foto</th>
+                            {{-- <th>Nama Kost</th> --}}
+                            <th>Maps</th>
+                            <th>Status</th>
+                            <th>Longitude</th>
+                            <th>Latitude</th>
+                            <th>Action</th>
+                           
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        {{-- 
+                    <tr>                        
+                        @foreach ($data as $datakamar)
+                        <td>{{ $no++ }}</td>
+
+                        <td>
+                            <img src="{{ asset('/assets/user/' . $datakamar['img_pertama']) }}" alt="" height="20" width="20">
+                        </td>
+                        <td>
+                            <img src="{{ asset('/assets/user/' . $datakamar['img_kedua']) }}" alt="" height="20" width="20">
+                        </td>
+                        <td>
+                            <img src="{{ asset('/assets/user/' . $datakamar['img_ketiga']) }}" alt="" height="20" width="20">
+                        </td>
+                        <td>
+                            <img src="{{ asset('/assets/user/' . $datakamar['img_keempat']) }}" alt="" height="20" width="20">
+                        </td>
+                        {{-- <td>{{ $datakamar->kost_id }}</td> --}}
+                        {{-- <td>{{ $datakamar->no_kamar }}</td> --}}
+                        {{-- <td>{{ $datakamar->jenis_kamar }}</td> --}}
+                        {{-- <td>{{ $datakamar->deskripsi }}</td> --}}
+                        {{-- <td>{{ $datakamar->harga }}</td> --}}
+                        {{-- <td>{{ $datakamar->status }}</td> --}}
+                        {{-- <td>{{ $datakamar->slug }}</td> --}}
+                        {{-- <td> --}}
+                                {{-- <a href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletedata{{$datakamar->id}}"> --}}
+                                    {{-- Delete --}}
+                                {{-- </a> --}}
+                        {{-- </td> --}}
+                    {{-- </tr> --}} --
+
+                    <div class="modal fade" id="deletedata" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/kamarkost-delete" method="POST">
+                                    @csrf
+                                    @method('DELETE');
+                                    <p>Yakin akan menghapus data ?</p>
+                                
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Delete</button>
+                            </form>
+                    
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                
+
+                        {{-- @endforeach --}}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </section>
+    {{-- modals tambah --}}
+<div class="modal fade" id="addAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">+ Tambah Data Kost </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/kostkamar-add" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">user_id</label>
+                            <input type="text" name="user_id" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Nama Kost</label>
+                            <input type="text" name="nama_kost" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">alamat</label>
+                            <input type="text" name="alamat" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Deskripsi</label>
+                            <input type="text" name="deskripsi" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Foto</label>
+                            <input type="file" name="foto" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Maps</label>
+                            <input type="text" name="maps" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Status</label>
+                            <input  type="text" name="status" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Longitude</label>
+                            <input type="text" name="longitude" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Latitude</label>
+                            <input type="text" name="latitude" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- Basic Tables end -->
 
 

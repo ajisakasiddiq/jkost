@@ -49,16 +49,83 @@
                             <th>Foto dalam kamar</th>
                             <th>Foto kamar mandi</th>
                             <th>Foto dapur</th>
-                            <th>Nama Kost</th>
+                            {{-- <th>Nama Kost</th> --}}
                             <th>No. Kamar</th>
                             <th>Jenis Kamar</th>
                             <th>Deskripsi</th>
                             <th>Harga</th>
                             <th>Status</th>
+                            <th>Slug</th>
                             <th>Action</th>
+                           
                         </tr>
+
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <?php
+
+                        $no = 1;
+    
+                        ?>
+                    <tr>                        
+                        @foreach ($data as $datakamar)
+                        <td>{{ $no++ }}</td>
+
+                        <td>
+                            <img src="{{ asset('/assets/user/' . $datakamar['img_pertama']) }}" alt="" height="20" width="20">
+                        </td>
+                        <td>
+                            <img src="{{ asset('/assets/user/' . $datakamar['img_kedua']) }}" alt="" height="20" width="20">
+                        </td>
+                        <td>
+                            <img src="{{ asset('/assets/user/' . $datakamar['img_ketiga']) }}" alt="" height="20" width="20">
+                        </td>
+                        <td>
+                            <img src="{{ asset('/assets/user/' . $datakamar['img_keempat']) }}" alt="" height="20" width="20">
+                        </td>
+                        {{-- <td>{{ $datakamar->kost_id }}</td> --}}
+                        <td>{{ $datakamar->no_kamar }}</td>
+                        <td>{{ $datakamar->jenis_kamar }}</td>
+                        <td>{{ $datakamar->deskripsi }}</td>
+                        <td>{{ $datakamar->harga }}</td>
+                        <td>{{ $datakamar->status }}</td>
+                        <td>{{ $datakamar->slug }}</td>
+                        <td>
+                                <a href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletedata{{$datakamar->id}}">
+                                    Delete
+                                </a>
+                        </td>
+                    </tr>
+
+                    <div class="modal fade" id="deletedata{{ $datakamar->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/kamarkost-delete{{$datakamar->id}}" method="POST">
+                                    @csrf
+                                    @method('DELETE');
+                                    <p>Yakin akan menghapus data ?</p>
+                                
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Delete</button>
+                            </form>
+                    
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                
+
+                        @endforeach
+
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -74,43 +141,67 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="{{ route('profile.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="/kamarkost-add" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">Nama</label>
-                            <input type="text" name="name" class="form-control" required>
+                            <label for="">Id Kost</label>
+                            <input type="text" name="id_kost" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">Username</label>
-                            <input type="text" name="username" class="form-control" required>
+                            <label for="">Jenis kamar</label>
+                            <input type="text" name="jenis_kamar" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">Email</label>
-                            <input type="text" name="email" class="form-control" required>
+                            <label for="">No kamar</label>
+                            <input type="text" name="no_kamar" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            {{-- <label for="">Level</label> --}}
-                            <input value="1" type="hidden" name="level" class="form-control" required>
+                            <label for="">Harga</label>
+                            <input type="text" name="harga" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">Password</label>
-                            <input type="password" name="password" class="form-control" required>
+                            <label for="">Status</label>
+                            <input  type="text" name="status" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">Foto</label>
-                            <input type="file" name="foto" class="form-control" required>
+                            <label for="">Gambar pertama</label>
+                            <input type="file" name="img_pertama" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Gambar kedua</label>
+                            <input type="file" name="img_kedua" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Gambar ketiga</label>
+                            <input type="file" name="img_ketiga" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Gambar keempat</label>
+                            <input type="file" name="img_keempat" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Deskripsi</label>
+                            <input type="text" name="deskripsi" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -156,12 +247,7 @@
                             <input type="text" name="email" class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            {{-- <label for="">Level</label> --}}
-                            <input value="1" type="hidden" name="level" class="form-control" required>
-                        </div>
-                    </div>
+
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Password</label>
@@ -218,24 +304,27 @@
             serverSide: true,
             scrollX: true,
             ajax: '{{ url()->current() }}',
-            columns : [
-                {data: 'id', name: 'id'},
-                {data: 'foto', name: 'foto'},
-                {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
-                {data: 'username', name: 'username'},
-                {data: 'nik', name: 'nik'},
-                {data: 'alamat', name: 'alamat'},
-                {data: 'no_hp', name: 'no_hp'},
-                {data: 'jenis_kelamin', name: 'jenis_kelamin'},
-                {
-                    data: 'action', 
-                    name:'action',
-                    orderable : false,
-                    searcable : false,
-                    width:'15%'
-                },
-            ]
+            // columns : [
+            //     {data: 'id', name: 'id'},
+            //     {data: 'kost_id', name: 'kost_id'},
+            //     {data: 'jenis_kamar', name: 'jenis_kamar'},
+            //     {data: 'no_kamar', name: 'no_kamar'},
+            //     {data: 'harga', name: 'harga'},
+            //     {data: 'status', name: 'status'},
+            //     {data: 'img_satu', name: 'img_satu'},
+            //     {data: 'img_kedua', name: 'img_kedua'},
+            //     {data: 'img_ketiga', name: 'img_ketiga'},
+            //     {data: 'img_keempat', name: 'img_keempat'},
+            //     {data: 'deskripsi', name: 'deskripsi'},
+            //     {data: 'slug', name: 'slug'},
+            //     {
+            //         data: 'action', 
+            //         name:'action',
+            //         orderable : false,
+            //         searcable : false,
+            //         width:'15%'
+            //     },
+            // ]
         });
  });
     </script>

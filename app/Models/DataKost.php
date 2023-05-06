@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class DataKost extends Model
 {
     use HasFactory;
+
+    protected $table = 'data_kost';
 }

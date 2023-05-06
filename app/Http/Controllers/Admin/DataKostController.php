@@ -21,6 +21,7 @@ class DataKostController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
