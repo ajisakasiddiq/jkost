@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Contracts\DataTable;
 
 class TransactionController extends Controller
 {
@@ -12,8 +16,22 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.admin-transaction');
+        if (request()->ajax()) {
+            $datatrans = Transaction::query();
+            return DataTable::of($datatrans)
+                ->editColumn('foto', function ($item) {
+                    return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="" />' : '';
+                })
+                ->rawColumns(['action', 'foto'])
+                ->make();
+            return response()->json([
+                'data' => $datatrans
+            ]);
+        }
+
+        return view('pages.admin.admin-profile-admin');
     }
+
 
     /**
      * Show the form for creating a new resource.

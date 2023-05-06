@@ -100,6 +100,7 @@
                         <div class="form-group">
                             <label for="">Foto</label>
                             <input type="file" name="foto" class="form-control" required>
+                            <input type="hidden" name="role" value="admin" class="form-control" required>
                         </div>
                     </div>
                 </div>

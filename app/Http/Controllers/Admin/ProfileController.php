@@ -21,7 +21,7 @@ class ProfileController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = User::where('level', 'admin')->get();
+            $query = User::where('role', 'admin')->get();
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
