@@ -9,6 +9,7 @@ class DataKamar extends Model
 {
     use HasFactory;
 
+
     protected $table  = 'data_kamar';
 
 

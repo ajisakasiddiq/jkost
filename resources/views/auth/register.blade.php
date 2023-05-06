@@ -54,8 +54,8 @@
                         <div class="icon1">
                             <select class="option" placeholder="Pilih Daftar Sebagai" class="form-control  form-select" name="level" id="OptionLevel">
                                 <option>Daftar sebagai</option>
-                                <option value="2">Pemilik</option>
-                                <option value="3">Pencari</option>
+                                <option value="pemilik">Pemilik</option>
+                                <option value="pemilik">Pencari</option>
                             </select>
                         </div>
                         <div class="login-check">
