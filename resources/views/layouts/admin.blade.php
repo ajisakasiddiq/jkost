@@ -64,26 +64,26 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="sidebar-item  {{ (request()->is('/admin')) ? 'active' : ''}} ">
+                        <li class="sidebar-item  {{ (request()->is('admin')) ? 'active' : ''}} ">
                             <a href="{{ route('dashboard-admin')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('profile')) ? 'active' : ''}}">
-                            <a href="{{ route('profileAdmin-admin')}}" class='sidebar-link'>
+                        <li class="sidebar-item {{ (request()->is('admin/profile*')) ? 'active' : ''}}">
+                            <a href="{{ route('profile.index')}}" class='sidebar-link'>
                                 <i class="iconly-boldProfile"></i>
                                 <span>Profile Admin</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('transaction')) ? 'active' : ''}}">
-                            <a href="{{ route('transaction-admin')}}" class='sidebar-link'>
+                        <li class="sidebar-item {{ (request()->is('admin/transaction*')) ? 'active' : ''}}">
+                            <a href="{{ route('transaction.index')}}" class='sidebar-link'>
                                <i class="bi bi-grid-fill"></i>
                                 <span>Transaction</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('data-kost')) ? 'active' : ''}}">
-                            <a href="{{ route('DataKost-admin')}}" class='sidebar-link'>
+                        <li class="sidebar-item {{ (request()->is('admin/data-kost*')) ? 'active' : ''}}">
+                            <a href="{{ route('datakost.index')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Data Rumah Kost</span>
                             </a>

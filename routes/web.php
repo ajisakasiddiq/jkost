@@ -52,9 +52,9 @@ Route::prefix('admin')
         Route::resource('datakost', DataKostController::class);
 
 
-        Route::get('/profile', [ProfileController::class, 'index'])->name('profileAdmin-admin');
-        Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction-admin');
-        Route::get('/data-kost', [DataKostController::class, 'index'])->name('DataKost-admin');
+        // Route::get('/profile', [ProfileController::class, 'index'])->name('profileAdmin-admin');
+        // Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction-admin');
+        // Route::get('/data-kost', [DataKostController::class, 'index'])->name('DataKost-admin');
         Route::get('/pencari', [Userpencari::class, 'index'])->name('UserPencari-admin');
         Route::get('/pemilik', [Userpemilik::class, 'index'])->name('UserPemilik-admin');
     });

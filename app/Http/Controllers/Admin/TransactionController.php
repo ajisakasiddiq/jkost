@@ -7,7 +7,8 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Yajra\DataTables\Contracts\DataTable;
+use Yajra\DataTables\Facades\DataTables;
+
 
 class TransactionController extends Controller
 {
@@ -18,18 +19,14 @@ class TransactionController extends Controller
     {
         if (request()->ajax()) {
             $datatrans = Transaction::query();
-            return DataTable::of($datatrans)
-                ->editColumn('foto', function ($item) {
-                    return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="" />' : '';
-                })
-                ->rawColumns(['action', 'foto'])
+            return DataTables::of($datatrans)
                 ->make();
             return response()->json([
                 'data' => $datatrans
             ]);
         }
 
-        return view('pages.admin.admin-profile-admin');
+        return view('pages.admin.admin-transaction');
     }
 
 
