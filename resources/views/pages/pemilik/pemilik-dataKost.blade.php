@@ -127,7 +127,6 @@
                             <th>alamat</th>
                             <th>Deskripsi</th>
                             <th>Foto</th>
-                            {{-- <th>Nama Kost</th> --}}
                             <th>Maps</th>
                             <th>Status</th>
                             <th>Longitude</th>
@@ -138,38 +137,30 @@
 
                     </thead>
                     <tbody>
-                        {{-- 
+                        <?php
+                        $no= 1;
+                        ?>
                     <tr>                        
                         @foreach ($data as $datakamar)
-                        <td>{{ $no++ }}</td>
+                        <td>{{ $datakamar->id }}</td>
+                        <td>{{ $datakamar->nama_kost }}</td>
+                        <td>{{ $datakamar->alamat }}</td>
+                        <td>{{ $datakamar->deskripsi }}</td>
+                        <td>
+                            <img src="{{ asset('/assets/user/' . $datakamar['foto']) }}" alt="" height="50" width="150">
+                        </td>
+                        <td>{{ $datakamar->maps }}</td>
+                        <td>{{ $datakamar->status }}</td>
+                        <td>{{ $datakamar->longitude }}</td>
+                        <td>{{ $datakamar->latitude }}</td>
+                        <td>
+                                <a href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletedata{{$datakamar->id}}">
+                                    Delete
+                                </a>
+                        </td>
+                    </tr> 
 
-                        <td>
-                            <img src="{{ asset('/assets/user/' . $datakamar['img_pertama']) }}" alt="" height="20" width="20">
-                        </td>
-                        <td>
-                            <img src="{{ asset('/assets/user/' . $datakamar['img_kedua']) }}" alt="" height="20" width="20">
-                        </td>
-                        <td>
-                            <img src="{{ asset('/assets/user/' . $datakamar['img_ketiga']) }}" alt="" height="20" width="20">
-                        </td>
-                        <td>
-                            <img src="{{ asset('/assets/user/' . $datakamar['img_keempat']) }}" alt="" height="20" width="20">
-                        </td>
-                        {{-- <td>{{ $datakamar->kost_id }}</td> --}}
-                        {{-- <td>{{ $datakamar->no_kamar }}</td> --}}
-                        {{-- <td>{{ $datakamar->jenis_kamar }}</td> --}}
-                        {{-- <td>{{ $datakamar->deskripsi }}</td> --}}
-                        {{-- <td>{{ $datakamar->harga }}</td> --}}
-                        {{-- <td>{{ $datakamar->status }}</td> --}}
-                        {{-- <td>{{ $datakamar->slug }}</td> --}}
-                        {{-- <td> --}}
-                                {{-- <a href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletedata{{$datakamar->id}}"> --}}
-                                    {{-- Delete --}}
-                                {{-- </a> --}}
-                        {{-- </td> --}}
-                    {{-- </tr> --}} --
-
-                    <div class="modal fade" id="deletedata" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="deletedata{{$datakamar->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -177,7 +168,7 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/kamarkost-delete" method="POST">
+                                <form action="/kostkamar-delete{{$datakamar->id}}" method="POST">
                                     @csrf
                                     @method('DELETE');
                                     <p>Yakin akan menghapus data ?</p>
@@ -192,11 +183,7 @@
                           </div>
                         </div>
                       </div>
-
-                
-
-                        {{-- @endforeach --}}
-
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -307,9 +294,35 @@
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
 <script src="/assets/js/pages/datatables.js"></script>
 
-
-
-
+<script type="text/javascript">
+    $(document).ready(function () {
+       $('#datakamar').DataTable({
+            processing: true,
+            serverSide: true,
+            scrollX: true,
+            ajax: '{{ url()->current() }}',
+            columns : [
+                {data: 'id', name: 'id'},
+                {data: 'user_id', name: 'user_id'},
+                {data: 'nama_kost', name: 'nama_kost'},
+                {data: 'alamat', name: 'alamat'},
+                {data: 'deskripsi', name: 'deskripsi'},
+                {data: 'foto', name: 'foto'},
+                {data: 'maps', name: 'maps'},
+                {data: 'status', name: 'status'},
+                {data: 'longitude', name: 'longitude'},
+                {data: 'latitude', name: 'latitude'},
+                {
+                    data: 'action', 
+                    name:'action',
+                    orderable : false,
+                    searcable : false,
+                    width:'15%'
+                },
+            ]
+        });
+ });
+    </script>
 
 @endpush
 

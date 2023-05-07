@@ -15,7 +15,11 @@ class KostController extends Controller
      */
     public function index()
     {
-        return view('pages.pemilik.pemilik-dataKost');
+        $datakamar = DataKost::all();
+
+        return view('pages.pemilik.pemilik-dataKost', [
+            'data' => $datakamar,
+        ]);
     }
 
     /**
@@ -37,14 +41,13 @@ class KostController extends Controller
             []
         );
         $datakamar = new DataKost();
-
         $fileNameFotoPertama = time() . '.' . $request->foto->extension();
-        $request->foto->move(public_path('assets/pemilik/'), $fileNameFotoPertama);
+        $request->foto->move(public_path('assets/user/'), $fileNameFotoPertama);
         $datakamar->user_id = $request->user_id;
         $datakamar->nama_kost = $request->nama_kost;
         $datakamar->alamat = $request->alamat;
         $datakamar->deskripsi = $request->deskripsi;
-        $datakamar->foto = $request->foto;
+        $datakamar->foto = $fileNameFotoPertama;
         $datakamar->maps = $request->maps;
         $datakamar->status = $request->status;
         $datakamar->longitude = $request->longitude;

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\DataKamar;
 use App\Models\DataKost;
 use Illuminate\Database\Seeder;
 
@@ -24,7 +25,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(RoleSeeder::class);
         $this->call([
             UserSeeder::class,
-            DataKostSeeder::class
+            DataKostSeeder::class,
+            DataKamarSeeder::class
         ]);
     }
 }
