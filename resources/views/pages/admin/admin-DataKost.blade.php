@@ -39,17 +39,18 @@
                 Jquery Datatable
             </div>
             <div class="card-body">
-                <table class="table" id="TransactionTable">
+                <table class="table" id="datakostadmin">
                     <thead>
                         <tr>
+                            <th>No</th>
+                            <th>id</th>
                             <th>Foto</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Username</th>
-                            <th>NIK</th>
-                            <th>Alamat</th>
-                            <th>No Hp</th>
-                            <th>Jenis Kelamin</th>
+                            <th>Nama Kost</th>
+                            <th>alamat</th>
+                            <th>Deskripsi</th>
+                            <th>Status</th>
+                            <th>Longitude</th>
+                            <th>Latitude</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -87,19 +88,26 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-       $('#TransactionTable').DataTable({
+        var i = 1;
+       $('#datakostadmin').DataTable({
             processing: true,
             serverSide: true,
             ajax: '{{ url()->current() }}',
             columns : [
+                {
+                    "render": function() {
+                        return i++;
+                    }
+                },
+                {data: 'id', name: 'id'},
                 {data: 'foto', name: 'foto'},
-                {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
-                {data: 'username', name: 'username'},
-                {data: 'nik', name: 'nik'},
+                // {data: 'user_id', name: 'user_id'},
+                {data: 'nama_kost', name: 'nama_kost'},
                 {data: 'alamat', name: 'alamat'},
-                {data: 'no_hp', name: 'no hp'},
-                {data: 'jenis_kelamin', name: 'jenis kelamin'},
+                {data: 'deskripsi', name: 'deskripsi'},
+                {data: 'status', name: 'status'},
+                {data: 'longitude', name: 'longitude'},
+                {data: 'latitude', name: 'latitude'},
                 {
                     data: 'action', 
                     name:'action',

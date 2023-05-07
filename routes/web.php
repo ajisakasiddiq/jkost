@@ -41,7 +41,7 @@ Route::get('/Pemesanan/details/{slug}/checkout', [App\Http\Controllers\CheckoutC
 
 
 Route::prefix('admin')
-    ->middleware('checkrole:admin')
+    ->middleware('auth', 'checkrole:admin')
     ->namespace('App\Http\Controllers\Admin')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard-admin');
@@ -50,16 +50,11 @@ Route::prefix('admin')
         Route::resource('profile', ProfileController::class);
         Route::resource('transaction', TransactionController::class);
         Route::resource('datakost', DataKostController::class);
-
-
-        // Route::get('/profile', [ProfileController::class, 'index'])->name('profileAdmin-admin');
-        // Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction-admin');
-        // Route::get('/data-kost', [DataKostController::class, 'index'])->name('DataKost-admin');
-        Route::get('/pencari', [Userpencari::class, 'index'])->name('UserPencari-admin');
-        Route::get('/pemilik', [Userpemilik::class, 'index'])->name('UserPemilik-admin');
+        Route::resource('data-pencari', Userpencari::class);
+        Route::resource('data-pemilik', Userpemilik::class);
     });
 
-Auth::routes();
+
 
 // controller user
 Route::middleware('checkrole:pemilik')->group(function () {
@@ -80,3 +75,6 @@ Route::middleware('checkrole:pencari')->group(function () {
 Route::post('/kamarkost-add', [App\Http\Controllers\Pemilik\KamarController::class, 'tambah']);
 Route::delete('/kamarkost-delete{id}', [App\Http\Controllers\Pemilik\KamarController::class, 'destroy']);
 Route::post('/kostkamar-add', [App\Http\Controllers\Pemilik\KostController::class, 'store']);
+
+
+Auth::routes();

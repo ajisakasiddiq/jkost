@@ -44,6 +44,7 @@
                 <table class="table" id="ProfileUserTable">
                     <thead>
                         <tr>
+                            <th>NO</th>
                             <th>ID</th>
                             <th>Foto</th>
                             <th>Name</th>
@@ -204,12 +205,18 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var i = 1;
        $('#ProfileUserTable').DataTable({
             processing: true,
             serverSide: true,
             // scrollX: true,
             ajax: '{{ url()->current() }}',
             columns : [
+                {
+                    "render": function() {
+                        return i++;
+                    }
+                },
                 {data: 'id', name: 'id'},
                 {data: 'foto', name: 'foto'},
                 {data: 'name', name: 'name'},
