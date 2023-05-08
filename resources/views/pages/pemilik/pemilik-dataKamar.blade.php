@@ -297,7 +297,7 @@
 <script src="/assets/js/pages/datatables.js"></script>
 
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(document).ready(function () {
        $('#datakamar').DataTable({
             processing: true,
@@ -327,7 +327,7 @@
             // ]
         });
  });
-    </script>
+    </script> --}}
 
 @endpush
 

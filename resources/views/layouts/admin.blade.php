@@ -45,10 +45,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
-                                    <a href="{{ route('UserPemilik-admin')}}">My Profile</a>
+                                    <a href="/">My Profile</a>
                                 </li>
                                 <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
-                                    <a href="{{ route('UserPencari-admin')}}">Setting account</a>
+                                    <a href="/">Setting account</a>
                                 </li>
                                 
                                 <li class="submenu-item">
@@ -95,10 +95,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item {{ (request()->is('pemilik')) ? 'active' : ''}}">
-                                    <a href="{{ route('UserPemilik-admin')}}">Pemilik Kost</a>
+                                    <a href="{{ route('data-pemilik.index')}}">Pemilik Kost</a>
                                 </li>
                                 <li class="submenu-item {{ (request()->is('pencari')) ? 'active' : ''}}">
-                                    <a href="{{ route('UserPencari-admin')}}">Pencari Kost</a>
+                                    <a href="{{ route('data-pencari.index')}}">Pencari Kost</a>
                                 </li>
                             </ul>
                         </li>

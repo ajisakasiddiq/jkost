@@ -45,8 +45,6 @@ Route::prefix('admin')
     ->namespace('App\Http\Controllers\Admin')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard-admin');
-
-
         Route::resource('profile', ProfileController::class);
         Route::resource('transaction', TransactionController::class);
         Route::resource('datakost', DataKostController::class);
