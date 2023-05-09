@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/dashboard', [admindashboardController::class, 'index'])->name('dashboard-admin');
 
 // controller frontend
-Route::get('/dash', [App\Http\Controllers\DashController::class, 'index'])->name('dash');
+// Route::get('/dash', [App\Http\Controllers\DashController::class, 'index'])->name('dash');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/Tentang-Kami', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/Pelayanan', [App\Http\Controllers\PelayananController::class, 'index'])->name('pelayanan');
