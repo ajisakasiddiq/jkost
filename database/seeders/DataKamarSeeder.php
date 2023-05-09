@@ -15,7 +15,7 @@ class DataKamarSeeder extends Seeder
     public function run(): void
     {
         DataKamar::create([
-            'kost_id' => 2,
+            'kost_id' => 1,
             'jenis_kamar' => 'Bebas',
             'no_kamar' => 20,
             'harga' => 20000,
