@@ -147,7 +147,7 @@
                         <td>{{ $datakamar->alamat }}</td>
                         <td>{{ $datakamar->deskripsi }}</td>
                         <td>
-                            <img src="{{ asset('/assets/user/' . $datakamar['foto']) }}" alt="" height="50" width="150">
+                            <img src="{{ asset('/assets/user/' . $datakamar['foto']) }}"  alt="" height="50" width="100">
                         </td>
                         <td>{{ $datakamar->maps }}</td>
                         <td>{{ $datakamar->status }}</td>
@@ -293,7 +293,7 @@
 <script src="/assets/extensions/jquery/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
 <script src="/assets/js/pages/datatables.js"></script>
-
+{{-- 
 <script type="text/javascript">
     $(document).ready(function () {
        $('#datakamar').DataTable({
@@ -322,7 +322,7 @@
             ]
         });
  });
-    </script>
+    </script> --}}
 
 @endpush
 

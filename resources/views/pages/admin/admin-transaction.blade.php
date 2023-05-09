@@ -90,12 +90,18 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var i =1;
        $('#transactionadmin').DataTable({
             processing: true,
             serverSide: true,
             scrollX: true,
             ajax: '{{ url()->current() }}',
             columns : [
+                {
+                    "render": function() {
+                        return i++;
+                    }
+                },
                 {data: 'id', name: 'id'},
                 {data: 'user_id', name: 'user_id'},
                 {data: 'kamar_id', name: 'kamar_id'},

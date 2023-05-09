@@ -44,6 +44,7 @@
                 <table class="table" id="ProfileUserTable">
                     <thead>
                         <tr>
+                            <th>NO</th>
                             <th>ID</th>
                             <th>Foto</th>
                             <th>Name</th>
@@ -117,7 +118,7 @@
 </div>
 
 {{-- modals edit --}}
-<div class="modal fade" id="editAdmin{{ route('profile.edit', Auth::user()->id) }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -125,8 +126,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="{{ route('profile.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+        <form action="" method="POST" enctype="multipart/form-data">
+            @method('PUT')    
+            @csrf
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -203,12 +205,18 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var i = 1;
        $('#ProfileUserTable').DataTable({
             processing: true,
             serverSide: true,
             // scrollX: true,
             ajax: '{{ url()->current() }}',
             columns : [
+                {
+                    "render": function() {
+                        return i++;
+                    }
+                },
                 {data: 'id', name: 'id'},
                 {data: 'foto', name: 'foto'},
                 {data: 'name', name: 'name'},

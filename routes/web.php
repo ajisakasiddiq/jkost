@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/dashboard', [admindashboardController::class, 'index'])->name('dashboard-admin');
 
 // controller frontend
-Route::get('/dash', [App\Http\Controllers\DashController::class, 'index'])->name('dash');
+// Route::get('/dash', [App\Http\Controllers\DashController::class, 'index'])->name('dash');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/Tentang-Kami', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/Pelayanan', [App\Http\Controllers\PelayananController::class, 'index'])->name('pelayanan');
@@ -41,25 +41,18 @@ Route::get('/Pemesanan/details/{slug}/checkout', [App\Http\Controllers\CheckoutC
 
 
 Route::prefix('admin')
-    ->middleware('checkrole:admin')
+    ->middleware('auth', 'checkrole:admin')
     ->namespace('App\Http\Controllers\Admin')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard-admin');
-
-
         Route::resource('profile', ProfileController::class);
         Route::resource('transaction', TransactionController::class);
         Route::resource('datakost', DataKostController::class);
-
-
-        Route::get('/profile', [ProfileController::class, 'index'])->name('profileAdmin-admin');
-        Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction-admin');
-        Route::get('/data-kost', [DataKostController::class, 'index'])->name('DataKost-admin');
-        Route::get('/pencari', [Userpencari::class, 'index'])->name('UserPencari-admin');
-        Route::get('/pemilik', [Userpemilik::class, 'index'])->name('UserPemilik-admin');
+        Route::resource('data-pencari', Userpencari::class);
+        Route::resource('data-pemilik', Userpemilik::class);
     });
 
-Auth::routes();
+
 
 // controller user
 Route::middleware('checkrole:pemilik')->group(function () {
@@ -81,3 +74,6 @@ Route::post('/kamarkost-add', [App\Http\Controllers\Pemilik\KamarController::cla
 Route::delete('/kamarkost-delete/{id}', [App\Http\Controllers\Pemilik\KamarController::class, 'destroy']);
 Route::post('/kostkamar-add', [App\Http\Controllers\Pemilik\KostController::class, 'store']);
 Route::delete('/kostkamar-delete/{id}', [App\Http\Controllers\Pemilik\KostController::class, 'destroy']);
+
+
+Auth::routes();

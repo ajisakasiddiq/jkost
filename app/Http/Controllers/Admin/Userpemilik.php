@@ -34,9 +34,9 @@ class Userpemilik extends Controller
                               </div>';
                 })
                 ->editColumn('foto', function ($item) {
-                    return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="">' : '';
+                    return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="" />' : '';
                 })
-                ->rawColumns(['action', 'photo'])
+                ->rawColumns(['action', 'foto'])
                 ->make();
         }
         return view('pages.admin.admin-user-pemilik');

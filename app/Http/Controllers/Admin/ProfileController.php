@@ -30,8 +30,8 @@ class ProfileController extends Controller
                        Aksi
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a data-bs-toggle="modal" data-bs-target="#editAdmin{' . route('profile.edit', $item->id) . '" class="dropdown-item">Edit</a></li>
-                        <form action="' . route('profile.destroy', Auth::user()->id) . '" method="POST">
+                        <li><a data-bs-toggle="modal" data-bs-target="#editAdmin" class="dropdown-item">Edit</a></li>
+                        <form action="' . route('profile.destroy', $item->id) . '" method="POST">
                           ' . method_field('delete') . csrf_field() . '
                         <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
                       </form>
@@ -71,7 +71,7 @@ class ProfileController extends Controller
         User::create($data);
 
         // $user->assignRole('admin');
-        return redirect()->route('profileAdmin-admin');
+        return redirect()->route('profile.index');
     }
     // profileAdmin-admin
 
@@ -80,8 +80,8 @@ class ProfileController extends Controller
      */
     public function show(string $id)
     {
-        $data = User::findOrFail($id);
-        return view('Profile.show')->with('User', $data);
+        $item = User::findOrFail($id);
+        return view('Profile.show')->with('User', $item);
     }
 
     /**
@@ -89,9 +89,9 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $data = User::findOrFail($id);
+        $item = User::findOrFail($id);
         return view('pages.admin.admin-profile-admin', [
-            'profile' => $data
+            'profile' => $item
         ]);
     }
 
@@ -100,7 +100,14 @@ class ProfileController extends Controller
      */
     public function update(UserRequest $request, string $id)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+        $data['photo'] = $request->file('foto')->store('assets/category', 'public');
+
+        $item = User::findOrFail($id);
+        $item->update($data);
+
+        return redirect()->route('profile.index');
     }
 
     /**
@@ -108,8 +115,8 @@ class ProfileController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = User::findOrFail($id);
-        $data->delete();
+        $item = User::findOrFail($id);
+        $item->delete();
 
         return redirect()->route('profile.index');
     }
