@@ -164,11 +164,11 @@
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus data kost</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/kostkamar-delete{{$datakamar->id}}" method="POST">
+                                <form action="/kostkamar-delete/{{$datakamar->id}}" method="POST">
                                     @csrf
                                     @method('DELETE');
                                     <p>Yakin akan menghapus data ?</p>
