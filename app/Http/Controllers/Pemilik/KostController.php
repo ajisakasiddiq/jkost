@@ -85,6 +85,11 @@ class KostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $deleteimage1 = DataKost::where('id', $id)->first();
+        File::delete(public_path('assets/user') . '/' . $deleteimage1->foto);
+        $deletedata = DataKost::find($id)->delete();
+        if ($deletedata) {
+            return redirect()->route('data-kost');
+        }
     }
 }

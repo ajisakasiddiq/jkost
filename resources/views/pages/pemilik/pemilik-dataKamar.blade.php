@@ -105,7 +105,7 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/kamarkost-delete{{$datakamar->id}}" method="POST">
+                                <form action="/kamarkost-delete/{{$datakamar->id}}" method="POST">
                                     @csrf
                                     @method('DELETE');
                                     <p>Yakin akan menghapus data ?</p>

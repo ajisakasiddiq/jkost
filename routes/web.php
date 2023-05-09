@@ -71,8 +71,9 @@ Route::middleware('checkrole:pencari')->group(function () {
 
 
 Route::post('/kamarkost-add', [App\Http\Controllers\Pemilik\KamarController::class, 'tambah']);
-Route::delete('/kamarkost-delete{id}', [App\Http\Controllers\Pemilik\KamarController::class, 'destroy']);
+Route::delete('/kamarkost-delete/{id}', [App\Http\Controllers\Pemilik\KamarController::class, 'destroy']);
 Route::post('/kostkamar-add', [App\Http\Controllers\Pemilik\KostController::class, 'store']);
+Route::delete('/kostkamar-delete/{id}', [App\Http\Controllers\Pemilik\KostController::class, 'destroy']);
 
 
 Auth::routes();

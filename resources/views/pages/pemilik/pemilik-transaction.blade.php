@@ -36,7 +36,9 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                Jquery Datatable
+                <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addAdmin">
+                    + Tambah Data Transaksi
+                </a>
             </div>
             <div class="card-body">
                 <table class="table" id="TransactionTable">
@@ -60,8 +62,84 @@
                 </table>
             </div>
         </div>
-
+        
     </section>
+    <div class="modal fade" id="addAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">+ Tambah Data Kost </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/kostkamar-add" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">user id</label>
+                                <input type="text" name="user_id" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">kamar id</label>
+                                <input type="text" name="kamar_id" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">kode pemesanan</label>
+                                <input type="text" name="alamat" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Nama Pemesanan </label>
+                                <input type="text" name="deskripsi" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">nik</label>
+                                <input type="file" name="foto" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Maps</label>
+                                <input type="text" name="maps" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Status</label>
+                                <input  type="text" name="status" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Longitude</label>
+                                <input type="text" name="longitude" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Latitude</label>
+                                <input type="text" name="latitude" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+    
+            </div>
+          </div>
+        </div>
+      </div>
     <!-- Basic Tables end -->
 </div>
 
@@ -88,7 +166,7 @@
 <script src="/assets/js/pages/datatables.js"></script>
 
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(document).ready(function () {
        $('#TransactionTable').DataTable({
             processing: true,
@@ -114,7 +192,7 @@
             ]
         });
  });
-    </script>
+    </script> --}}
 
 @endpush
 
