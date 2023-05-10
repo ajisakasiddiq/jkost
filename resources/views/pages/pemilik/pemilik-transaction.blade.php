@@ -35,13 +35,9 @@
     <!-- Basic Tables start -->
     <section class="section">
         <div class="card">
-            <div class="card-header">
-                <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addAdmin">
-                    + Tambah Data Transaksi
-                </a>
-            </div>
+
             <div class="card-body">
-                <table class="table" id="TransactionTable">
+                <table class="table" id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
