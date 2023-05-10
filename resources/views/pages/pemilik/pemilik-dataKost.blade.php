@@ -115,11 +115,11 @@
         <div class="card">
             <div class="card-header">
                 <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addAdmin">
-                    + Tambah Data Kamar
+                    + Tambah Data Kost
                 </a>
             </div>
             <div class="card-body">
-                <table class="table" id="datakamar">
+                <table class="table" id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -128,8 +128,6 @@
                             <th>alamat</th>
                             <th>Deskripsi</th>
                             <th>Status</th>
-                            <th>Longitude</th>
-                            <th>Latitude</th>
                             <th>Action</th>
                            
                         </tr>
@@ -148,9 +146,15 @@
                         <td>{{ $datakamar->nama_kost }}</td>
                         <td>{{ $datakamar->alamat }}</td>
                         <td>{{ $datakamar->deskripsi }}</td>
-                        <td>{{ $datakamar->status }}</td>
-                        <td>{{ $datakamar->longitude }}</td>
-                        <td>{{ $datakamar->latitude }}</td>
+                        @if($datakamar->status == 1)
+                        <td><span class="badge bg-success">active</span></td>
+                        @endif
+                        @if($datakamar->status == 2)
+                        <td><span class="badge bg-danger">inactive</span></td>
+                        @endif
+                        @if($datakamar->status == 3)
+                        <td> <span class="badge bg-secondary">Pending</span></td>
+                        @endif
                         <td>
                                 <a href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletedata{{$datakamar->id}}">
                                     Delete

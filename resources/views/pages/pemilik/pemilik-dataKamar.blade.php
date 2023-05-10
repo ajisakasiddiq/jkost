@@ -41,7 +41,7 @@
                 </a>
             </div>
             <div class="card-body">
-                <table class="table" id="datakamar">
+                <table class="table" id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
