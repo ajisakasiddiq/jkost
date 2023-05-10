@@ -123,11 +123,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Foto</th>
                             <th>Nama kos</th>
                             <th>alamat</th>
                             <th>Deskripsi</th>
-                            <th>Foto</th>
-                            <th>Maps</th>
                             <th>Status</th>
                             <th>Longitude</th>
                             <th>Latitude</th>
@@ -143,13 +142,12 @@
                     <tr>                        
                         @foreach ($data as $datakamar)
                         <td>{{ $datakamar->id }}</td>
-                        <td>{{ $datakamar->nama_kost }}</td>
-                        <td>{{ $datakamar->alamat }}</td>
-                        <td>{{ $datakamar->deskripsi }}</td>
                         <td>
                             <img src="{{ asset('/assets/user/' . $datakamar['foto']) }}"  alt="" height="50" width="100">
                         </td>
-                        <td>{{ $datakamar->maps }}</td>
+                        <td>{{ $datakamar->nama_kost }}</td>
+                        <td>{{ $datakamar->alamat }}</td>
+                        <td>{{ $datakamar->deskripsi }}</td>
                         <td>{{ $datakamar->status }}</td>
                         <td>{{ $datakamar->longitude }}</td>
                         <td>{{ $datakamar->latitude }}</td>
@@ -205,7 +203,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">user_id</label>
-                            <input type="text" name="user_id" class="form-control" required>
+                            <input type="text" value="{{ Auth::user()->id }}" name="user_id" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">

@@ -49,13 +49,11 @@
                             <th>Foto dalam kamar</th>
                             <th>Foto kamar mandi</th>
                             <th>Foto dapur</th>
-                            {{-- <th>Nama Kost</th> --}}
                             <th>No. Kamar</th>
                             <th>Jenis Kamar</th>
                             <th>Deskripsi</th>
                             <th>Harga</th>
                             <th>Status</th>
-                            <th>Slug</th>
                             <th>Action</th>
                            
                         </tr>
@@ -89,7 +87,6 @@
                         <td>{{ $datakamar->deskripsi }}</td>
                         <td>{{ $datakamar->harga }}</td>
                         <td>{{ $datakamar->status }}</td>
-                        <td>{{ $datakamar->slug }}</td>
                         <td>
                                 <a href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletedata{{$datakamar->id}}">
                                     Delete
@@ -146,6 +143,30 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
+                            <label for="">Gambar pertama</label>
+                            <input type="file" name="img_pertama" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Gambar kedua</label>
+                            <input type="file" name="img_kedua" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Gambar ketiga</label>
+                            <input type="file" name="img_ketiga" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Gambar keempat</label>
+                            <input type="file" name="img_keempat" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
                             <label for="">Id Kost</label>
                             <input type="text" name="id_kost" class="form-control" required>
                         </div>
@@ -174,30 +195,7 @@
                             <input  type="text" name="status" class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Gambar pertama</label>
-                            <input type="file" name="img_pertama" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Gambar kedua</label>
-                            <input type="file" name="img_kedua" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Gambar ketiga</label>
-                            <input type="file" name="img_ketiga" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Gambar keempat</label>
-                            <input type="file" name="img_keempat" class="form-control" required>
-                        </div>
-                    </div>
+
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Deskripsi</label>

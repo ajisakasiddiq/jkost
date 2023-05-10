@@ -25,7 +25,6 @@ class DataKamarSeeder extends Seeder
             'img_ketiga' => '3.jpg',
             'img_keempat' => '4.jpg',
             'deskripsi' => "enak banget ",
-            'slug' => 2,
         ]);
     }
 }
