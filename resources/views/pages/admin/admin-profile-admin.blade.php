@@ -53,7 +53,9 @@
                             <th>action</th>
                         </tr>
                     </thead>
+                    @foreach ($item as $profile)
                     <tbody></tbody>
+                    @endforeach
                 </table>
             </div>
         </div>
@@ -65,7 +67,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Admin</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -117,12 +119,15 @@
   </div>
 </div>
 
+@foreach ($item as $profile)
+    
+
 {{-- modals edit --}}
-<div class="modal fade" id="editAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editAdmin-{{ $profile->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Admin</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -178,6 +183,7 @@
     </div>
   </div>
 </div>
+@endforeach
 
 
             <footer>

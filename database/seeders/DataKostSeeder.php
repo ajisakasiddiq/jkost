@@ -18,7 +18,7 @@ class DataKostSeeder extends Seeder
             'user_id' => 2,
             'nama_kost' => 'kos anjayy',
             'alamat' => 'mastrip',
-            'deskripsi' => 'enek purel',
+            'deskripsi' => 'enek wifi',
             'foto' => '1.jpg',
             'maps' => 'noe',
             'status' => 1,

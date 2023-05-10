@@ -20,6 +20,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        // $profile = User::where('role', 'admin');
         if (request()->ajax()) {
             $query = User::where('role', 'admin')->get();
             return DataTables::of($query)
@@ -30,7 +31,7 @@ class ProfileController extends Controller
                        Aksi
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a data-bs-toggle="modal" data-bs-target="#editAdmin" class="dropdown-item">Edit</a></li>
+                        <li><a href="' . route('profile.edit', $item->id) . '" class="dropdown-item">Edit</a></li>
                         <form action="' . route('profile.destroy', $item->id) . '" method="POST">
                           ' . method_field('delete') . csrf_field() . '
                         <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
@@ -48,7 +49,13 @@ class ProfileController extends Controller
             ]);
         }
 
-        return view('pages.admin.admin-profile-admin');
+        return view(
+
+            'pages.admin.admin-profile-admin',
+            [
+                'item' => User::where('role', 'admin')->get(),
+            ]
+        );
     }
 
     /**
@@ -90,8 +97,8 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $item = User::findOrFail($id);
-        return view('pages.admin.admin-profile-admin', [
-            'profile' => $item
+        return view('pages.admin.profile.edit', [
+            'item' => $item
         ]);
     }
 
