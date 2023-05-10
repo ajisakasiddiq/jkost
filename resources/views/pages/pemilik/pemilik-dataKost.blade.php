@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="/assets/css/pages/datatables.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>    
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>    
 @endpush
 
 @section('content')
@@ -242,6 +242,47 @@
                             <input type="text" class="form-control" id="Latitude" name="Latitude" placeholder="latitude" required />
                         </div>
                     </div>
+                    <div class="mt-2 mb-2" id="mapid" style="width: 100%; height: 400px;"></div>
+                    <script>
+                        const mymap = L.map('mapid').setView([-8.159909289725807, 113.72304751985719], 13);
+                        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                        }).addTo(mymap);
+                
+                        var Latinput = document.querySelector("[name=Latitude]");
+                        var Lnginput = document.querySelector("[name=Longitude]");
+                
+                        var curLocation = [-8.159909289725807, 113.72304751985719];
+                        mymap.attributionControl.setPrefix(false);
+                
+                        var marker = new L.marker(curLocation, {
+                            draggable: 'true',
+                        });
+                
+                        marker.on('dragend', function(event) {
+                            var position = marker.getLatLng();
+                            marker.setLatLng(position, {
+                                draggable: 'true',
+                            }).bindPopup(position).update();
+                            $("#Latitude").val(position.lat);
+                            $("#Longitude").val(position.lng);
+                        });
+                
+                        mymap.addLayer(marker);
+                
+                
+                        mymap.on("click", function(e) {
+                            var lat = e.latlng.lat;
+                            var lng = e.latlng.lng;
+                            if (!marker) {
+                                marker = L.marker(e.latlng).addTo(mymap);
+                            } else {
+                                marker.setLatLng(e.latlng);
+                            }
+                            Latinput.value = lat;
+                            Lnginput.value = lng;
+                        });
+                    </script>
                 </div>
         </div>
         <div class="modal-footer">
