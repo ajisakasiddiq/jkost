@@ -1,7 +1,7 @@
 @extends('layouts.pemilik')
 
 @section('title')
-    Profile Admin|Admin
+Pemilik | Data Kamar
 @endsection
 
 @push('addon-style')

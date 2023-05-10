@@ -39,18 +39,16 @@
                 Jquery Datatable
             </div>
             <div class="card-body">
-                <table class="table" id="datakostadmin">
+                <table class="table" id="datakost">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>id</th>
+                            <th>ID</th>
                             <th>Foto</th>
-                            <th>Nama Kost</th>
+                            <th>Nama kos</th>
                             <th>alamat</th>
                             <th>Deskripsi</th>
                             <th>Status</th>
-                            <th>Longitude</th>
-                            <th>Latitude</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -89,7 +87,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var i = 1;
-       $('#datakostadmin').DataTable({
+       $('#datakost').DataTable({
             processing: true,
             serverSide: true,
             ajax: '{{ url()->current() }}',
@@ -106,8 +104,7 @@
                 {data: 'alamat', name: 'alamat'},
                 {data: 'deskripsi', name: 'deskripsi'},
                 {data: 'status', name: 'status'},
-                {data: 'longitude', name: 'longitude'},
-                {data: 'latitude', name: 'latitude'},
+
                 {
                     data: 'action', 
                     name:'action',

@@ -1,7 +1,7 @@
 @extends('layouts.pemilik')
 
 @section('title')
-    Transaction|Admin
+Pemilik | Transaksi
 @endsection
 
 @push('addon-style')
