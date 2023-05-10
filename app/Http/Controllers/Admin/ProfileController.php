@@ -31,7 +31,7 @@ class ProfileController extends Controller
                        Aksi
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a href="" data-bs-toggle="modal" data-bs-target="#editAdmin{{ $item->id }}" class="dropdown-item">Edit</a></li>
+                        <li><a href="" data-bs-toggle="modal" data-bs-target="#editAdmin" class="dropdown-item">Edit</a></li>
                         <form action="' . route('profile.destroy', $item->id) . '" method="POST">
                           ' . method_field('delete') . csrf_field() . '
                         <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
@@ -105,7 +105,7 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
         $data = $request->all();
         $data['foto'] = $request->file('foto')->store('/assets/user', 'public');

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\DataKamar;
 use App\Models\DataKost;
+use App\Models\Transaction;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,5 +29,6 @@ class DatabaseSeeder extends Seeder
             DataKostSeeder::class,
             DataKamarSeeder::class
         ]);
+        Transaction::factory(10)->create();
     }
 }
