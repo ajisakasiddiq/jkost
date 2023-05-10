@@ -14,4 +14,9 @@ class PemesananController extends Controller
     {
         return view('pages.details');
     }
+
+    public function checkout()
+    {
+        return view('pages.checkout');
+    }
 }
