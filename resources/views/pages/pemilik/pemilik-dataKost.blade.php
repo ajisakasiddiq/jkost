@@ -232,18 +232,6 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">Maps</label>
-                            <input type="text" name="maps" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Status</label>
-                            <input  type="text" name="status" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
                             <label for="">Longitude</label>
                             <input type="text" name="longitude" class="form-control" required>
                         </div>

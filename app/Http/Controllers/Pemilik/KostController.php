@@ -48,7 +48,6 @@ class KostController extends Controller
         $datakamar->alamat = $request->alamat;
         $datakamar->deskripsi = $request->deskripsi;
         $datakamar->foto = $fileNameFotoPertama;
-        $datakamar->status = $request->status;
         $datakamar->slug = 1;
         $datakamar->longitude = $request->longitude;
         $datakamar->latitude = $request->latitude;
