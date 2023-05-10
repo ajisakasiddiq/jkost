@@ -86,7 +86,15 @@
                         <td>{{ $datakamar->jenis_kamar }}</td>
                         <td>{{ $datakamar->deskripsi }}</td>
                         <td>{{ $datakamar->harga }}</td>
-                        <td>{{ $datakamar->status }}</td>
+                        @if($datakamar->status == 1)
+                        <td><span class="badge bg-success">Tersedia</span></td>
+                        @endif
+                        @if($datakamar->status == 2)
+                        <td><span class="badge bg-danger">Disewa</span></td>
+                        @endif
+                        @if($datakamar->status == 3)
+                        <td> <span class="badge bg-secondary">Pending</span></td>
+                        @endif
                         <td>
                                 <a href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletedata{{$datakamar->id}}">
                                     Delete
