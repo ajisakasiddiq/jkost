@@ -31,7 +31,7 @@ class ProfileController extends Controller
                        Aksi
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a href="' . route('profile.edit', $item->id) . '" class="dropdown-item">Edit</a></li>
+                        <li><a href="" data-bs-toggle="modal" data-bs-target="#editAdmin{{ $item->id }}" class="dropdown-item">Edit</a></li>
                         <form action="' . route('profile.destroy', $item->id) . '" method="POST">
                           ' . method_field('delete') . csrf_field() . '
                         <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
@@ -53,7 +53,7 @@ class ProfileController extends Controller
 
             'pages.admin.admin-profile-admin',
             [
-                'item' => User::where('role', 'admin')->get(),
+                'item' => User::where('role', 'admin')->first(),
             ]
         );
     }
@@ -87,8 +87,8 @@ class ProfileController extends Controller
      */
     public function show(string $id)
     {
-        $item = User::findOrFail($id);
-        return view('Profile.show')->with('User', $item);
+        // $item = User::findOrFail($id);
+        // return view('pages.admin.admin-profile-admin')->with('User', $item);
     }
 
     /**
@@ -108,8 +108,7 @@ class ProfileController extends Controller
     public function update(UserRequest $request, string $id)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('foto')->store('assets/category', 'public');
+        $data['foto'] = $request->file('foto')->store('/assets/user', 'public');
 
         $item = User::findOrFail($id);
         $item->update($data);
