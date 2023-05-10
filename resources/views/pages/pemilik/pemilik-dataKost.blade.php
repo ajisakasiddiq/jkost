@@ -202,8 +202,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">user_id</label>
-                            <input type="text" value="{{ Auth::user()->id }}" name="user_id" class="form-control" required>
+                           
+                            <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Foto</label>
+                            <input type="file" name="foto" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -226,20 +232,14 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">Foto</label>
-                            <input type="file" name="foto" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
                             <label for="">Longitude</label>
-                            <input type="text" name="longitude" class="form-control" required>
+                            <input type="text" class="form-control" id="Longitude" name="Longitude" placeholder="longitude" required />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Latitude</label>
-                            <input type="text" name="latitude" class="form-control" required>
+                            <input type="text" class="form-control" id="Latitude" name="Latitude" placeholder="latitude" required />
                         </div>
                     </div>
                 </div>
@@ -309,6 +309,47 @@
         });
  });
     </script> --}}
+
+    <script>
+        const mymap = L.map('mapid').setView([-8.231935485535336, 113.60678852931734], 13);
+        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(mymap);
+
+        var Latinput = document.querySelector("[name=Latitude]");
+        var Lnginput = document.querySelector("[name=Longitude]");
+
+        var curLocation = [-8.231935485535336, 113.60678852931734];
+        mymap.attributionControl.setPrefix(false);
+
+        var marker = new L.marker(curLocation, {
+            draggable: 'true',
+        });
+
+        marker.on('dragend', function(event) {
+            var position = marker.getLatLng();
+            marker.setLatLng(position, {
+                draggable: 'true',
+            }).bindPopup(position).update();
+            $("#Latitude").val(position.lat);
+            $("#Longitude").val(position.lng);
+        });
+
+        mymap.addLayer(marker);
+
+
+        mymap.on("click", function(e) {
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+            if (!marker) {
+                marker = L.marker(e.latlng).addTo(mymap);
+            } else {
+                marker.setLatLng(e.latlng);
+            }
+            Latinput.value = lat;
+            Lnginput.value = lng;
+        });
+    </script>
 
 @endpush
 
