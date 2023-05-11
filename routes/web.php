@@ -55,7 +55,7 @@ Route::prefix('admin')
 
 
 // controller user
-<<<<<<< Updated upstream
+
 Route::middleware('checkrole:pemilik')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Pemilik\dashboardController::class, 'index'])->name('dashboard');
     Route::get('/data-kost', [App\Http\Controllers\Pemilik\KostController::class, 'index'])->name('data-kost');
@@ -80,10 +80,9 @@ Route::middleware('checkrole:pencari')->group(function () {
 
 
 Auth::routes();
-=======
-Route::get('/dashboard', [App\Http\Controllers\Pemilik\dashboardController::class, 'index'])->name('dashboard');
-Route::get('/data-kost', [App\Http\Controllers\Pemilik\KostController::class, 'index'])->name('data-kost');
-Route::get('/data-kamar', [App\Http\Controllers\Pemilik\KamarController::class, 'index'])->name('data-kamar');
-Route::get('/checkout', [App\Http\Controllers\checkout::class, 'index'])->name('checkout');
-Route::get('/transaction', [App\Http\Controllers\Pemilik\transactionController::class, 'index'])->name('transaction');
->>>>>>> Stashed changes
+
+// Route::get('/dashboard', [App\Http\Controllers\Pemilik\dashboardController::class, 'index'])->name('dashboard');
+// Route::get('/data-kost', [App\Http\Controllers\Pemilik\KostController::class, 'index'])->name('data-kost');
+// Route::get('/data-kamar', [App\Http\Controllers\Pemilik\KamarController::class, 'index'])->name('data-kamar');
+// // Route::get('/checkout', [App\Http\Controllers\checkout::class, 'index'])->name('checkout');
+// Route::get('/transaction', [App\Http\Controllers\Pemilik\transactionController::class, 'index'])->name('transaction');

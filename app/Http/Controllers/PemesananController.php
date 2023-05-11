@@ -12,19 +12,18 @@ class PemesananController extends Controller
     }
     public function details()
     {
-<<<<<<< Updated upstream
+
         return view('pages.details');
     }
 
     public function checkout()
     {
         return view('pages.checkout');
-=======
-        $data = [
-            'id' => "1",
+
+        $slug = [
+            'slug' => "mami-kost",
 
         ];
-        return view('pages.detail_kost' . $data);
->>>>>>> Stashed changes
+        return view('pages.detail_kost' . $slug);
     }
 }
