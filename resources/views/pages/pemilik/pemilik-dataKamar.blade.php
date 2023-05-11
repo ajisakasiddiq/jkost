@@ -72,16 +72,16 @@
                         <td>{{ $no++ }}</td>
 
                         <td>
-                            <img src="{{ asset('/assets/user/' . $datakamar['img_pertama']) }}" alt="" height="20" width="20">
+                            <img src="{{ asset('assets/kamar/depan/' . $datakamar['img_pertama']) }}" alt="" height="20" width="20">
                         </td>
                         <td>
-                            <img src="{{ asset('/assets/user/' . $datakamar['img_kedua']) }}" alt="" height="20" width="20">
+                            <img src="{{ asset('assets/kamar/dalam/' . $datakamar['img_kedua']) }}" alt="" height="20" width="20">
                         </td>
                         <td>
-                            <img src="{{ asset('/assets/user/' . $datakamar['img_ketiga']) }}" alt="" height="20" width="20">
+                            <img src="{{ asset('assets/kamar/toilet/' . $datakamar['img_ketiga']) }}" alt="" height="20" width="20">
                         </td>
                         <td>
-                            <img src="{{ asset('/assets/user/' . $datakamar['img_keempat']) }}" alt="" height="20" width="20">
+                            <img src="{{ asset('assets/kamar/dapur/' . $datakamar['img_keempat']) }}" alt="" height="20" width="20">
                         </td>
                         {{-- <td>{{ $datakamar->kost_id }}</td> --}}
                         <td>{{ $datakamar->no_kamar }}</td>
@@ -95,6 +95,11 @@
                                     Delete
                                 </a>
                         </td>
+                        <td>
+                            <a href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#editAdmin{{$datakamar->id}}">
+                            Edit
+                        </a>
+                            </td>
                     </tr>
 
                     <div class="modal fade" id="deletedata{{ $datakamar->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -120,8 +125,94 @@
                           </div>
                         </div>
                       </div>
+                      {{-- modals edit --}}
+                            <div class="modal fade" id="editAdmin{{$datakamar->id}}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel2">Edit Model</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <form action="/kostkamar-edit/{{$datakamar->id}}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Id Kost</label>
+                                                    <input type="text" name="id_kost" value="{{$datakamar->kost_id}}" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Jenis kamar</label>
+                                                    <input type="text" name="jenis_kamar" value="{{$datakamar->jenis_kamar}}" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">No kamar</label>
+                                                    <input type="text" name="no_kamar" value="{{$datakamar->no_kamar}}"class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Harga</label>
+                                                    <input type="text" name="harga" value="{{$datakamar->harga}}"class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Status</label>
+                                                    <input  type="text" name="status" value="{{$datakamar->status}}"class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Gambar pertama</label>
+                                                    <input type="file" name="img_pertama"value="{{$datakamar->img_pertama}}"class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Gambar kedua</label>
+                                                    <input type="file" name="img_kedua" value="{{$datakamar->img_kedua}}"class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Gambar ketiga</label>
+                                                    <input type="file" name="img_ketiga" value="{{$datakamar->img_ketiga}}" class="form-control"> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Gambar keempat</label>
+                                                    <input type="file" name="img_keempat" value="{{$datakamar->img_keempat}}"class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="">Deskripsi</label>
+                                                    <input type="text" name="deskripsi" value="{{$datakamar->deskripsi}}"class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                </form>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
 
                 
+
 
                         @endforeach
 
@@ -132,6 +223,7 @@
 
     </section>
     <!-- Basic Tables end -->
+
 {{-- modals tambah --}}
 <div class="modal fade" id="addAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -153,13 +245,13 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Jenis kamar</label>
-                            <input type="text" name="jenis_kamar" class="form-control" required>
+                            <input type="text" name="jenis_kamar"  class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">No kamar</label>
-                            <input type="text" name="no_kamar" class="form-control" required>
+                            <input type="text" name="no_kamar"  class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -202,62 +294,6 @@
                         <div class="form-group">
                             <label for="">Deskripsi</label>
                             <input type="text" name="deskripsi" class="form-control" required>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </form>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-{{-- modals edit --}}
-<div class="modal fade" id="editAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form action="{{ route('profile.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Nama</label>
-                            <input type="text" name="name" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Username</label>
-                            <input type="text" name="username" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Email</label>
-                            <input type="text" name="email" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Password</label>
-                            <input type="password" name="password" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Foto</label>
-                            <input type="file" name="foto" class="form-control" required>
                         </div>
                     </div>
                 </div>
