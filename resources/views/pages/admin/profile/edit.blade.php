@@ -13,25 +13,25 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Nama</label>
-                        <input type="text" name="name" value="{{ $item->name }}" class="form-control" required>
+                        <input type="text" name="name" id="edit-name" class="form-control" required>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Username</label>
-                        <input type="text" name="username" value="{{ $item->username }}" class="form-control" required>
+                        <input type="text" name="username" id="edit-username" class="form-control" required>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Email</label>
-                        <input type="text" name="email" value="{{ $item->email }}" class="form-control" required>
+                        <input type="text" name="email" id="edit-email" class="form-control" required>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         {{-- <label for="">Level</label> --}}
-                        <input value="{{ $item->role }}" type="hidden" name="level" class="form-control" required>
+                        <input  id="edit-role" type="hidden" name="level" class="form-control" required>
                     </div>
                 </div>
                 <div class="col-md-12">
