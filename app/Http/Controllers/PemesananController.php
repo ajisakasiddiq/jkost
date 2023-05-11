@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataKost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PemesananController extends Controller
 {
+
+
     public function index()
     {
-        return view('pages.pemesanan');
+        $data =  DB::table('data_kost')
+            ->leftJoin('data_kamar', 'data_kost.id', '=', 'data_kamar.kost_id')
+            ->get();
+        return view('pages.Pemesanan' . $data);
     }
     public function details()
     {
@@ -16,14 +23,14 @@ class PemesananController extends Controller
         return view('pages.details');
     }
 
-    public function checkout()
-    {
-        return view('pages.checkout');
+    // public function checkout()
+    // {
+    //     return view('pages.checkout');
 
-        $slug = [
-            'slug' => "mami-kost",
+    //     $slug = [
+    //         'slug' => "mami-kost",
 
-        ];
-        return view('pages.detail_kost' . $slug);
-    }
+    //     ];
+    //     return view('pages.detail_kost' . $slug);
+    // }
 }

@@ -32,14 +32,16 @@
         </form>
 
         <div class="row">
+            @foreach ($data as $kost)
+
                 <div class="col-lg-3 mb-3">
                     <a href="">
                         <div class="card">
                             <img src="assets-home/img/blog-1.jpg" class="card-img-top" alt="..." style="max-height: 140px;">
                             <div class="card-body">
-                                <h2 class="card-text">Kamar Kost No.Kamar 12</h2>
-                                <p>By mamikos</p>
-                                <p><span class="kost-price">Rp. 120.000 </span>/ Bulan</p>
+                                <h2 class="card-text">Kamar Kost No.Kamar {{ $kos->no_kamar }}</h2>
+                                <p>By {{ $kos->nama_kost }}</p>
+                                <p><span class="kost-price">Rp. {{ $kos->harga }} </span>/ Bulan</p>
                                 <p style="color: green;">Tersedia</p>
                                     {{-- <p style="color: red;">Berpenghuni</p> --}}
                                
@@ -52,6 +54,9 @@
                         </div>
                     </a>
                 </div>
+
+                                
+            @endforeach
        
 
         </div>
