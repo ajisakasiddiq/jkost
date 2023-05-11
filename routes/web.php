@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\Userpemilik;
 use App\Http\Controllers\Admin\Userpencari;
+use App\Http\Controllers\Pemilik\KamarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +34,7 @@ Route::get('/Pelayanan', [App\Http\Controllers\PelayananController::class, 'inde
 Route::get('/Pemesanan', [App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan');
 Route::get('/Pemesanan/details/{slug}', [App\Http\Controllers\PemesananController::class, 'details'])->name('pemesanan-details');
 Route::get('/Pemesanan/details/{slug}/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout');
-
+Route::resource('setting-account', SettingController::class);
 
 
 

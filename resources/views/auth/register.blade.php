@@ -52,10 +52,10 @@
                             </div>
                         </div>
                         <div class="icon1">
-                            <select class="option" placeholder="Pilih Daftar Sebagai" class="form-control  form-select" name="level" id="OptionLevel">
+                            <select class="option" placeholder="Pilih Daftar Sebagai" class="form-control  form-select" name="role" id="OptionLevel">
                                 <option>Daftar sebagai</option>
                                 <option value="pemilik">Pemilik</option>
-                                <option value="pemilik">Pencari</option>
+                                <option value="pencari">Pencari</option>
                             </select>
                         </div>
                         <div class="login-check">

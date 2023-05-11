@@ -24,6 +24,10 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'alamat',
+        'bukti_kontrak',
+        'jenis_kelamin',
+        'statusUser',
         'foto',
         'role',
         'slug',
@@ -48,10 +52,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-
-    public function role()
-    {
-        return $this->belongsTo(level_detail::class, 'level');
-    }
 }

@@ -13,6 +13,8 @@ use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
+use function GuzzleHttp\Promise\all;
+
 class ProfileController extends Controller
 {
     /**
@@ -20,6 +22,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        // $profile = User::where('role', 'admin');
         if (request()->ajax()) {
             $query = User::where('role', 'admin')->get();
             return DataTables::of($query)
@@ -30,7 +33,8 @@ class ProfileController extends Controller
                        Aksi
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a data-bs-toggle="modal" data-bs-target="#editAdmin" class="dropdown-item">Edit</a></li>
+                        <li><a href="" 
+                        class="dropdown-item btnedit" value="{{ $item->id }}"  >Edit</a></li>
                         <form action="' . route('profile.destroy', $item->id) . '" method="POST">
                           ' . method_field('delete') . csrf_field() . '
                         <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
@@ -47,8 +51,8 @@ class ProfileController extends Controller
                 'data' => $query
             ]);
         }
-
-        return view('pages.admin.admin-profile-admin');
+        $item = User::first();
+        return view('pages.admin.admin-profile-admin', compact('item'));
     }
 
     /**
@@ -80,8 +84,8 @@ class ProfileController extends Controller
      */
     public function show(string $id)
     {
-        $item = User::findOrFail($id);
-        return view('Profile.show')->with('User', $item);
+        // $item = User::findOrFail($id);
+        // return view('pages.admin.admin-profile-admin')->with('User', $item);
     }
 
     /**
@@ -90,19 +94,18 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $item = User::findOrFail($id);
-        return view('pages.admin.admin-profile-admin', [
-            'profile' => $item
+        return view('pages.admin.profile.edit', [
+            'item' => $item
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('foto')->store('assets/category', 'public');
+        $data['foto'] = $request->file('foto')->store('/assets/user', 'public');
 
         $item = User::findOrFail($id);
         $item->update($data);

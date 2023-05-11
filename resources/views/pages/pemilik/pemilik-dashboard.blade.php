@@ -1,7 +1,7 @@
 @extends('layouts.pemilik')
 
 @section('title')
-    Admin Dashboard
+    Pemilik | Dashboard
 @endsection
 
 @section('content')

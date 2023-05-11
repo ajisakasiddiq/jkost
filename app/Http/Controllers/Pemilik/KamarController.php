@@ -57,7 +57,6 @@ class KamarController extends Controller
         $datakamar->img_ketiga = $fileNameFotoKetiga;
         $datakamar->img_keempat = $fileNameFotoKeempat;
         $datakamar->deskripsi = $request->deskripsi;
-        $datakamar->slug = 1;
         $datakamar->save();
         return redirect()->route('data-kamar');
     }

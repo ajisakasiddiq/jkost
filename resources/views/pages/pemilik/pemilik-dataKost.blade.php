@@ -1,7 +1,7 @@
 @extends('layouts.pemilik')
 
 @section('title')
-    Profile Admin|Admin
+Pemilik | Data Kost
 @endsection
 
 @push('addon-style')
@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="/assets/css/pages/datatables.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>    
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>    
 @endpush
 
 @section('content')
@@ -115,22 +115,19 @@
         <div class="card">
             <div class="card-header">
                 <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addAdmin">
-                    + Tambah Data Kamar
+                    + Tambah Data Kost
                 </a>
             </div>
             <div class="card-body">
-                <table class="table" id="datakamar">
+                <table class="table" id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Foto</th>
                             <th>Nama kos</th>
                             <th>alamat</th>
                             <th>Deskripsi</th>
-                            <th>Foto</th>
-                            <th>Maps</th>
                             <th>Status</th>
-                            <th>Longitude</th>
-                            <th>Latitude</th>
                             <th>Action</th>
                            
                         </tr>
@@ -143,16 +140,21 @@
                     <tr>                        
                         @foreach ($data as $datakamar)
                         <td>{{ $datakamar->id }}</td>
-                        <td>{{ $datakamar->nama_kost }}</td>
-                        <td>{{ $datakamar->alamat }}</td>
-                        <td>{{ $datakamar->deskripsi }}</td>
                         <td>
                             <img src="{{ asset('/assets/user/' . $datakamar['foto']) }}"  alt="" height="50" width="100">
                         </td>
-                        <td>{{ $datakamar->maps }}</td>
-                        <td>{{ $datakamar->status }}</td>
-                        <td>{{ $datakamar->longitude }}</td>
-                        <td>{{ $datakamar->latitude }}</td>
+                        <td>{{ $datakamar->nama_kost }}</td>
+                        <td>{{ $datakamar->alamat }}</td>
+                        <td>{{ $datakamar->deskripsi }}</td>
+                        @if($datakamar->status == 1)
+                        <td><span class="badge bg-success">active</span></td>
+                        @endif
+                        @if($datakamar->status == 2)
+                        <td><span class="badge bg-danger">inactive</span></td>
+                        @endif
+                        @if($datakamar->status == 3)
+                        <td> <span class="badge bg-secondary">Pending</span></td>
+                        @endif
                         <td>
                                 <a href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletedata{{$datakamar->id}}">
                                     Delete
@@ -204,8 +206,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">user_id</label>
-                            <input type="text" name="user_id" class="form-control" required>
+                           
+                            <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="">Foto</label>
+                            <input type="file" name="foto" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -228,34 +236,57 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">Foto</label>
-                            <input type="file" name="foto" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Maps</label>
-                            <input type="text" name="maps" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="">Status</label>
-                            <input  type="text" name="status" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
                             <label for="">Longitude</label>
-                            <input type="text" name="longitude" class="form-control" required>
+                            <input type="text" class="form-control" id="Longitude" name="Longitude" placeholder="longitude" required />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Latitude</label>
-                            <input type="text" name="latitude" class="form-control" required>
+                            <input type="text" class="form-control" id="Latitude" name="Latitude" placeholder="latitude" required />
                         </div>
                     </div>
+                    <div class="mt-2 mb-2" id="mapid" style="width: 100%; height: 400px;"></div>
+                    <script>
+                        const mymap = L.map('mapid').setView([-8.159909289725807, 113.72304751985719], 13);
+                        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                        }).addTo(mymap);
+                
+                        var Latinput = document.querySelector("[name=Latitude]");
+                        var Lnginput = document.querySelector("[name=Longitude]");
+                
+                        var curLocation = [-8.159909289725807, 113.72304751985719];
+                        mymap.attributionControl.setPrefix(false);
+                
+                        var marker = new L.marker(curLocation, {
+                            draggable: 'true',
+                        });
+                
+                        marker.on('dragend', function(event) {
+                            var position = marker.getLatLng();
+                            marker.setLatLng(position, {
+                                draggable: 'true',
+                            }).bindPopup(position).update();
+                            $("#Latitude").val(position.lat);
+                            $("#Longitude").val(position.lng);
+                        });
+                
+                        mymap.addLayer(marker);
+                
+                
+                        mymap.on("click", function(e) {
+                            var lat = e.latlng.lat;
+                            var lng = e.latlng.lng;
+                            if (!marker) {
+                                marker = L.marker(e.latlng).addTo(mymap);
+                            } else {
+                                marker.setLatLng(e.latlng);
+                            }
+                            Latinput.value = lat;
+                            Lnginput.value = lng;
+                        });
+                    </script>
                 </div>
         </div>
         <div class="modal-footer">
@@ -323,6 +354,47 @@
         });
  });
     </script> --}}
+
+    <script>
+        const mymap = L.map('mapid').setView([-8.231935485535336, 113.60678852931734], 13);
+        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(mymap);
+
+        var Latinput = document.querySelector("[name=Latitude]");
+        var Lnginput = document.querySelector("[name=Longitude]");
+
+        var curLocation = [-8.231935485535336, 113.60678852931734];
+        mymap.attributionControl.setPrefix(false);
+
+        var marker = new L.marker(curLocation, {
+            draggable: 'true',
+        });
+
+        marker.on('dragend', function(event) {
+            var position = marker.getLatLng();
+            marker.setLatLng(position, {
+                draggable: 'true',
+            }).bindPopup(position).update();
+            $("#Latitude").val(position.lat);
+            $("#Longitude").val(position.lng);
+        });
+
+        mymap.addLayer(marker);
+
+
+        mymap.on("click", function(e) {
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+            if (!marker) {
+                marker = L.marker(e.latlng).addTo(mymap);
+            } else {
+                marker.setLatLng(e.latlng);
+            }
+            Latinput.value = lat;
+            Lnginput.value = lng;
+        });
+    </script>
 
 @endpush
 

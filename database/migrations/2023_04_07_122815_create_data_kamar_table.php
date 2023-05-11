@@ -17,13 +17,12 @@ return new class extends Migration
             $table->string('jenis_kamar');
             $table->integer('no_kamar');
             $table->integer('harga');
-            $table->integer('status');
+            $table->enum('status', ['1', '2', '3'])->comment('1=tersedia, 2=disewa, 3=pending');
             $table->string('img_pertama');
             $table->string('img_kedua');
             $table->string('img_ketiga');
             $table->string('img_keempat');
             $table->string('deskripsi');
-            $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
         });

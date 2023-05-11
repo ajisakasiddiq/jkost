@@ -65,25 +65,25 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-item {{ (request()->is('/dashboard')) ? 'active' : ''}} ">
+                        <li class="sidebar-item {{ (request()->is('dashboard')) ? 'active' : ''}} ">
                             <a href="{{ route('dashboard')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('/data-kost')) ? 'active' : ''}}">
+                        <li class="sidebar-item {{ (request()->is('data-kost')) ? 'active' : ''}}">
                             <a href="{{ route('data-kost')}}" class='sidebar-link'>
                                 <i class="iconly-boldProfile"></i>
                                 <span>Data Kost</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('/data-kamar')) ? 'active' : ''}}">
+                        <li class="sidebar-item {{ (request()->is('data-kamar')) ? 'active' : ''}}">
                             <a href="{{ route('data-kamar')}}" class='sidebar-link'>
                                <i class="bi bi-grid-fill"></i>
                                 <span>Data Kamar</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('/transaction')) ? 'active' : ''}}">
+                        <li class="sidebar-item {{ (request()->is('transaction')) ? 'active' : ''}}">
                             <a href="{{ route('transaction')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Transaksi</span>

@@ -48,7 +48,6 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Username</th>
-                            {{-- <th>NIK</th> --}}
                             <th>Alamat</th>
                             <th>No Hp</th>
                             <th>Jenis Kelamin</th>

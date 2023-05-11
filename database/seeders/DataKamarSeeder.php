@@ -15,7 +15,7 @@ class DataKamarSeeder extends Seeder
     public function run(): void
     {
         DataKamar::create([
-            'kost_id' => 2,
+            'kost_id' => 1,
             'jenis_kamar' => 'Bebas',
             'no_kamar' => 20,
             'harga' => 20000,
@@ -24,8 +24,7 @@ class DataKamarSeeder extends Seeder
             'img_kedua' => '2.jpg',
             'img_ketiga' => '3.jpg',
             'img_keempat' => '4.jpg',
-            'deskripsi' => "enak banget ada purelnya",
-            'slug' => 2,
+            'deskripsi' => "enak banget ",
         ]);
     }
 }
