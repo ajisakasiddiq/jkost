@@ -19,7 +19,12 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('deskripsi');
             $table->string('foto');
+<<<<<<< Updated upstream
             $table->enum('status', ['1', '2', '3'])->comment('1=valid, 2=unvalid, 3=pending')->default(3);
+=======
+            $table->string('maps')->nullable();
+            $table->string('status');
+>>>>>>> Stashed changes
             $table->string('slug');
             $table->string('longitude');
             $table->string('latitude');

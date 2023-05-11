@@ -33,7 +33,7 @@
 
         <div class="row">
                 <div class="col-lg-3 mb-3">
-                    <a href="">
+                    <a href="pages/detail-kost/{{$slug}}">
                         <div class="card">
                             <img src="assets-home/img/blog-1.jpg" class="card-img-top" alt="..." style="max-height: 140px;">
                             <div class="card-body">
