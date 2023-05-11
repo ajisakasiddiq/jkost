@@ -25,7 +25,7 @@ class Userpemilik extends Controller
                                  Aksi
                                 </button>
                                 <ul class="dropdown-menu">
-                                  <li><a href="' . route('profile.edit', $item->id) . '" method="POST" class="dropdown-item">Edit</a></li>
+                                  <li><a href="' . route('data-pemilik.edit', $item->id) . '" method="POST" class="dropdown-item">Edit</a></li>
                                   <form action="' . route('profile.edit', $item->id) . '" method="POST">
                                     ' . method_field('delete') . csrf_field() . '
                                   <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
@@ -71,7 +71,10 @@ class Userpemilik extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = User::findOrFail($id);
+        return view('pages.admin.pemilik.edit', [
+            'item' => $item
+        ]);
     }
 
     /**

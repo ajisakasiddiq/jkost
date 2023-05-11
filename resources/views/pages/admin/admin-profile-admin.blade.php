@@ -36,7 +36,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addAdmin">
+                <a href="{{ route('profile.create') }}" class="btn btn-primary mb-3">
                     + Tambah Admin
                 </a>
             </div>
@@ -55,7 +55,7 @@
                     </thead>
                     {{-- @foreach ($item as $profile) --}}
                     <tbody>
-                        @include('pages.admin.profile.edit')
+                        
                     </tbody>
                     {{-- @endforeach --}}
                 </table>
@@ -65,7 +65,8 @@
     </section>
     <!-- Basic Tables end -->
 {{-- modals tambah --}}
-@include('pages.admin.profile.create')
+{{-- @include('pages.admin.profile.create') --}}
+
 
 
 
@@ -95,15 +96,9 @@
 <script src="/assets/js/pages/datatables.js"></script>
 
 <script>
-    $(document).on('click', '.btnedit',function () { 
-       var prof_id = $(this).val();
-       alert(prof_id);
-
-        // $('#edit-name').val(name);
-        // $('#edit-username').val(username);
-        // $('#edit-email').val(email);
-        // $('#edit-role').val(role);
-     });
+$('.btn-edit').on('click',function(){
+    console.log($(this).data('id'))
+})
 </script>
 
 <script type="text/javascript">

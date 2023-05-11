@@ -33,8 +33,7 @@ class ProfileController extends Controller
                        Aksi
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a href="" 
-                        class="dropdown-item btnedit" value="{{ $item->id }}"  >Edit</a></li>
+                      <li><a href="' . route('profile.edit', $item->id) . '" class="dropdown-item">Edit</a></li>
                         <form action="' . route('profile.destroy', $item->id) . '" method="POST">
                           ' . method_field('delete') . csrf_field() . '
                         <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
@@ -51,8 +50,12 @@ class ProfileController extends Controller
                 'data' => $query
             ]);
         }
-        $item = User::first();
-        return view('pages.admin.admin-profile-admin', compact('item'));
+        return view(
+            'pages.admin.admin-profile-admin',
+            [
+                'item' => User::where('role', 'admin')->first(),
+            ]
+        );
     }
 
     /**
@@ -60,7 +63,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.profile.create');
     }
 
     /**

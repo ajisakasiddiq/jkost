@@ -92,7 +92,7 @@
        $('#UserPemilik').DataTable({
             processing: true,
             serverSide: true,
-            scrollX: true,
+            // scrollX: true,
             ajax: '{{ url()->current() }}',
             columns : [
                 {
