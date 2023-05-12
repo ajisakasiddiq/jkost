@@ -42,7 +42,7 @@
                                 <h2 class="card-text">Kamar Kost No.Kamar {{ $kost->no_kamar }}</h2>
                                 <p>By {{ $kost->nama_kost }}</p>
                                 <p><span class="kost-price">Rp. {{ $kost->harga }} </span>/ Bulan</p>
-                                <p style="color: green;">Tersedia</p>
+                    
                                 @if($kost->status_kamar == 1)
                                 <span class="p-1 text-white rounded bg-success">Tersedia</span>
                                 @endif

@@ -12,7 +12,7 @@ class PemesananController extends Controller
 
     public function index()
     {
-        $data =  DB::table('data_kost')
+        $data =  DB::table('data_kamar')
             ->select(
                 'data_kost.status as status_kost',
                 'data_kamar.status as status_kamar',
@@ -32,13 +32,13 @@ class PemesananController extends Controller
                 'data_kamar.img_keempat',
                 'data_kamar.deskripsi as deskripsi_kamar'
             )
-            ->leftJoin('data_kamar', 'data_kost.id', '=', 'data_kamar.kost_id')
+            ->leftJoin('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
             ->get();
         return view('pages.Pemesanan', ['data' => $data]);
     }
     public function details()
     {
-        $data =  DB::table('data_kost')
+        $data =  DB::table('data_kamar')
             ->select(
                 'data_kost.status as status_kost',
                 'data_kamar.status as status_kamar',
@@ -58,13 +58,13 @@ class PemesananController extends Controller
                 'data_kamar.img_keempat',
                 'data_kamar.deskripsi as deskripsi_kamar'
             )
-            ->leftJoin('data_kamar', 'data_kost.id', '=', 'data_kamar.kost_id')
+            ->leftJoin('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
             ->get();
         return view('pages.details', ['data' => $data]);
     }
     public function checkout()
     {
-        $data =  DB::table('data_kost')
+        $data =  DB::table('data_kamar')
             ->select(
                 'data_kost.status as status_kost',
                 'data_kamar.status as status_kamar',
@@ -84,7 +84,7 @@ class PemesananController extends Controller
                 'data_kamar.img_keempat',
                 'data_kamar.deskripsi as deskripsi_kamar'
             )
-            ->leftJoin('data_kamar', 'data_kost.id', '=', 'data_kamar.kost_id')
+            ->leftJoin('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
             ->get();
         return view('pages.checkout', ['data' => $data]);
     }
