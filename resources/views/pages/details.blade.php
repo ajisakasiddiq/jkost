@@ -33,20 +33,21 @@
             </div>
         </div>
     </section>
+    @foreach ($data as $kost)
     <div class="store-details-container" data-aos="fade-up">
         <section class="store-heading">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <h1 class="kost-name">Kamar Kost No.Kamar 12</h1>
-                        <p class="kost-owner">By MAmi kost</p>
-                        <p><span class="kost-price">Rp. 120.000 </span>/ Bulan</p>
+                        <h1 class="kost-name">{{ $kost->no_kamar }}</h1>
+                        <p class="kost-owner">By {{ $kost->nama_kost }}</p>
+                        <p><span class="kost-price">Rp. {{ $kost->harga }} </span>/ Bulan</p>
 
                         <!-- <div class="owner">By Dayat</div>
                         <div class="price">Rp.350.000</div> -->
                     </div>
                     <div class="col-lg-2" data-aos="zoom-in">
-                                <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="checkout?id_kamar">Sewa</a>
+                                <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="{{ $kost->slug }}/checkout">Sewa</a>
 
                             {{-- <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="" onclick="alert('Akses hanya untuk akun penyewa')">Sewa</a> --}}
                      
@@ -61,12 +62,11 @@
                         <h5>Deskripsi Kamar Kost</h5>
                         <hr>
                         <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident deserunt numquam doloribus nihil impedit placeat, consequuntur distinctio. Eaque modi illum quisquam doloremque ducimus exercitationem itaque eum fugiat, illo, optio nulla.
-                        </p>
+                        {{ $kost->deskripsi_kamar }}</p>
                         <h5>Alamat</h5>
                         <hr>
                         <p>
-                           Jember
+                           {{ $kost->alamat }}
                         </p>
                         <div id="map" style="width: 100%; height: 400px;"></div>
                         <script>
@@ -85,6 +85,7 @@
             </div>
         </section>
     </div>
+    @endforeach
 </div>
 @endsection
 

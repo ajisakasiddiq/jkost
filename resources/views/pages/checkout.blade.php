@@ -401,6 +401,7 @@ span.month.focused.active
             </div>
         </div>
     </div>
+    @foreach ($data as $kost)
     <!-- Page Header End -->
     <div class="container-fluid background body-text">
         <div class="row padding-top-20">
@@ -413,7 +414,7 @@ span.month.focused.active
                                     <div class="col-12 panel-header basket-header">
                                         <div class="row">
                                             <div class="col-6 basket-title">
-                                                <span class="description">Nama Kost</span><br><span class="emphasized">Mami Kost</span>
+                                                <span class="description">Nama Kost</span><br><span class="emphasized">{{ $kost->nama_kost }}</span>
                                             </div>
                                             <div class="col-6 order-number align-right">
                                                 <span class="description">order #</span><br><span class="emphasized">no 232323</span>
@@ -428,10 +429,9 @@ span.month.focused.active
                                     </div>
                                     <div class="col-12 panel-body basket-body">
                                         <div class="row product">
-                                            <div class="col-2 product-image"><img src=""></div>
-                                            <div class="col-5"><br><span class="additional"></span></div>
-                                            <div class="col-2 align-right"><span class="sub"></span>qus</div>
-                                            <div class="col-3 align-right"><span class="sub"></span>213232</div>
+                                            <div class="col-4"><br><span class="additional"></span>{{ $kost->nama_kost }}</div>
+                                            <div class="col-4"><br><span class="additional"></span>{{ $kost->nama_kost }}</div>
+                                            <div class="col-4"><br><span class="additional"></span>{{ $kost->nama_kost }}</div>
                                         </div>
                                        {{-- end forena --}}
                                     </div>
@@ -454,19 +454,19 @@ span.month.focused.active
                                     <div class="col-12 panel-header creditcard-header">
                                         <div class="row">
                                             <div class="col-12 creditcard-title">
-                                                <span class="description">please enter your</span><br><span class="emphasized">Credit Card Information</span>
+                                                <span class="description">Mohon Lengkapi</span><br><span class="emphasized">Detail Sewa Anda!</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12 panel-body creditcard-body">
                                         <form action="#" method="post" target="_self">
                                             <fieldset>
-                                                <label for="card-name">Name on the Card</label><br>
-                                                <i class="fa fa-user-o" aria-hidden="true"></i><input type='text' id='card-name' name='card-name' placeholder='John Doe' title='Name on the Card'>
+                                                <label for="card-name">Nama</label><br>
+                                                <i class="fa fa-user-o" aria-hidden="true"></i><input type='text' id='card-name' name='name' title='Name on the Card'>
                                             </fieldset>
                                             <fieldset>
-                                                <label for="card-expiration">Expiration Date</label><br>
-                                                <i class="fa fa-calendar" aria-hidden="true"></i><input type='text' id='card-expiration' name='card-expiration' placeholder='YY/MM' title='Expiration' class="card-expiration">
+                                                <label for="card-expiration">Mulai Kost</label><br>
+                                                <i class="fa fa-calendar" aria-hidden="true"></i><input type='date' id='card-expiration' name='card-expiration' placeholder='YY/MM' title='Expiration' class="card-expiration">
                                             </fieldset>
                                             <fieldset>
                                                 <label for="card-ccv">CVC/CCV</label>&nbsp;<i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="The CVV Number on your credit card or debit card is a 3 digit number on VISA, MasterCard and Discover branded credit and debit cards. On your American Express branded credit or debit card it is a 4 digit numeric code."></i><br>
@@ -490,6 +490,7 @@ span.month.focused.active
             </div>
         </div>
     </div>
+    @endforeach
 
 
 @endsection

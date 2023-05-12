@@ -1,16 +1,18 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\DataKostController;
-use App\Http\Controllers\Admin\ProfileController;
-use App\Http\Controllers\Admin\TransactionController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\Userpemilik;
 use App\Http\Controllers\Admin\Userpencari;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Pemilik\KamarController;
 use App\Http\Controllers\SettingController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Pemilik\KamarController;
+use App\Http\Controllers\Admin\DataKostController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\PelayananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,13 +32,13 @@ use App\Http\Controllers\PemesananController;
 // Route::get('/dashboard', [admindashboardController::class, 'index'])->name('dashboard-admin');
 
 // controller frontend
-// Route::get('/dash', [App\Http\Controllers\DashController::class, 'index'])->name('dash');
+// Route::get('/dash', [DashController::class, 'index'])->name('dash');
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/Tentang-Kami', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
-Route::get('/Pelayanan', [App\Http\Controllers\PelayananController::class, 'index'])->name('pelayanan');
+Route::get('/Tentang-Kami', [AboutController::class, 'index'])->name('about');
+Route::get('/Pelayanan', [PelayananController::class, 'index'])->name('pelayanan');
 Route::get('/Pemesanan', [PemesananController::class, 'index'])->name('pemesanan');
-Route::get('/Pemesanan/details/{slug}', [App\Http\Controllers\PemesananController::class, 'details'])->name('pemesanan-details');
-Route::get('/Pemesanan/details/{slug}/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout');
+Route::get('/Pemesanan/details/{slug}', [PemesananController::class, 'details'])->name('pemesanan-details');
+Route::get('/Pemesanan/details/{slug}/checkout', [PemesananController::class, 'checkout'])->name('checkout');
 Route::resource('setting-account', SettingController::class)->middleware('auth');
 
 

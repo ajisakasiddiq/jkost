@@ -35,7 +35,7 @@
             @foreach ($data as $kost)
 
                 <div class="col-lg-3 mb-3">
-                    <a href="Pemesanan/details/{{ $kost->slug }}/checkout">
+                    <a href="Pemesanan/details/{{ $kost->slug }}">
                         <div class="card">
                             <img src="assets-home/img/blog-1.jpg" class="card-img-top" alt="..." style="max-height: 140px;">
                             <div class="card-body">
@@ -43,11 +43,15 @@
                                 <p>By {{ $kost->nama_kost }}</p>
                                 <p><span class="kost-price">Rp. {{ $kost->harga }} </span>/ Bulan</p>
                                 <p style="color: green;">Tersedia</p>
-                                    {{-- <p style="color: red;">Berpenghuni</p> --}}
-                               
-                                    {{-- <p style="color: orange;">Dibooking</p> --}}
-                                
-                                    {{-- <p style="color: green;">Tersedia</p> --}}
+                                @if($kost->status_kamar == 1)
+                                <span class="p-1 text-white rounded bg-success">Tersedia</span>
+                                @endif
+                                @if($kost->status_kamar == 2)
+                                <span class="p-1 text-white rounded bg-danger">Disewakan</span>
+                                @endif
+                                @if($kost->status_kamar == 3)
+                                <span class="p-1 text-black rounded bg-secondary">Booking</span>
+                                @endif
                                 
 
                             </div>
