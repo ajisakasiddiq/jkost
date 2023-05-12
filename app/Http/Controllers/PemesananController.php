@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataKost;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,6 +13,7 @@ class PemesananController extends Controller
 
     public function index()
     {
+        $user = User::all();
         $data =  DB::table('data_kamar')
             ->select(
                 'data_kost.status as status_kost',
@@ -34,10 +36,17 @@ class PemesananController extends Controller
             )
             ->leftJoin('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
             ->get();
-        return view('pages.Pemesanan', ['data' => $data]);
+        return view(
+            'pages.Pemesanan',
+            [
+                'data' => $data,
+                'user' => $user
+            ]
+        );
     }
     public function details()
     {
+        $user = User::all();
         $data =  DB::table('data_kamar')
             ->select(
                 'data_kost.status as status_kost',
@@ -60,7 +69,13 @@ class PemesananController extends Controller
             )
             ->leftJoin('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
             ->get();
-        return view('pages.details', ['data' => $data]);
+        return view(
+            'pages.details',
+            [
+                'data' => $data,
+                'user' => $user
+            ]
+        );
     }
     public function checkout()
     {
