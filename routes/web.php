@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\Userpemilik;
 use App\Http\Controllers\Admin\Userpencari;
@@ -10,10 +9,8 @@ use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Pemilik\KamarController;
 use App\Http\Controllers\Admin\DataKostController;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\TransactionController;
-use App\Http\Controllers\PelayananController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,8 +31,8 @@ use App\Http\Controllers\PelayananController;
 // controller frontend
 // Route::get('/dash', [DashController::class, 'index'])->name('dash');
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/Tentang-Kami', [AboutController::class, 'index'])->name('about');
-Route::get('/Pelayanan', [PelayananController::class, 'index'])->name('pelayanan');
+Route::get('/Tentang-Kami', [HomeController::class, 'about'])->name('about');
+Route::get('/Pelayanan', [HomeController::class, 'pelayanan'])->name('pelayanan');
 Route::get('/Pemesanan', [PemesananController::class, 'index'])->name('pemesanan');
 Route::get('/Pemesanan/details/{slug}', [PemesananController::class, 'details'])->name('pemesanan-details');
 Route::get('/Pemesanan/details/{slug}/checkout', [PemesananController::class, 'checkout'])->name('checkout');
@@ -49,7 +46,7 @@ Route::prefix('admin')
     ->middleware('auth', 'checkrole:admin')
     ->namespace('App\Http\Controllers\Admin')
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard-admin');
+        Route::get('/', [DashboardController::class, 'admin'])->name('dashboard-admin');
         Route::resource('profile', ProfileController::class);
         Route::resource('transaction', TransactionController::class);
         Route::resource('datakost', DataKostController::class);
@@ -62,7 +59,7 @@ Route::prefix('admin')
 // controller user
 
 Route::middleware('auth', 'checkrole:pemilik')->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\Pemilik\dashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'pemilik'])->name('dashboard');
     Route::get('/data-kost', [App\Http\Controllers\Pemilik\KostController::class, 'index'])->name('data-kost');
     Route::get('/data-kamar', [App\Http\Controllers\Pemilik\KamarController::class, 'index'])->name('data-kamar');
     Route::get('/transaction', [App\Http\Controllers\Pemilik\transactionController::class, 'index'])->name('transaction');

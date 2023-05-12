@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Pemilik;
 
-use App\Http\Requests\DataKostRequest;
-use App\Http\Controllers\Controller;
 use App\Models\DataKost;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\DataKostRequest;
 
 class KostController extends Controller
 {
@@ -48,7 +49,7 @@ class KostController extends Controller
         $datakamar->alamat = $request->alamat;
         $datakamar->deskripsi = $request->deskripsi;
         $datakamar->foto = $fileNameFotoPertama;
-        $datakamar->slug = 1;
+        $datakamar->slug = Str::slug($request->nama_kost);
         $datakamar->longitude = $request->longitude;
         $datakamar->latitude = $request->latitude;
         $datakamar->save();

@@ -34,8 +34,6 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
     <!-- Top Bar End -->
 
     <!-- Nav Bar Start -->

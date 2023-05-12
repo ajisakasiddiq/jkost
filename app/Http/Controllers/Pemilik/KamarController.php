@@ -95,7 +95,6 @@ class KamarController extends Controller
             $datakamar->harga = $request->harga;
             $datakamar->status = $request->status;
             $datakamar->deskripsi = $request->deskripsi;
-            $datakamar->slug = 1;
             $datakamar->save();
 
             return redirect()->route('data-kamar');
