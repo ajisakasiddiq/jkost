@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\DataKost;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DataKostSeeder extends Seeder
 {
@@ -21,7 +22,7 @@ class DataKostSeeder extends Seeder
             'deskripsi' => 'enek wifi',
             'foto' => '1.jpg',
             'status' => 1,
-            'slug' => 1,
+            'slug' => Str::slug('nama_kost'),
             'longitude' => 323113,
             'latitude' => 323113,
             'created_at' => date('Y-m-d H:i:s', time()),

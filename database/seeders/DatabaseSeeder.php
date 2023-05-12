@@ -29,6 +29,5 @@ class DatabaseSeeder extends Seeder
             DataKostSeeder::class,
             DataKamarSeeder::class
         ]);
-        Transaction::factory(10)->create();
     }
 }
