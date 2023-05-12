@@ -39,7 +39,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <h1 class="kost-name">{{ $kost->no_kamar }}</h1>
+                        <h1 class="kost-name">Kamar No.     {{ $kost->no_kamar }}</h1>
                         <p class="kost-owner">By {{ $kost->nama_kost }}</p>
                         <p><span class="kost-price">Rp. {{ $kost->harga }} </span>/ Bulan</p>
 
@@ -47,7 +47,11 @@
                         <div class="price">Rp.350.000</div> -->
                     </div>
                     <div class="col-lg-2" data-aos="zoom-in">
+                                @if(Auth::user()->role == 'pencari')
                                 <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="{{ $kost->slug }}/checkout">Sewa</a>
+                                @else
+                                <button class="btn btn-custom px-4 btn-block mt-2 mb-3" data-toggle="modal" data-target=".bd-example-modal-sm">Sewa</button>
+                                @endif
 
                             {{-- <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="" onclick="alert('Akses hanya untuk akun penyewa')">Sewa</a> --}}
                      
@@ -86,7 +90,17 @@
         </section>
     </div>
     @endforeach
+
 </div>
+
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <p class="text-center"><span class="text-danger">Mohon Maaf</span> <br>Fitur Sewa hanya untuk akun pencari!</p>
+      </div>
+    </div>
+  </div>
 @endsection
 
 
