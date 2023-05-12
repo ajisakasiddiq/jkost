@@ -237,13 +237,13 @@ Pemilik | Data Kost
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Longitude</label>
-                            <input type="text" class="form-control" id="Longitude" name="Longitude" placeholder="longitude" required />
+                            <input type="text" class="form-control" id="Longitude" name="longitude" placeholder="longitude" required />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Latitude</label>
-                            <input type="text" class="form-control" id="Latitude" name="Latitude" placeholder="latitude" required />
+                            <input type="text" class="form-control" id="Latitude" name="latitude" placeholder="latitude" required />
                         </div>
                     </div>
                     <div class="mt-2 mb-2" id="mapid" style="width: 100%; height: 400px;"></div>
@@ -253,8 +253,8 @@ Pemilik | Data Kost
                             maxZoom: 19,
                         }).addTo(mymap);
                 
-                        var Latinput = document.querySelector("[name=Latitude]");
-                        var Lnginput = document.querySelector("[name=Longitude]");
+                        var Latinput = document.querySelector("[name=latitude]");
+                        var Lnginput = document.querySelector("[name=longitude]");
                 
                         var curLocation = [-8.159909289725807, 113.72304751985719];
                         mymap.attributionControl.setPrefix(false);
