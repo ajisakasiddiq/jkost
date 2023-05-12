@@ -35,13 +35,13 @@
             @foreach ($data as $kost)
 
                 <div class="col-lg-3 mb-3">
-                    <a href="">
+                    <a href="Pemesanan/details/{{ $kost->slug }}/checkout">
                         <div class="card">
                             <img src="assets-home/img/blog-1.jpg" class="card-img-top" alt="..." style="max-height: 140px;">
                             <div class="card-body">
-                                <h2 class="card-text">Kamar Kost No.Kamar {{ $kos->no_kamar }}</h2>
-                                <p>By {{ $kos->nama_kost }}</p>
-                                <p><span class="kost-price">Rp. {{ $kos->harga }} </span>/ Bulan</p>
+                                <h2 class="card-text">Kamar Kost No.Kamar {{ $kost->no_kamar }}</h2>
+                                <p>By {{ $kost->nama_kost }}</p>
+                                <p><span class="kost-price">Rp. {{ $kost->harga }} </span>/ Bulan</p>
                                 <p style="color: green;">Tersedia</p>
                                     {{-- <p style="color: red;">Berpenghuni</p> --}}
                                

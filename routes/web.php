@@ -6,9 +6,11 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\Userpemilik;
 use App\Http\Controllers\Admin\Userpencari;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Pemilik\KamarController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PemesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +31,10 @@ use Illuminate\Support\Facades\Route;
 
 // controller frontend
 // Route::get('/dash', [App\Http\Controllers\DashController::class, 'index'])->name('dash');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/Tentang-Kami', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 Route::get('/Pelayanan', [App\Http\Controllers\PelayananController::class, 'index'])->name('pelayanan');
-Route::get('/Pemesanan', [App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan');
+Route::get('/Pemesanan', [PemesananController::class, 'index'])->name('pemesanan');
 Route::get('/Pemesanan/details/{slug}', [App\Http\Controllers\PemesananController::class, 'details'])->name('pemesanan-details');
 Route::get('/Pemesanan/details/{slug}/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout');
 Route::resource('setting-account', SettingController::class)->middleware('auth');

@@ -15,7 +15,7 @@ class PemesananController extends Controller
         $data =  DB::table('data_kost')
             ->leftJoin('data_kamar', 'data_kost.id', '=', 'data_kamar.kost_id')
             ->get();
-        return view('pages.Pemesanan' . $data);
+        return view('pages.Pemesanan', ['data' => $data]);
     }
     public function details()
     {
