@@ -22,6 +22,8 @@ class PembayaranController extends Controller
                 'data_kost.id as id_kost',
                 'data_kamar.id as id_kamar',
                 'transactions.id as id_transaction',
+                'transactions.user_id',
+                'transactions.kamar_id',
                 'users.id',
                 'users.name',
                 'data_kamar.no_kamar',
@@ -31,7 +33,9 @@ class PembayaranController extends Controller
                 'transactions.tgl_sewa',
                 'transactions.status',
             )
+
             ->first();
+        // ->get();
 
 
         //SAMPLE REQUEST START HERE
@@ -65,7 +69,7 @@ class PembayaranController extends Controller
             [
                 'data' => $data,
                 'no' => $no = 1,
-                'snaptoken' => $snapToken,
+                // 'snaptoken' => $snapToken,
             ]
         );
     }
