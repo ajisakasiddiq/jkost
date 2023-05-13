@@ -10,15 +10,13 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
+        'number',
         'user_id',
         'kamar_id',
-        'kode_pemesanan',
         'nama_pemesan',
-        'nik',
-        'tgl_pemesanan',
         'durasi_sewa',
-        'harga_kamar',
-        'tgl_bayar',
+        'total_price',
+        'tgl_sewa',
         'total_pembayaran',
         'status_penyewaan',
     ];

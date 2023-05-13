@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('number', 16);
+            $table->string('number', 16)->nullable();
             $table->foreignId('user_id')->constrained()->cascacadeOnDelete()->cascacadeOnUpdate();
             $table->foreignId('kamar_id')->references('id')->on('data_kamar')->constrained()->cascacadeOnDelete()->cascacadeOnUpdate();
             $table->string('nama_pemesan');
             $table->string('durasi_sewa');;
             $table->string('total_price');
-            $table->enum('payment_status', ['1', '2', '3', '4'])->comment('1=menunggu pembayaran, 2=sudah dibayar, 3=kadaluarsa, 4=batal');
-            $table->string('snap_token', 36)->nullable();
+            $table->date('tgl_sewa');
+            $table->enum('status', ['unpaid', 'paid', 'batal']);
             $table->softDeletes();
             $table->timestamps();
         });

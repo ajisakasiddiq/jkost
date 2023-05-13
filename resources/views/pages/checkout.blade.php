@@ -226,7 +226,7 @@ body
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #197fb3;
+    border-top: 1px solid #166D9A;
     padding: 0;
 }
 
@@ -429,9 +429,11 @@ span.month.focused.active
                                     </div>
                                     <div class="col-12 panel-body basket-body">
                                         <div class="row product">
-                                            <div class="col-4"><br><span class="additional"></span>{{ $kost->nama_kost }}</div>
-                                            <div class="col-4"><br><span class="additional"></span>{{ $kost->nama_kost }}</div>
-                                            <div class="col-4"><br><span class="additional"></span>{{ $kost->nama_kost }}</div>
+                                            <div class="col-6"><br>
+                                                <span class="additional"></span>
+                                                {{ $kost->nama_kost }}
+                                            </div>
+                                            <div class="col-6"><br><span class="additional"></span>Rp. {{ $kost->harga }}</div>
                                         </div>
                                        {{-- end forena --}}
                                     </div>
@@ -439,7 +441,7 @@ span.month.focused.active
                                         <hr>
                                         <div class="row">
                                             <div class="col-7 align-right description"><div class="dive  emphasized">Total = </div></div>
-                                            <div class="col-2 align-right"><span class="very emphasized">21213232</span></div>
+                                            <div class="col-2 align-right"><span id="total" class="very emphasized">{{ $kost->harga }}</span></div>
                                         </div>
                                         <hr>
                                         {{-- <div class="row">
@@ -458,8 +460,17 @@ span.month.focused.active
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-12 panel-body creditcard-body">
+                                        @foreach ($data as $kost)
+                                            <input type="hidden" id="price" value="{{ $kost->harga }}">
+                                       
                                         <form action="#" method="post" target="_self">
+                                            @csrf
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" id="">
+                                            <input type="hidden" name="kamar_id" value="{{ $kost->id_kamar }}" id="">
+                                            <input type="hidden" name="total_price" id="total">
+                                        
                                             <fieldset>
                                                 <label for="card-name">Nama</label><br>
                                                 <i class="fa fa-user-o" aria-hidden="true"></i><input type='text' id='card-name' name='name' title='Name on the Card'>
@@ -469,19 +480,29 @@ span.month.focused.active
                                                 <i class="fa fa-calendar" aria-hidden="true"></i><input type='date' id='card-expiration' name='card-expiration' placeholder='YY/MM' title='Expiration' class="card-expiration">
                                             </fieldset>
                                             <fieldset>
-                                                <label for="card-ccv">CVC/CCV</label>&nbsp;<i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="The CVV Number on your credit card or debit card is a 3 digit number on VISA, MasterCard and Discover branded credit and debit cards. On your American Express branded credit or debit card it is a 4 digit numeric code."></i><br>
-                                                <i class="fa fa-lock" aria-hidden="true"></i><input type='text' id='card-ccv' name='card-ccv' placeholder='123' title='CVC/CCV'>
+                                                <label for="">Durasi</label>
+                                                <select name="txt_durasi" id="package" class="form-control">
+                                                  <option>Pilih Durasi Sewa</option>
+                                                  <option value="1">1 Bulan</option>
+                                                  <option value="3">3 Bulan</option>
+                                                  <option value="6">6 Bulan</option>
+                                                  <option value="12">12 Bulan</option>
+                                                </select>
                                             </fieldset>
-                                        </form>
+                                            
+
+                                         
                                     </div>
                                     <div class="col-12 panel-footer creditcard-footer">
                                         <div class="">
                                             <div class="col-12 align-center">
                                                 <button type="button" href="{{ route('pemesanan') }}" class="cancel">Cancel</button>&nbsp;
-                                                <button class="btn btn-custom">Confirm & Pay</button>
+                                                <button type="submit"  class="btn btn-custom">Confirm & Pay</button>
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -494,3 +515,25 @@ span.month.focused.active
 
 
 @endsection
+
+@push('addon-script')
+<script>
+    $('#package').on('change', function() {
+      const selectedPackage = $('#package').val();
+      $('#selected').text(selectedPackage);
+    });
+
+
+
+    $('#package').on('change', function() {
+      // ambil data dari elemen option yang dipilih
+      const duration = $('#package option:selected').val();
+      const price = $('#price').val();
+
+      // kalkulasi total harga
+      const total = price * duration;
+      $('[name=total_price]').val(total);
+      $('#total').text(`${total}`);
+    });
+  </script>
+@endpush
