@@ -68,11 +68,19 @@ Pemilik | Data Kamar
                     <tr>                        
                         @foreach ($data as $datakamar)
                         <td>{{ $no++ }}</td>
-                            @foreach (json_decode($datakamar['image']) as $image)
-                                <td>
-                                    <img src="{{ url('assets/kamar/' . $image) }}" alt="" height="20" width="20">
-                                </td>
-                            @endforeach
+                        
+                        <td>
+                            <img src="{{ asset('assets/kamar/depan/' . $datakamar['img_pertama']) }}" alt="" height="20" width="20">
+                        </td>
+                        <td>
+                            <img src="{{ asset('assets/kamar/dalam/' . $datakamar['img_kedua']) }}" alt="" height="20" width="20">
+                        </td>
+                        <td>
+                            <img src="{{ asset('assets/kamar/toilet/' . $datakamar['img_ketiga']) }}" alt="" height="20" width="20">
+                        </td>
+                        <td>
+                            <img src="{{ asset('assets/kamar/dapur/' . $datakamar['img_keempat']) }}" alt="" height="20" width="20">
+                        </td>
                         {{-- <td>{{ $datakamar->kost_id }}</td> --}}
                         <td>{{ $datakamar->no_kamar }}</td>
                         <td>{{ $datakamar->jenis_kamar }}</td>
@@ -168,25 +176,25 @@ Pemilik | Data Kamar
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="">Gambar pertama</label>
-                                                    <input type="file" name="images[]"value="{{$datakamar->img_pertama}}"class="form-control" >
+                                                    <input type="file" name="img_pertama"value="{{$datakamar->img_pertama}}"class="form-control" >
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="">Gambar kedua</label>
-                                                    <input type="file" name="images[]" value="{{$datakamar->img_kedua}}"class="form-control" >
+                                                    <input type="file" name="img_kedua" value="{{$datakamar->img_kedua}}"class="form-control" >
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="">Gambar ketiga</label>
-                                                    <input type="file" name="images[]" value="{{$datakamar->img_ketiga}}" class="form-control"> 
+                                                    <input type="file" name="img_ketiga" value="{{$datakamar->img_ketiga}}" class="form-control"> 
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="">Gambar keempat</label>
-                                                    <input type="file" name="images[]" value="{{$datakamar->img_keempat}}"class="form-control">
+                                                    <input type="file" name="img_keempat" value="{{$datakamar->img_keempat}}"class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
