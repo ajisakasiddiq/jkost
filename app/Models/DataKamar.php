@@ -19,11 +19,10 @@ class DataKamar extends Model
         'no_kamar',
         'harga',
         'status',
-        'img_pertama',
-        'img_kedua',
-        'img_ketiga',
-        'img_keempat',
+        'images',
         'deskripsi',
-        'slug',
+    ];
+    protected $casts = [
+        'images' => 'array',
     ];
 }
