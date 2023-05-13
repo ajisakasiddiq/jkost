@@ -22,7 +22,13 @@ class PayRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => 'required|int',
+            'kamar_id' => 'required|int',
+            'total_price' => 'required|string',
+            'nama_pemesan' => 'required|string',
+            'tgl_sewa' => 'required|date',
+            'durasi_sewa' => 'required|int|max:50',
+            'status' => 'required|string|max:50',
         ];
     }
 }

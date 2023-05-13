@@ -465,23 +465,24 @@ span.month.focused.active
                                         @foreach ($data as $kost)
                                             <input type="hidden" id="price" value="{{ $kost->harga }}">
                                        
-                                        <form action="#" method="post" target="_self">
+                                        <form action="/pay" method="POST" target="_self">
                                             @csrf
                                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" id="">
                                             <input type="hidden" name="kamar_id" value="{{ $kost->id_kamar }}" id="">
                                             <input type="hidden" name="total_price" id="total">
+                                            <input type="hidden" name="status" value="unpaid">
                                         
                                             <fieldset>
                                                 <label for="card-name">Nama</label><br>
-                                                <i class="fa fa-user-o" aria-hidden="true"></i><input type='text' id='card-name' name='name' title='Name on the Card'>
+                                                <i class="fa fa-user-o" aria-hidden="true"></i><input type='text' id='card-name' name='nama_pemesan' title='Name on the Card'>
                                             </fieldset>
                                             <fieldset>
                                                 <label for="card-expiration">Mulai Kost</label><br>
-                                                <i class="fa fa-calendar" aria-hidden="true"></i><input type='date' id='card-expiration' name='card-expiration' placeholder='YY/MM' title='Expiration' class="card-expiration">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i><input type='date' id='card-expiration' name='tgl_sewa' placeholder='YY/MM' title='Expiration' class="card-expiration">
                                             </fieldset>
                                             <fieldset>
                                                 <label for="">Durasi</label>
-                                                <select name="txt_durasi" id="package" class="form-control">
+                                                <select name="durasi_sewa" id="package" class="form-control">
                                                   <option>Pilih Durasi Sewa</option>
                                                   <option value="1">1 Bulan</option>
                                                   <option value="3">3 Bulan</option>

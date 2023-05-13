@@ -36,6 +36,7 @@ Route::get('/Pelayanan', [HomeController::class, 'pelayanan'])->name('pelayanan'
 Route::get('/Pemesanan', [PemesananController::class, 'index'])->name('pemesanan');
 Route::get('/Pemesanan/details/{slug}', [PemesananController::class, 'details'])->name('pemesanan-details');
 Route::get('/Pemesanan/details/{slug}/checkout', [PemesananController::class, 'checkout'])->name('checkout');
+Route::post('/pay', [PemesananController::class, 'pay']);
 Route::resource('setting-account', SettingController::class)->middleware('auth');
 
 
