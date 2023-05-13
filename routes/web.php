@@ -53,7 +53,7 @@ Route::prefix('admin')
         Route::resource('profile', ProfileController::class);
         Route::resource('transaction', TransactionController::class);
         Route::resource('datakost', DataKostController::class);
-        Route::resource('data-pencari', UserController::class)->except(['pencari']);
+        Route::resource('data-pencari', Userpencari::class);
         Route::resource('data-pemilik', Userpemilik::class);
     });
 
