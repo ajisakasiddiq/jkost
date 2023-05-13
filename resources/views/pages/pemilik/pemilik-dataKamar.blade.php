@@ -1,4 +1,4 @@
-@extends('layouts.pemilik')
+@extends('layouts.sidebar')
 
 @section('title')
 Pemilik | Data Kamar

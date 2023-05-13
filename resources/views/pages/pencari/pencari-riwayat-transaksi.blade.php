@@ -1,4 +1,4 @@
-@extends('layouts.pencari')
+@extends('layouts.sidebar')
 
 @section('title')
     Transaction|Admin
@@ -39,24 +39,37 @@
                 Jquery Datatable
             </div>
             <div class="card-body">
-                <table class="table" id="RiwayatTransaction">
+                <table class="table" id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode Pemesanan</th>
                             <th>Nama Kost</th>
                             <th>No.kamar</th>
                             <th>Nama Penyewa</th>
-                            <th>No Hp Penyewa</th>
                             <th>Durasi Sewa</th>
                             <th>Tanggal Mulai Ngekos</th>
                             <th>Total Harga</th>
-                            <th>Status</th>
-                            <th>Bukti Pembayaran</th>
-                            <th>action</th>
+                            <th>Status</th>>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        @foreach ($data as $transaction)
+                        <tr>
+                            <td>{{ $no++; }}</td>
+                            <td>{{ $transaction->nama_kost }}</td>
+                            <td>{{ $transaction->no_kamar }}</td>
+                            <td>{{ $transaction->nama_pemesan }}</td>
+                            <td>{{ $transaction->durasi_sewa }} Bulan</td>
+                            <td>{{ $transaction->tgl_sewa }}</td>
+                            <td>{{ $transaction->total_price }}</td>
+                            @if($transaction->status == 'paid' )
+                            <td><span class="badge bg-success">Pembayaran Selesai</span></td>
+                            @elseif($transaction->status == 'batal' )
+                            <td><span class="badge bg-danger">cancel</span></td>
+                            @endif
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -81,7 +94,6 @@
 
         </div>
 @endsection
-
 @push('addon-script')
 <script src="/assets/extensions/jquery/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>

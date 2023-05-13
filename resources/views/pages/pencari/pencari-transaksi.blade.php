@@ -1,4 +1,4 @@
-@extends('layouts.pencari')
+@extends('layouts.sidebar')
 
 @section('title')
     Transaction|Admin

@@ -11,6 +11,8 @@ use App\Http\Controllers\Pemilik\KamarController;
 use App\Http\Controllers\Admin\DataKostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,7 +53,7 @@ Route::prefix('admin')
         Route::resource('profile', ProfileController::class);
         Route::resource('transaction', TransactionController::class);
         Route::resource('datakost', DataKostController::class);
-        Route::resource('data-pencari', Userpencari::class);
+        Route::resource('data-pencari', UserController::class)->except(['pencari']);
         Route::resource('data-pemilik', Userpemilik::class);
     });
 
@@ -75,7 +77,7 @@ Route::middleware('auth', 'checkrole:pemilik')->group(function () {
 Route::middleware('checkrole:pencari')->group(function () {
     Route::get('/home-kost', [App\Http\Controllers\Pencari\DashboardKostController::class, 'index'])->name('Home-Kost');
     Route::get('/transaction-kost', [App\Http\Controllers\Pencari\PembayaranController::class, 'index'])->name('Pembayaran-Kost');
-    Route::get('/riwayat-transaction', [App\Http\Controllers\Pencari\RiwayatController::class, 'index'])->name('riwayat-Kost');
+    Route::get('/riwayat', [App\Http\Controllers\Pencari\PembayaranController::class, 'riwayat'])->name('riwayat-Kost');
 });
 
 

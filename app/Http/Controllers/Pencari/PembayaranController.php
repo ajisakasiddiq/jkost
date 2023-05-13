@@ -74,6 +74,41 @@ class PembayaranController extends Controller
         );
     }
 
+
+    public function riwayat()
+    {
+        $data = DB::table('transactions')
+            ->join('users', 'users.id', '=', 'transactions.user_id')
+            ->join('data_kamar', 'data_kamar.id', '=', 'transactions.kamar_id')
+            ->join('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
+            ->select(
+                'data_kost.nama_kost',
+                'data_kost.id as id_kost',
+                'data_kamar.id as id_kamar',
+                'transactions.id as id_transaction',
+                'transactions.user_id',
+                'transactions.kamar_id',
+                'users.id',
+                'users.name',
+                'data_kamar.no_kamar',
+                'transactions.durasi_sewa',
+                'transactions.nama_pemesan',
+                'transactions.total_price',
+                'transactions.tgl_sewa',
+                'transactions.status',
+            )
+            ->where('transactions.status', 'paid')
+            ->get();
+
+        return view(
+            'pages.pencari.pencari-riwayat-transaksi',
+            [
+                'data' => $data,
+                'no' => $no = 1
+            ]
+        );
+    }
+
     /**
      * Show the form for creating a new resource.
      */
