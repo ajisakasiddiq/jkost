@@ -8,7 +8,9 @@
 <link rel="stylesheet" href="/assets/css/pages/fontawesome.css">
 <link rel="stylesheet" href="/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="/assets/css/pages/datatables.css">
-    
+<script type="text/javascript"
+src="https://app.sandbox.midtrans.com/snap/snap.js"
+data-client-key="{{ config('midtrans.client_key') }}"></script>
 @endpush
 
 @section('content')
@@ -39,24 +41,48 @@
                 Jquery Datatable
             </div>
             <div class="card-body">
-                <table class="table" id="Transaction">
+                <table class="table" id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode Pemesanan</th>
                             <th>Nama Kost</th>
                             <th>No.kamar</th>
                             <th>Nama Penyewa</th>
-                            <th>No Hp Penyewa</th>
                             <th>Durasi Sewa</th>
                             <th>Tanggal Mulai Ngekos</th>
                             <th>Total Harga</th>
                             <th>Status</th>
-                            <th>Bukti Pembayaran</th>
                             <th>action</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        @foreach ($data as $transaction)
+                        <tr>
+                            <td>{{ $no++; }}</td>
+                            <td>{{ $transaction->nama_kost }}</td>
+                            <td>{{ $transaction->no_kamar }}</td>
+                            <td>{{ $transaction->nama_pemesan }}</td>
+                            <td>{{ $transaction->durasi_sewa }}</td>
+                            <td>{{ $transaction->tgl_sewa }}</td>
+                            <td>{{ $transaction->total_price }}</td>
+                            @if($transaction->status == 'unpaid' )
+                            <td><span class="badge bg-danger">unpaid</span></td>
+                            @elseif($transaction->status == 'paid' )
+                            <td><span class="badge bg-success">paid</span></td>
+                            @else
+                            <td><span class="badge bg-danger">cancel</span></td>
+                            @endif
+
+                            @if($transaction->status == 'unpaid' )
+                            <td><button class="badge bg-success" id="pay-button">Bayar</button></td>
+                            @elseif($transaction->status == 'paid' )
+                            <td><span class="badge bg-success">Pembayaran Selesai</span></td>
+                            @else
+                            <td><span class="badge bg-danger">cancel</span></td>
+                            @endif
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -86,19 +112,13 @@
 <script src="/assets/extensions/jquery/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
 <script src="/assets/js/pages/datatables.js"></script>
-<script type="text/javascript"
-src="https://app.sandbox.midtrans.com/snap/snap.js"
-data-client-key="{{ config('midtrans.client_key') }}"></script>
-
-
-<button id="pay-button">Pay!</button>
 
 <script type="text/javascript">
   // For example trigger on button clicked, or any time you need
   var payButton = document.getElementById('pay-button');
   payButton.addEventListener('click', function () {
     // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-    window.snap.pay('TRANSACTION_TOKEN_HERE', {
+    window.snap.pay('{{ $snapToken }}', {
       onSuccess: function(result){
         /* You may add your own implementation here */
         alert("payment success!"); console.log(result);
@@ -119,7 +139,7 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
   });
 </script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(document).ready(function () {
        $('#Transaction').DataTable({
             processing: true,
@@ -145,7 +165,7 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
             ]
         });
  });
-    </script>
+    </script> --}}
 
 @endpush
 

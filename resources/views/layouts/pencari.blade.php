@@ -47,10 +47,10 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
-                                    <a href="{{ route('UserPemilik-admin')}}">My Profile</a>
+                                    <a href="/">My Profile</a>
                                 </li>
                                 <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">
-                                    <a href="{{ route('UserPencari-admin')}}">Setting account</a>
+                                    <a href="/">Setting account</a>
                                 </li>
                                 <li class="submenu-item">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
