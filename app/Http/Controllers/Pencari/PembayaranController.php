@@ -69,7 +69,7 @@ class PembayaranController extends Controller
             [
                 'data' => $data,
                 'no' => $no = 1,
-                // 'snaptoken' => $snapToken,
+                'snaptoken' => $snapToken,
             ]
         );
     }
