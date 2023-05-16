@@ -57,12 +57,13 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
                     </thead>
                     <tbody>
                         @foreach ($data as $transaction)
+                        {{-- {{ dd($transaction) }} --}}
                         <tr>
                             <td>{{ $no++; }}</td>
                             <td>{{ $transaction->nama_kost }}</td>
                             <td>{{ $transaction->no_kamar }}</td>
                             <td>{{ $transaction->nama_pemesan }}</td>
-                            <td>{{ $transaction->durasi_sewa }}</td>
+                            <td>{{ $transaction->durasi_sewa }} Bulan</td>
                             <td>{{ $transaction->tgl_sewa }}</td>
                             <td>{{ $transaction->total_price }}</td>
                             @if($transaction->status == 'unpaid' )
@@ -74,7 +75,7 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
                             @endif
 
                             @if($transaction->status == 'unpaid' )
-                            <td><button class="badge bg-success" id="pay-button">Bayar</button></td>
+                            <td><button class="btn btn-success btn-lg" id="pay-button">Bayar</button></td>
                             @elseif($transaction->status == 'paid' )
                             <td><span class="badge bg-success">Pembayaran Selesai</span></td>
                             @else
@@ -113,7 +114,7 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
 <script src="/assets/js/pages/datatables.js"></script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
   // For example trigger on button clicked, or any time you need
   var payButton = document.getElementById('pay-button');
   payButton.addEventListener('click', function () {
@@ -137,7 +138,7 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
       }
     })
   });
-</script>
+</script> --}}
 
 {{-- <script type="text/javascript">
     $(document).ready(function () {

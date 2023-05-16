@@ -117,6 +117,23 @@
                         <img src="assets-home/img/team-4.jpg" alt="Team Image">
                     </div>
                     <div class="team-text">
+                        <h2>Yudis anjay mabar</h2>
+                        <p>Admin</p>
+                        <div class="team-social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="team-item">
+                    <div class="team-img">
+                        <img src="assets-home/img/team-4.jpg" alt="Team Image">
+                    </div>
+                    <div class="team-text">
                         <h2>M Zidan Prasetyo</h2>
                         <p>Admin</p>
                         <div class="team-social">
