@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 
 @section('title')
-    Transaction|Admin
+    Transaction | Pencari
 @endsection
 
 @push('addon-style')

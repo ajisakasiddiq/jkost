@@ -8,7 +8,7 @@ Pemilik | Data Kamar
 <link rel="stylesheet" href="/assets/css/pages/fontawesome.css">
 <link rel="stylesheet" href="/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="/assets/css/pages/datatables.css">
-    
+
 @endpush
 
 @section('content')
@@ -333,43 +333,9 @@ Pemilik | Data Kamar
         </div>
 @endsection
 
-@push('addon-script')   
+@push('addon-script')
 <script src="/assets/extensions/jquery/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
 <script src="/assets/js/pages/datatables.js"></script>
-
-
-{{-- <script type="text/javascript">
-    $(document).ready(function () {
-       $('#datakamar').DataTable({
-            processing: true,
-            serverSide: true,
-            scrollX: true,
-            ajax: '{{ url()->current() }}',
-            // columns : [
-            //     {data: 'id', name: 'id'},
-            //     {data: 'kost_id', name: 'kost_id'},
-            //     {data: 'jenis_kamar', name: 'jenis_kamar'},
-            //     {data: 'no_kamar', name: 'no_kamar'},
-            //     {data: 'harga', name: 'harga'},
-            //     {data: 'status', name: 'status'},
-            //     {data: 'img_satu', name: 'img_satu'},
-            //     {data: 'img_kedua', name: 'img_kedua'},
-            //     {data: 'img_ketiga', name: 'img_ketiga'},
-            //     {data: 'img_keempat', name: 'img_keempat'},
-            //     {data: 'deskripsi', name: 'deskripsi'},
-            //     {data: 'slug', name: 'slug'},
-            //     {
-            //         data: 'action', 
-            //         name:'action',
-            //         orderable : false,
-            //         searcable : false,
-            //         width:'15%'
-            //     },
-            // ]
-        });
- });
-    </script> --}}
-
 @endpush
 

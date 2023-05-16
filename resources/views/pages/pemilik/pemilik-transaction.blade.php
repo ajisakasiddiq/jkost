@@ -1,14 +1,16 @@
 @extends('layouts.sidebar')
 
 @section('title')
-Pemilik | Transaksi
+    Transaction | Pemilik
 @endsection
 
 @push('addon-style')
 <link rel="stylesheet" href="/assets/css/pages/fontawesome.css">
 <link rel="stylesheet" href="/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="/assets/css/pages/datatables.css">
-    
+<script type="text/javascript"
+src="https://app.sandbox.midtrans.com/snap/snap.js"
+data-client-key="{{ config('midtrans.client_key') }}"></script>
 @endpush
 
 @section('content')
@@ -35,107 +37,58 @@ Pemilik | Transaksi
     <!-- Basic Tables start -->
     <section class="section">
         <div class="card">
-
+            <div class="card-header">
+                Jquery Datatable
+            </div>
             <div class="card-body">
                 <table class="table" id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode Pemesanan</th>
                             <th>Nama Kost</th>
                             <th>No.kamar</th>
                             <th>Nama Penyewa</th>
-                            <th>No Hp Penyewa</th>
                             <th>Durasi Sewa</th>
                             <th>Tanggal Mulai Ngekos</th>
                             <th>Total Harga</th>
                             <th>Status</th>
-                            <th>Bukti Pembayaran</th>
                             <th>action</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        @foreach ($data as $transaction)
+                        {{-- {{ dd($transaction) }} --}}
+                        <tr>
+                            <td>{{ $no++; }}</td>
+                            <td>{{ $transaction->nama_kost }}</td>
+                            <td>{{ $transaction->no_kamar }}</td>
+                            <td>{{ $transaction->nama_pemesan }}</td>
+                            <td>{{ $transaction->durasi_sewa }} Bulan</td>
+                            <td>{{ $transaction->tgl_sewa }}</td>
+                            <td>{{ $transaction->total_price }}</td>
+                            @if($transaction->status == 'unpaid' )
+                            <td><span class="badge bg-danger">unpaid</span></td>
+                            @elseif($transaction->status == 'paid' )
+                            <td><span class="badge bg-success">paid</span></td>
+                            @else
+                            <td><span class="badge bg-danger">cancel</span></td>
+                            @endif
+
+                            @if($transaction->status == 'unpaid' )
+                            <td><button class="btn btn-success btn-lg" id="pay-button">Bayar</button></td>
+                            @elseif($transaction->status == 'paid' )
+                            <td><span class="badge bg-success">Pembayaran Selesai</span></td>
+                            @else
+                            <td><span class="badge bg-danger">cancel</span></td>
+                            @endif
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
-        
+
     </section>
-    <div class="modal fade" id="addAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">+ Tambah Data Kost </h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="/kostkamar-add" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">user id</label>
-                                <input type="text" name="user_id" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">kamar id</label>
-                                <input type="text" name="kamar_id" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">kode pemesanan</label>
-                                <input type="text" name="alamat" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">Nama Pemesanan </label>
-                                <input type="text" name="deskripsi" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">nik</label>
-                                <input type="file" name="foto" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">Maps</label>
-                                <input type="text" name="maps" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">Status</label>
-                                <input  type="text" name="status" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">Longitude</label>
-                                <input type="text" name="longitude" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="">Latitude</label>
-                                <input type="text" name="latitude" class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
-            </form>
-    
-            </div>
-          </div>
-        </div>
-      </div>
     <!-- Basic Tables end -->
 </div>
 
@@ -155,40 +108,8 @@ Pemilik | Transaksi
 
         </div>
 @endsection
-
 @push('addon-script')
 <script src="/assets/extensions/jquery/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
 <script src="/assets/js/pages/datatables.js"></script>
-
-
-{{-- <script type="text/javascript">
-    $(document).ready(function () {
-       $('#TransactionTable').DataTable({
-            processing: true,
-            serverSide: true,
-            scrollX: true,
-            ajax: '{{ url()->current() }}',
-            columns : [
-                {data: 'foto', name: 'foto'},
-                {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
-                {data: 'username', name: 'username'},
-                {data: 'nik', name: 'nik'},
-                {data: 'alamat', name: 'alamat'},
-                {data: 'no_hp', name: 'no hp'},
-                {data: 'jenis_kelamin', name: 'jenis kelamin'},
-                {
-                    data: 'action', 
-                    name:'action',
-                    orderable : false,
-                    searcable : false,
-                    width:'15%'
-                },
-            ]
-        });
- });
-    </script> --}}
-
 @endpush
-
