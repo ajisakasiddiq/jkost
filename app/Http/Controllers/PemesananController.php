@@ -117,6 +117,6 @@ class PemesananController extends Controller
         $data = $request->all();
 
         $order = Transaction::create($data);
-        return redirect()->route('Pembayaran-Kost');
+        return redirect()->route('Pembayaran-Kost', compact('data'));
     }
 }
