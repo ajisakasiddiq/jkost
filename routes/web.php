@@ -36,7 +36,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/Tentang-Kami', [HomeController::class, 'about'])->name('about');
 Route::get('/Pelayanan', [HomeController::class, 'pelayanan'])->name('pelayanan');
 Route::get('/Pemesanan', [PemesananController::class, 'index'])->name('pemesanan');
-Route::get('/Pemesanan/details/{slug}', [PemesananController::class, 'details'])->name('pemesanan-details');
+Route::get('/Pemesanan/details/{slug}', [PemesananController::class, 'details'])->name('pemesanan-details')->middleware('auth');
 Route::get('/Pemesanan/details/{slug}/checkout', [PemesananController::class, 'checkout'])->name('checkout');
 Route::post('/pay', [PemesananController::class, 'pay']);
 Route::resource('setting-account', SettingController::class)->middleware('auth');
@@ -74,10 +74,10 @@ Route::middleware('auth', 'checkrole:pemilik')->group(function () {
     // Route::resource('kamar', KamarController::class);
 });
 
-Route::middleware('checkrole:pencari')->group(function () {
+Route::middleware('auth', 'checkrole:pencari')->group(function () {
     Route::get('/home-kost', [App\Http\Controllers\Pencari\DashboardKostController::class, 'index'])->name('Home-Kost');
-    Route::get('/transaction-kost', [App\Http\Controllers\Pencari\PembayaranController::class, 'index'])->name('Pembayaran-Kost');
-    Route::get('/riwayat', [App\Http\Controllers\Pencari\PembayaranController::class, 'riwayat'])->name('riwayat-Kost');
+    Route::get('/transaction-kost', [PemesananController::class, 'pembayaran'])->name('Pembayaran-Kost');
+    Route::get('/riwayat', [PemesananController::class, 'riwayat'])->name('riwayat-Kost');
 });
 
 
