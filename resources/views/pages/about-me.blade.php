@@ -29,7 +29,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="about-img">
-                        <img src="img/about3.jpeg" alt="Image">
+                        <img src="{{ asset('img/about3.jpeg') }}" alt="Image">
                     </div>
                 </div>
                 <div class="col-lg-6">
