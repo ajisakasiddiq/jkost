@@ -63,7 +63,6 @@ class OrderController extends Controller
             'durasi_sewa' => 'required|int',
             'total_price' => 'required|int',
             'tgl_sewa' => 'required|date',
-            // 'status' => 'required|in:unpaid',
         ]);
 
         // Membuat produk baru
@@ -74,7 +73,6 @@ class OrderController extends Controller
             'durasi_sewa' => $request->input('durasi_sewa'),
             'total_price' => $request->input('total_price'),
             'tgl_sewa' => $request->input('tgl_sewa'),
-            // 'status' => $request->input('status'),
         ]);
         return response()->json([
             'success' => true,
