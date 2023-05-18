@@ -132,12 +132,6 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ (request()->is('/transaction-kost')) ? 'active' : ''}}">
-                            <a href="{{ route('Pembayaran-Kost')}}" class='sidebar-link'>
-                               <i class="bi bi-grid-fill"></i>
-                                <span>Pembayaran</span>
-                            </a>
-                        </li>
                         <li class="sidebar-item {{ (request()->is('/riwayat-transaction')) ? 'active' : ''}}">
                             <a href="{{ route('riwayat-Kost')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
