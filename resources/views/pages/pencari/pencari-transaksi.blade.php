@@ -56,10 +56,10 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($order as $transaction)
-                        {{ dd($transaction) }}
+                        {{-- @foreach ($data as $transaction) --}}
+                        {{-- {{ dd($transaction) }} --}}
                         <tr>
-                            <td>{{ $no++; }}</td>
+                            {{-- <td>{{ $no++; }}</td> --}}
                             <td>{{ $transaction->nama_kost }}</td>
                             <td>{{ $transaction->no_kamar }}</td>
                             <td>{{ $transaction->nama_pemesan }}</td>
@@ -71,7 +71,7 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
 
                             <td><button class="btn btn-success btn-lg" id="pay-button">Bayar</button></td>
                         </tr>
-                        @endforeach
+                        {{-- @endforeach --}}
                     </tbody>
                 </table>
             </div>

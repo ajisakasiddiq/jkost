@@ -187,7 +187,7 @@ class PemesananController extends Controller
     {
         $data = $request->all();
 
-        $order = Transaction::create($data);
+        $transaction = Transaction::create($data);
 
 
         // SAMPLE REQUEST START HERE
@@ -203,8 +203,8 @@ class PemesananController extends Controller
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => $order->id,
-                'gross_amount' => $order->total_price,
+                'order_id' => $transaction->id,
+                'gross_amount' => $transaction->total_price,
             ),
             'customer_details' => array(
                 'nama_kost' => $request->kost_id,
@@ -217,7 +217,7 @@ class PemesananController extends Controller
         $snapToken = \Midtrans\Snap::getSnapToken($params);
         // dd($snapToken);
         // return view('pages.pencari.pencari-transaksi', compact('snapToken', 'order'));
-        return redirect()->route('transaction-kost', compact('snapToken', 'order'));
+        return view('pages.pencari.pencari-transaksi', compact('snapToken', 'transaction'));
         // return redirect()->away($snapToken);
     }
 }
