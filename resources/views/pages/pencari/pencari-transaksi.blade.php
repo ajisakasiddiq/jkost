@@ -56,8 +56,8 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $transaction)
-                        {{-- {{ dd($transaction) }} --}}
+                        @foreach ($order as $transaction)
+                        {{ dd($transaction) }}
                         <tr>
                             <td>{{ $no++; }}</td>
                             <td>{{ $transaction->nama_kost }}</td>
@@ -66,21 +66,10 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
                             <td>{{ $transaction->durasi_sewa }} Bulan</td>
                             <td>{{ $transaction->tgl_sewa }}</td>
                             <td>{{ $transaction->total_price }}</td>
-                            @if($transaction->status == 'unpaid' )
-                            <td><span class="badge bg-danger">unpaid</span></td>
-                            @elseif($transaction->status == 'paid' )
-                            <td><span class="badge bg-success">paid</span></td>
-                            @else
-                            <td><span class="badge bg-danger">cancel</span></td>
-                            @endif
+                            {{-- @if($transaction->status == 'unpaid' ) --}}
+                            <td><span class="badge bg-danger">{{ $transaction->status  }}</span></td>
 
-                            @if($transaction->status == 'unpaid' )
                             <td><button class="btn btn-success btn-lg" id="pay-button">Bayar</button></td>
-                            @elseif($transaction->status == 'paid' )
-                            <td><span class="badge bg-success">Pembayaran Selesai</span></td>
-                            @else
-                            <td><span class="badge bg-danger">cancel</span></td>
-                            @endif
                         </tr>
                         @endforeach
                     </tbody>
@@ -114,7 +103,7 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
 <script src="/assets/js/pages/datatables.js"></script>
 
-{{-- <script type="text/javascript">
+<script type="text/javascript">
   // For example trigger on button clicked, or any time you need
   var payButton = document.getElementById('pay-button');
   payButton.addEventListener('click', function () {
@@ -138,7 +127,7 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
       }
     })
   });
-</script> --}}
+</script>
 
 {{-- <script type="text/javascript">
     $(document).ready(function () {

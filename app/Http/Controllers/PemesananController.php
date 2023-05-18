@@ -136,36 +136,7 @@ class PemesananController extends Controller
                 'transactions.status',
             )
             ->where('transactions.status', 'unpaid')
-            // ->first();
             ->get();
-        // ->find()
-
-
-        // SAMPLE REQUEST START HERE
-
-        // // Set your Merchant Server Key
-        // \Midtrans\Config::$serverKey = 'SB-Mid-server-LVNbQZaBDFbkgVJ51O4rcHIA';
-        // // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        // \Midtrans\Config::$isProduction = false;
-        // // Set sanitization on (default)
-        // \Midtrans\Config::$isSanitized = true;
-        // // Set 3DS transaction for credit card to true
-        // \Midtrans\Config::$is3ds = true;
-
-        // $params = array(
-        //     'transaction_details' => array(
-        //         'order_id' => $data->id_transaction,
-        //         'gross_amount' => $data->total_price,
-        //     ),
-        //     'customer_details' => array(
-        //         'nama_kost' => $data->nama_kost,
-        //         'nama_pemesan' => $data->nama_pemesan,
-        //         'durasi_sewa' => $data->durasi_sewa,
-        //         'tgl_sewa' => $data->tgl_sewa,
-        //     ),
-        // );
-
-        // $snapToken = \Midtrans\Snap::getSnapToken($params);
 
         return view(
             'pages.pencari.pencari-transaksi',
@@ -217,6 +188,36 @@ class PemesananController extends Controller
         $data = $request->all();
 
         $order = Transaction::create($data);
-        return redirect()->route('Pembayaran-Kost', compact('data'));
+
+
+        // SAMPLE REQUEST START HERE
+
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-LVNbQZaBDFbkgVJ51O4rcHIA';
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $order->id,
+                'gross_amount' => $order->total_price,
+            ),
+            'customer_details' => array(
+                'nama_kost' => $request->kost_id,
+                'nama_pemesan' => $request->nama_pemesan,
+                'durasi_sewa' => $request->durasi_sewa,
+                'tgl_sewa' => $request->tgl_sewa,
+            ),
+        );
+
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+        // dd($snapToken);
+        // return view('pages.pencari.pencari-transaksi', compact('snapToken', 'order'));
+        return redirect()->route('transaction-kost', compact('snapToken', 'order'));
+        // return redirect()->away($snapToken);
     }
 }
