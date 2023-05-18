@@ -220,4 +220,16 @@ class PemesananController extends Controller
         return view('pages.pencari.pencari-transaksi', compact('snapToken', 'transaction'));
         // return redirect()->away($snapToken);
     }
+
+    public function callback(Request $request)
+    {
+        $serverKey = config('midtrans.server_key');
+        $hashed = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        if ($hashed == $request->signature_key) {
+            if ($request->transactions_status == 'capture') {
+                $order = Transaction::find($request->order_id);
+                $order->update(['status' => 'paid']);
+            }
+        }
+    }
 }
