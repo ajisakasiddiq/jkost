@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('api_token')->nullable();
             $table->enum('role', ['admin', 'pemilik', 'pencari'])->default('pencari');
+            $table->enum('kelamin', ['L', 'P']);
             $table->softDeletes();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
