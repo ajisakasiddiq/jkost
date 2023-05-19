@@ -113,6 +113,9 @@ class ProfileController extends Controller
         $item = User::findOrFail($id);
         $item->update($data);
 
+
+
+
         return redirect()->route('profile.index');
     }
 

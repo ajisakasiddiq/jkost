@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                @if(Auth::user()->id == 2)
+                @if(Auth::user()->role == 'pemilik')
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
@@ -94,7 +94,7 @@
                     </ul>
                     <!-- dashboard -->
                 </div>
-                @elseif(Auth::user()->id == 3)
+                @elseif(Auth::user()->role == 'pencari')
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
@@ -103,7 +103,7 @@
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
                                 {{-- <span>Hi, {{ Auth::user()->name }}</span> --}}
-                                <span>Hi,</span>
+                                <span>Hi , {{ Auth::user()->name }}</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item {{ (request()->is('/pemilik')) ? 'active' : ''}}">

@@ -39,24 +39,37 @@
                 Jquery Datatable
             </div>
             <div class="card-body">
-                <table class="table" id="transactionadmin">
+                <table class="table" id="table1">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode Pemesanan</th>
                             <th>Nama Kost</th>
                             <th>No.kamar</th>
                             <th>Nama Penyewa</th>
-                            <th>No Hp Penyewa</th>
                             <th>Durasi Sewa</th>
                             <th>Tanggal Mulai Ngekos</th>
                             <th>Total Harga</th>
-                            <th>Status</th>
-                            <th>Bukti Pembayaran</th>
-                            <th>action</th>
+                            <th>Status</th>>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        @foreach ($data as $transaction)
+                        <tr>
+                            <td>{{ $no++; }}</td>
+                            <td>{{ $transaction->nama_kost }}</td>
+                            <td>{{ $transaction->no_kamar }}</td>
+                            <td>{{ $transaction->nama_pemesan }}</td>
+                            <td>{{ $transaction->durasi_sewa }} Bulan</td>
+                            <td>{{ $transaction->tgl_sewa }}</td>
+                            <td>{{ $transaction->total_price }}</td>
+                            @if($transaction->status == 'paid' )
+                            <td><span class="badge bg-success">Paid</span></td>
+                            @elseif($transaction->status == 'unpaid' )
+                            <td><span class="badge bg-danger">Unpaid</span></td>
+                            @endif
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>

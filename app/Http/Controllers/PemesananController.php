@@ -7,6 +7,7 @@ use App\Models\DataKost;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PemesananController extends Controller
@@ -151,6 +152,7 @@ class PemesananController extends Controller
 
     public function riwayat()
     {
+        $loggedInUserId = Auth::user()->id;
         $data = DB::table('transactions')
             ->join('users', 'users.id', '=', 'transactions.user_id')
             ->join('data_kamar', 'data_kamar.id', '=', 'transactions.kamar_id')
@@ -172,6 +174,7 @@ class PemesananController extends Controller
                 'transactions.status',
             )
             ->where('transactions.status', 'paid')
+            ->where('transactions.user_id', $loggedInUserId)
             ->get();
 
         return view(
