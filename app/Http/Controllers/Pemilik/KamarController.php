@@ -19,7 +19,7 @@ class KamarController extends Controller
     {
         // $datakamar = DataKamar::all();
         $loggedIdUser = Auth::user()->id;
-        $datakost = DataKost::where('user_id', $loggedIdUser);
+        $datakos = DataKost::where('user_id', $loggedIdUser);
         $datakamar = DataKamar::all();
 
         return view(
@@ -27,7 +27,7 @@ class KamarController extends Controller
             'pages.pemilik.pemilik-dataKamar',
             [
                 'data' => $datakamar,
-                'datakos' => $datakost,
+                'datakos' => $datakos,
             ]
 
         );

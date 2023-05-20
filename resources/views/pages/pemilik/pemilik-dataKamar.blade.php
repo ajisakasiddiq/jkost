@@ -270,8 +270,8 @@ Pemilik | Data Kamar
                             <label for="">Kost Rujukan</label>
                             <select name="id_kost" required class="form-control">
                                 <option value="">Pilih Rujukan</option>
-                                @foreach ($datakos as $i)
-                                <option value="{{ $i->id_kost }}">{{ $i->user_id}}</option>
+                                @foreach ($datakos as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama_kost}}</option>
                                 @endforeach
                               </select>
                         </div>
