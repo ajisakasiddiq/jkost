@@ -272,6 +272,8 @@ Pemilik | Data Kamar
                                 <option value="">Pilih Rujukan</option>
                                 @foreach ($datakost as $i)
                                 <option value="{{ $i->id }}">{{ $i->nama_kost}}</option>
+                                @endforeach
+
                               </select>
                         </div>
                     </div>
