@@ -24,4 +24,9 @@ class DataKost extends Model
         'longitude',
         'latitude',
     ];
+
+    public function dataKamar()
+    {
+        return $this->hasMany(DataKamar::class, 'kost_id');
+    }
 }

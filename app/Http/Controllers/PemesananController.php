@@ -18,30 +18,8 @@ class PemesananController extends Controller
     public function index()
     {
         $user = User::all();
-        $data =  DB::table('data_kamar')
-            ->select(
-                'data_kost.status as status_kost',
-                'data_kamar.status as status_kamar',
-                'data_kost.id as id_kost',
-                'data_kamar.id as id_kamar',
-                'data_kost.nama_kost',
-                'data_kost.alamat',
-                'data_kost.deskripsi as deskripsi_kost',
-                'data_kost.nama_kost',
-                'data_kost.slug',
-                'data_kost.longitude',
-                'data_kost.latitude',
-                'data_kamar.jenis_kamar',
-                'data_kamar.no_kamar',
-                'data_kamar.harga',
-                'data_kamar.img_pertama',
-                'data_kamar.img_kedua',
-                'data_kamar.img_ketiga',
-                'data_kamar.img_keempat',
-                'data_kamar.deskripsi as deskripsi_kamar'
-            )
-            ->leftJoin('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
-            ->get();
+        $data = DataKamar::all();
+
         return view(
             'pages.Pemesanan',
             [
@@ -57,71 +35,22 @@ class PemesananController extends Controller
     public function details($id)
     {
         $user = User::all();
-        $item = DataKamar::findOrFail($id);
-        $data =  DB::table('data_kamar')
-            ->select(
-                'data_kost.status as status_kost',
-                'data_kamar.status as status_kamar',
-                'data_kost.id as id_kost',
-                // 'data_kamar.id as id_kamar',
-                'data_kost.nama_kost',
-                'data_kost.alamat',
-                'data_kost.deskripsi as deskripsi_kost',
-                'data_kost.nama_kost',
-                'data_kost.slug',
-                'data_kost.longitude',
-                'data_kost.latitude',
-                'data_kamar.jenis_kamar',
-                'data_kamar.no_kamar',
-                'data_kamar.harga',
-                'data_kamar.img_pertama',
-                'data_kamar.img_kedua',
-                'data_kamar.img_ketiga',
-                'data_kamar.img_keempat',
-                'data_kamar.deskripsi as deskripsi_kamar'
-            )
-            ->leftJoin('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
-            ->where('data_kamar.id', $item)
-            ->get();
+        $kost = DataKamar::firstWhere('id', $id);
 
-        // dd($item);
         return view(
             'pages.details',
             [
-                'item' => $item,
-                'data' => $data,
+                // 'item' => $item,
+                'kost' => $kost,
                 'user' => $user
             ]
         );
     }
-    public function checkout()
+    public function checkout($id)
     {
-        $data =  DB::table('data_kamar')
-            ->select(
-                'data_kost.status as status_kost',
-                'data_kamar.status as status_kamar',
-                'data_kost.nama_kost',
-                'data_kost.id as id_kost',
-                'data_kost.alamat',
-                'data_kost.deskripsi as deskripsi_kost',
-                'data_kost.nama_kost',
-                'data_kost.slug',
-                'data_kost.longitude',
-                'data_kost.latitude',
-                'data_kamar.jenis_kamar',
-                'data_kamar.no_kamar',
-                'data_kamar.harga',
-                'data_kamar.id as id_kamar',
-                'data_kamar.img_pertama',
-                'data_kamar.img_kedua',
-                'data_kamar.img_ketiga',
-                'data_kamar.img_keempat',
-                'data_kamar.deskripsi as deskripsi_kamar'
-            )
-            ->leftJoin('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
-            ->get();
+        $kost = DataKamar::firstWhere('id', $id);
         return view('pages.checkout', [
-            'data' => $data
+            'kost' => $kost
         ]);
     }
 

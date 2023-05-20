@@ -401,7 +401,7 @@ span.month.focused.active
             </div>
         </div>
     </div>
-    @foreach ($data as $kost)
+    {{-- @foreach ($data as $kost) --}}
     <!-- Page Header End -->
     <div class="container-fluid background body-text">
         <div class="row padding-top-20">
@@ -414,7 +414,7 @@ span.month.focused.active
                                     <div class="col-12 panel-header basket-header">
                                         <div class="row">
                                             <div class="col-6 basket-title">
-                                                <span class="description">Nama Kost</span><br><span class="emphasized">{{ $kost->nama_kost }}</span>
+                                                <span class="description">Nama Kost</span><br><span class="emphasized">{{ $kost->datakost->nama_kost }}</span>
                                             </div>
                                             <div class="col-6 order-number align-right">
                                                 <span class="description">order #</span><br><span class="emphasized">no 232323</span>
@@ -431,7 +431,7 @@ span.month.focused.active
                                         <div class="row product">
                                             <div class="col-6"><br>
                                                 <span class="additional"></span>
-                                                {{ $kost->nama_kost }}
+                                                {{ $kost->datakost->nama_kost }}
                                             </div>
                                             <div class="col-6"><br><span class="additional"></span>Rp. {{ $kost->harga }}</div>
                                         </div>
@@ -462,13 +462,13 @@ span.month.focused.active
                                     </div>
 
                                     <div class="col-12 panel-body creditcard-body">
-                                        @foreach ($data as $kost)
+                                        {{-- @foreach ($data as $kost) --}}
                                             <input type="hidden" id="price" value="{{ $kost->harga }}">
                                        
                                         <form action="/pay" method="POST" target="_self">
                                             @csrf
                                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" id="">
-                                            <input type="hidden" name="kamar_id" value="{{ $kost->id_kamar }}" id="">
+                                            <input type="hidden" name="kamar_id" value="{{ $kost->id }}" id="">
                                             <input type="hidden" name="total_price" id="total">
                                             <input type="hidden" name="status" value="unpaid">
                                         
@@ -502,7 +502,7 @@ span.month.focused.active
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
+                                    {{-- @endforeach --}}
                                 </form>
                                 </div>
                             </div>
@@ -512,7 +512,7 @@ span.month.focused.active
             </div>
         </div>
     </div>
-    @endforeach
+    {{-- @endforeach --}}
 
 
 @endsection

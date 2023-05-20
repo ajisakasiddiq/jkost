@@ -26,4 +26,10 @@ class DataKamar extends Model
         'images',
         'deskripsi',
     ];
+
+
+    public function datakost()
+    {
+        return $this->belongsTo(DataKost::class, 'kost_id', 'id');
+    }
 }

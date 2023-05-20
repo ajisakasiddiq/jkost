@@ -35,21 +35,21 @@
             @foreach ($data as $kost)
 
                 <div class="col-lg-3 mb-3">
-                    <a href="Pemesanan/details/{{ $kost->kost_id }}">
+                    <a href="Pemesanan/details/{{ $kost->id }}">
                         <div class="card">
                             <img src="assets-home/img/blog-1.jpg" class="card-img-top" alt="..." style="max-height: 140px;">
                             <div class="card-body">
                                 <h2 class="card-text">Kamar Kost No.Kamar {{ $kost->no_kamar }}</h2>
-                                <p>By {{ $kost->nama_kost }}</p>
+                                <p>By {{ $kost->datakost->nama_kost }}</p>
                                 <p><span class="kost-price">Rp. {{ $kost->harga }} </span>/ Bulan</p>
                     
-                                @if($kost->status_kamar == 1)
+                                @if($kost->status == 1)
                                 <span class="p-1 text-white rounded bg-success">Tersedia</span>
                                 @endif
-                                @if($kost->status_kamar == 2)
+                                @if($kost->status == 2)
                                 <span class="p-1 text-white rounded bg-danger">Disewakan</span>
                                 @endif
-                                @if($kost->status_kamar == 3)
+                                @if($kost->status == 3)
                                 <span class="p-1 text-black rounded bg-secondary">Booking</span>
                                 @endif
                                 

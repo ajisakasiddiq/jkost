@@ -33,14 +33,14 @@
             </div>
         </div>
     </section>
-    @foreach ($data as $kost)
+    {{-- @foreach ($data as $kost) --}}
     <div class="store-details-container" data-aos="fade-up">
         <section class="store-heading">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
                         <h1 class="kost-name">Kamar No.     {{ $kost->no_kamar }}</h1>
-                        <p class="kost-owner">By {{ $kost->nama_kost }}</p>
+                        <p class="kost-owner">By {{ $kost->datakost->nama_kost }}</p>
                         <p><span class="kost-price">Rp. {{ $kost->harga }} </span>/ Bulan</p>
 
                         <!-- <div class="owner">By Dayat</div>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-lg-2" data-aos="zoom-in">
                                 @if(Auth::user()->role == 'pencari')
-                                <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="{{ $kost->slug }}/checkout">Sewa</a>
+                                <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="{{ $kost->id }}/checkout">Sewa</a>
                                 @else
                                 <button class="btn btn-custom px-4 btn-block mt-2 mb-3" data-toggle="modal" data-target=".bd-example-modal-sm">Sewa</button>
                                 @endif
@@ -89,7 +89,7 @@
             </div>
         </section>
     </div>
-    @endforeach
+    {{-- @endforeach --}}
 
 </div>
 
