@@ -85,7 +85,7 @@ Pemilik | Data Kamar
                         <td>{{ $datakamar->no_kamar }}</td>
                         <td>{{ $datakamar->jenis_kamar }}</td>
                         <td>{{ $datakamar->deskripsi }}</td>
-                        <td>{{ $datakamar->harga }}</td>
+                        <td>{{ 'Rp ' . number_format($datakamar->harga, 0, ',', '.')}}</td>
                         @if($datakamar->status == 1)
                         <td><span class="badge bg-success">Tersedia</span></td>
                         @endif
@@ -270,8 +270,8 @@ Pemilik | Data Kamar
                             <label for="">Kost Rujukan</label>
                             <select name="id_kost" required class="form-control">
                                 <option value="">Pilih Rujukan</option>
-                                @foreach ($datakos as $i)
-                                <option value="{{ $i->id_kost }}">{{ $i->user_id}}</option>
+                                @foreach ($datakost as $i)
+                                <option value="{{ $i->id }}">{{ $i->nama_kost}}</option>
                                 @endforeach
                               </select>
                         </div>
