@@ -71,7 +71,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">Deskripsi</label>
+                            <label for="">Status</label>
                             <input type="text" name="status" value="{{ $item->status }}" class="form-control" required>
                         </div>
                     </div>
