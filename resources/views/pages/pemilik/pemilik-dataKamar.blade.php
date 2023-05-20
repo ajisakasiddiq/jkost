@@ -111,7 +111,7 @@ Pemilik | Data Kamar
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus data kamar</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -122,8 +122,8 @@ Pemilik | Data Kamar
                                 
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="submit" class="btn btn-primary">Delete</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>
+                              <button type="submit" class="btn btn-primary">Hapus</button>
                             </form>
                     
                             </div>
@@ -234,7 +234,7 @@ Pemilik | Data Kamar
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah kamar</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -265,10 +265,14 @@ Pemilik | Data Kamar
                             <input type="file" name="img_keempat" class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12"> 
                         <div class="form-group">
-                            <label for="">Id Kost</label>
-                            <input type="text" name="id_kost" class="form-control" required>
+                            <select name="id_kost" required class="form-control">
+                                <option value="">Pilih Rujukan</option>
+                                @foreach ($data as $datakamar)
+                                <option value="{{ $datakamar->id_kost }}">{{ $datakamar->status}}</option>
+                                @endforeach
+                              </select>
                         </div>
                     </div>
                     <div class="col-md-12">

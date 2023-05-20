@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use App\Models\DataKamar;
+use App\Models\DataKost;
 use Illuminate\Database\QueryException;
 
 class KamarController extends Controller
@@ -46,12 +47,12 @@ class KamarController extends Controller
         $request->img_kedua->move(public_path('assets/kamar/dalam'), $fileNameFotoKedua);
 
         $fileNameFotoKetiga = time() . '.' . $request->img_ketiga->extension();
-        $request->img_ketiga->move(public_path('assets/kamar'), $fileNameFotoKetiga);
+        $request->img_ketiga->move(public_path('assets/kamar/toilet'), $fileNameFotoKetiga);
 
         $fileNameFotoKeempat = time() . '.' . $request->img_keempat->extension();
-        $request->img_keempat->move(public_path('assets/kamar'), $fileNameFotoKeempat);
-
-        $datakamar->kost_id = $request->id_kost;
+        $request->img_keempat->move(public_path('assets/kamar/dapur'), $fileNameFotoKeempat);
+        $datakamar->kost_id = $request->input('id_kost', 'nama_kost');
+        // $datakamar->kost_id = $request->id_kost;
         $datakamar->jenis_kamar =  $request->jenis_kamar;
         $datakamar->no_kamar = $request->no_kamar;
         $datakamar->harga = $request->harga;
@@ -61,8 +62,9 @@ class KamarController extends Controller
         $datakamar->img_ketiga = $fileNameFotoKetiga;
         $datakamar->img_keempat = $fileNameFotoKeempat;
         $datakamar->deskripsi = $request->deskripsi;
+
         $datakamar->save();
-        return redirect()->route('data-kamar');
+        return redirect()->route('data-kamar')->with('success', 'data kamar berhasil ditambahkan');
     }
 
     public function update(Request $request, $id)
