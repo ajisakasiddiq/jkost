@@ -15,41 +15,10 @@ class DataKostController extends Controller
      */
     public function index()
     {
-        if (request()->ajax()) {
-            $query = DataKost::all();
-            return DataTables::of($query)
-                ->addColumn('action', function ($item) {
-                    return '
-                    <div class="dropdown">
-                      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       Aksi
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a href="' . route('datakost.edit', $item->id) . '" class="dropdown-item">Edit</a></li>
-                        <form action="' . route('datakost.destroy', $item->id) . '" method="POST">
-                          ' . method_field('delete') . csrf_field() . '
-                        <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
-                      </form>
-                      </ul>
-                    </div>';
-                })
-                ->editColumn('foto', function ($item) {
-                    return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="" />' : '';
-                })
-                ->rawColumns(['action', 'foto'])
-                ->make();
-            return response()->json([
-                'data' => $query
-            ]);
-        }
+        $data = DataKost::all();
 
-        return view(
-
-            'pages.admin.admin-DataKost',
-            [
-                'item' => DataKost::first(),
-            ]
-        );
+        $no = 1;
+        return view('pages.admin.admin-DataKost', compact('data', 'no'));
     }
 
     /**
@@ -93,8 +62,8 @@ class DataKostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->status;
         $item = DataKost::findOrFail($id);
+        $data = $request->status;
         $item->update($data);
 
         return redirect()->route('datakost.index');

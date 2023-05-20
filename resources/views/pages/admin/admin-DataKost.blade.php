@@ -52,7 +52,41 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        @foreach ($data as $item)
+                        <tr>
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $item->id }}</td>
+                           <td> <img src="{{ Storage::url($item->foto) }}" style="max-height: 48px;" alt="" /></td>
+                            <td>{{ $item->nama_kost }}</td>
+                            <td>{{ $item->alamat }}</td>
+                            <td>{{ $item->deskripsi }}</td>
+                            @if($item->status == 1)
+                            <td><span class="badge bg-success">active</span></td>
+                            @endif
+                            @if($item->status == 2)
+                            <td><span class="badge bg-danger">inactive</span></td>
+                            @endif
+                            @if($item->status == 3)
+                            <td> <span class="badge bg-secondary">Pending</span></td>
+                            @endif
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                     Aksi
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li><a href="{{ route('datakost.edit', $item->id) }}" class="dropdown-item">Edit</a></li>
+                                    <form action="{{ route('profile.destroy', $item->id) }}" method="POST">
+                                         {{ method_field('delete') . csrf_field() }}
+                                      <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
+                                    </form>
+                                    </ul>
+                                  </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -83,39 +117,6 @@
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
 <script src="/assets/js/pages/datatables.js"></script>
 
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        var i = 1;
-       $('#datakost').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{{ url()->current() }}',
-            columns : [
-                {
-                    "render": function() {
-                        return i++;
-                    }
-                },
-                {data: 'id', name: 'id'},
-                {data: 'foto', name: 'foto'},
-                // {data: 'user_id', name: 'user_id'},
-                {data: 'nama_kost', name: 'nama_kost'},
-                {data: 'alamat', name: 'alamat'},
-                {data: 'deskripsi', name: 'deskripsi'},
-                {data: 'status', name: 'status'},
-
-                {
-                    data: 'action', 
-                    name:'action',
-                    orderable : false,
-                    searcable : false,
-                    width:'15%'
-                },
-            ]
-        });
- });
-    </script>
 
 @endpush
 
