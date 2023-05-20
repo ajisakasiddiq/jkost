@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Pemilik;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use App\Http\Controllers\Controller;
-use App\Models\DataKamar;
 use App\Models\DataKost;
+use App\Models\DataKamar;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Database\QueryException;
 
 class KamarController extends Controller
@@ -16,12 +17,17 @@ class KamarController extends Controller
      */
     public function index()
     {
+        // $datakamar = DataKamar::all();
+        $loggedIdUser = Auth::user()->id;
+        $datakost = DataKost::where('user_id', $loggedIdUser);
         $datakamar = DataKamar::all();
+
         return view(
 
             'pages.pemilik.pemilik-dataKamar',
             [
                 'data' => $datakamar,
+                'datakos' => $datakost,
             ]
 
         );
@@ -40,6 +46,7 @@ class KamarController extends Controller
 
         $datakamar = new DataKamar();
 
+
         $fileNameFotoPertama = time() . '.' . $request->img_pertama->extension();
         $request->img_pertama->move(public_path('assets/kamar/depan'), $fileNameFotoPertama);
 
@@ -51,7 +58,7 @@ class KamarController extends Controller
 
         $fileNameFotoKeempat = time() . '.' . $request->img_keempat->extension();
         $request->img_keempat->move(public_path('assets/kamar/dapur'), $fileNameFotoKeempat);
-        $datakamar->kost_id = $request->input('id_kost', 'nama_kost');
+        $datakamar->kost_id = $request->input('id_kost');
         // $datakamar->kost_id = $request->id_kost;
         $datakamar->jenis_kamar =  $request->jenis_kamar;
         $datakamar->no_kamar = $request->no_kamar;
