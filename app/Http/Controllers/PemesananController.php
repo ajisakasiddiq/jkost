@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PayRequest;
+use App\Models\DataKamar;
 use App\Models\DataKost;
 use App\Models\Transaction;
 use App\Models\User;
@@ -21,6 +22,8 @@ class PemesananController extends Controller
             ->select(
                 'data_kost.status as status_kost',
                 'data_kamar.status as status_kamar',
+                'data_kost.id as id_kost',
+                'data_kamar.id as id_kamar',
                 'data_kost.nama_kost',
                 'data_kost.alamat',
                 'data_kost.deskripsi as deskripsi_kost',
@@ -51,13 +54,16 @@ class PemesananController extends Controller
             'message' => 'Get Data berhasil',
         ]);
     }
-    public function details()
+    public function details($id)
     {
         $user = User::all();
+        $item = DataKamar::findOrFail($id);
         $data =  DB::table('data_kamar')
             ->select(
                 'data_kost.status as status_kost',
                 'data_kamar.status as status_kamar',
+                'data_kost.id as id_kost',
+                // 'data_kamar.id as id_kamar',
                 'data_kost.nama_kost',
                 'data_kost.alamat',
                 'data_kost.deskripsi as deskripsi_kost',
@@ -75,10 +81,14 @@ class PemesananController extends Controller
                 'data_kamar.deskripsi as deskripsi_kamar'
             )
             ->leftJoin('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
+            ->where('data_kamar.id', $item)
             ->get();
+
+        // dd($item);
         return view(
             'pages.details',
             [
+                'item' => $item,
                 'data' => $data,
                 'user' => $user
             ]
@@ -110,7 +120,9 @@ class PemesananController extends Controller
             )
             ->leftJoin('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
             ->get();
-        return view('pages.checkout', ['data' => $data]);
+        return view('pages.checkout', [
+            'data' => $data
+        ]);
     }
 
     public function pembayaran()

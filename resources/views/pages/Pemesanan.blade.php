@@ -35,7 +35,7 @@
             @foreach ($data as $kost)
 
                 <div class="col-lg-3 mb-3">
-                    <a href="Pemesanan/details/{{ $kost->slug }}">
+                    <a href="Pemesanan/details/{{ $kost->kost_id }}">
                         <div class="card">
                             <img src="assets-home/img/blog-1.jpg" class="card-img-top" alt="..." style="max-height: 140px;">
                             <div class="card-body">

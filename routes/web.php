@@ -36,8 +36,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/Tentang-Kami', [HomeController::class, 'about'])->name('about');
 Route::get('/Pelayanan', [HomeController::class, 'pelayanan'])->name('pelayanan');
 Route::get('/Pemesanan', [PemesananController::class, 'index'])->name('pemesanan');
-Route::get('/Pemesanan/details/{slug}', [PemesananController::class, 'details'])->name('pemesanan-details')->middleware('auth');
-Route::get('/Pemesanan/details/{slug}/checkout', [PemesananController::class, 'checkout'])->name('checkout')->middleware('auth');
+Route::get('/Pemesanan/details/{id}', [PemesananController::class, 'details'])->name('pemesanan-details')->middleware('auth');
+Route::get('/Pemesanan/details/{id}/checkout', [PemesananController::class, 'checkout'])->name('checkout')->middleware('auth');
 Route::post('/pay', [PemesananController::class, 'pay'])->middleware('auth');
 Route::resource('setting-account', SettingController::class)->middleware('auth');
 
