@@ -69,10 +69,14 @@
                             <input type="text" name="deskripsi" value="{{ $item->deskripsi }}" class="form-control" required>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12"> 
                         <div class="form-group">
                             <label for="">Status</label>
-                            <input type="text" name="status" value="{{ $item->status }}" class="form-control" required>
+                            <select name="id_kost" required class="form-control">
+                                <option value="">2</option>
+                                <option value="">2</option>
+                                <option value="">2</option>
+                              </select>
                         </div>
                     </div>
                     {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
