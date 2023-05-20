@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.sidebar')
 
 @section('title')
     Settings Profile
@@ -13,8 +13,8 @@
     <div class="page-heading">
         <div class="page-title">
             <div class="row">
-                <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Data Kost</h3>
+                <div class="col-12 col-md-6 mb-3 order-md-1 order-last">
+                    <h3>My Profile</h3>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -37,7 +37,11 @@
             <div class="card-header">Profile Picture</div>
             <div class="card-body text-center">
                 <!-- Profile picture image-->
-                <img class="img-account-profile rounded-circle mb-2" style="max-height: 150px" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                @if (Auth::check() && Auth::user()->foto)
+                <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Profile Picture" class="img-account-profile rounded-circle mb-2" style="max-height: 150px">
+            @else
+                <img src="{{ asset('images/default-profile.jpg') }}" alt="Default Profile Picture" class="img-account-profile rounded-circle mb-2" style="max-height: 150px">
+            @endif
                 <!-- Profile picture help block-->
                 <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                 <!-- Profile picture upload button-->

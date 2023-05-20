@@ -52,7 +52,7 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
                             <th>Tanggal Mulai Ngekos</th>
                             <th>Total Harga</th>
                             <th>Status</th>
-                            <th>action</th>
+                            {{-- <th>action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -74,13 +74,13 @@ data-client-key="{{ config('midtrans.client_key') }}"></script>
                             <td><span class="badge bg-danger">cancel</span></td>
                             @endif
 
-                            @if($transaction->status == 'unpaid' )
+                            {{-- @if($transaction->status == 'unpaid' )
                             <td><button class="btn btn-success btn-lg" id="pay-button">Bayar</button></td>
                             @elseif($transaction->status == 'paid' )
                             <td><span class="badge bg-success">Pembayaran Selesai</span></td>
                             @else
                             <td><span class="badge bg-danger">cancel</span></td>
-                            @endif
+                            @endif --}}
                         </tr>
                         @endforeach
                     </tbody>

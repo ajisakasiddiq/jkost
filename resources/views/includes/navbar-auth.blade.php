@@ -58,7 +58,13 @@
                             <li class="nav-item dropdown">
                                 <a href="" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
                                     Hi, {{Auth::user()->name}}
-                                    <img src="{{ Auth::user()->foto }}" alt="" class="rounded-circle m-0 p-0 profile-picture" height="50px">
+                                    @if (Auth::check() && Auth::user()->foto)
+    <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="Profile Picture" class="rounded-circle m-0 p-0 profile-picture" width="40px" max-height="50px">
+@else
+    <img src="{{ asset('images/default-profile.jpg') }}" alt="Default Profile Picture" class="rounded-circle m-0 p-0 profile-picture" height="50px">
+@endif
+
+                                    {{-- <img src="{{ Auth::user()->foto }}" alt="" > --}}
                                 </a>
                                 <div class="dropdown-menu bg-dark">
 
