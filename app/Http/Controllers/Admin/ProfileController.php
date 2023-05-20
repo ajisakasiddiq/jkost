@@ -34,8 +34,8 @@ class ProfileController extends Controller
                       </button>
                       <ul class="dropdown-menu">
                       <li><a href="' . route('profile.edit', $item->id) . '" class="dropdown-item">Edit</a></li>
-                        <form action="' . route('profile.destroy', $item->id) . '" method="POST">
-                          ' . method_field('delete') . csrf_field() . '
+                        <form action="' . route('profile.destroy', $item->id) . '" method="PUT">
+                          ' . method_field('DELETE') . csrf_field() . '
                         <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
                       </form>
                       </ul>
