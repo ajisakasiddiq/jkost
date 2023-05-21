@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ValidateUserUnValid;
+use App\Mail\ValidateUserValid;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
@@ -64,10 +67,14 @@ class Userpemilik extends Controller
         $data = [
             'statusUser' => $request->statusUser,
         ];
-
-        // Lakukan update hanya pada kolom status
         User::where('id', $id)->update($data);
-
+        // Lakukan update hanya pada kolom status
+        // $user =  User::where('id', $id)->update($data);
+        // if ($data == 'valid') {
+        //     Mail::to($user->email)->send(new ValidateUserValid($user));
+        // } else {
+        //     Mail::to($user->email)->send(new ValidateUserUnValid($user));
+        // }
 
         return redirect()->route('data-pemilik.index');
     }

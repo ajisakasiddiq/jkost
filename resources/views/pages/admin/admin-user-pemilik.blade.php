@@ -96,9 +96,9 @@
                                   </div>
                             </td>
                         </tr>
+                        @include('pages.admin.pemilik.edit')
                         @endforeach
                         
-                        @include('pages.admin.pemilik.edit')
                     </tbody>
                 </table>
             </div>
