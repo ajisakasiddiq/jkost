@@ -29,4 +29,8 @@ class DataKost extends Model
     {
         return $this->hasMany(DataKamar::class, 'kost_id');
     }
+    public function user()
+    {
+        return $this->hasMany(User::class, 'user_id');
+    }
 }
