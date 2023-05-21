@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('no_hp')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('bukti_kontrak')->nullable();
-            $table->string('statusUser')->nullable();
+            $table->enum('statusUser', ['valid', 'unvalid', 'pending'])->default('pending');
             $table->string('slug')->nullable();
             $table->string('api_token')->nullable();
             $table->enum('role', ['admin', 'pemilik', 'pencari'])->default('pencari');

@@ -114,9 +114,14 @@ Pemilik | Data Kost
     <section class="section">
         <div class="card">
             <div class="card-header">
+                @if(Auth::user()->statusUser == 'valid') 
                 <a href="" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addAdmin">
                     + Tambah Data Kost
                 </a>
+                @else
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#no">+ Tambah Data Kost</button>
+                @endif
+               
             </div>
             <div class="card-body">
                 <table class="table" id="table1">
@@ -318,6 +323,15 @@ Pemilik | Data Kost
 
 
         </div>
+
+
+        <div class="modal fade" id="no" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <p class="text-center"><span class="text-danger">Mohon Maaf</span> <br>Akun anda belum tervalidasi, Silahkan tunggu keputusan admin!</p>
+              </div>
+            </div>
+          </div>
 @endsection
 
 @push('addon-script')   

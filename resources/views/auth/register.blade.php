@@ -10,7 +10,7 @@
                 <div class="main-icon pb-2" style="display:block; margin:auto; margin-bottom : 30px !important">
                 </div>
                 <div class="header-left-bottom">
-                     <form method="POST" action="{{ route('register') }}">
+                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="icon1">
                             <span class="fa fa-user"></span>
@@ -52,11 +52,29 @@
                             </div>
                         </div>
                         <div class="icon1">
-                            <select class="option" placeholder="Pilih Daftar Sebagai" class="form-control  form-select" name="role" id="OptionLevel">
+                            <select  id="pilihan" onchange="tampilkanForm()" class="option" placeholder="Pilih Daftar Sebagai" class="form-control  form-select" name="role" id="OptionLevel">
                                 <option>Daftar sebagai</option>
                                 <option value="pemilik">Pemilik</option>
                                 <option value="pencari">Pencari</option>
                             </select>
+                        </div>
+                        <div class="icon1">
+                            <select  id="pilihan" onchange="tampilkanForm()" class="option" placeholder="Jenis Kelamin" class="form-control  form-select" name="kelamin" id="OptionLevel">
+                                <option>Jenis Kelamin</option>
+                                <option value="L">Laki - Laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                        <div id="formInput" class="icon1">
+                            <span class="fa fa-user"></span>
+                            <input type="file" value="NULL" placeholder="Bukti Kontrak" name="bukti_kontrak" />
+                            <small>Upload <a href=""> bukti kontrak</a> disini jika mendaftar sebagai Pemilik</small>
+
+                            @error('bukti_kontrak')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         </div>
                         <div class="login-check">
                             <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Keep me logged in</label>
@@ -78,3 +96,20 @@
     </div>
     <!-- //main -->
 @endsection
+
+
+@push('addon-script')
+   <script>
+    function tampilkanForm() {
+        var pilihan = document.getElementById("pilihan").value;
+      var formInput = document.getElementById("formInput");
+
+  if (pilihan.value == 'pemilik') {
+    formInput.style.display = "block";
+      } else {
+        formInput.style.display = "none";
+      }
+}
+
+    </script> 
+@endpush

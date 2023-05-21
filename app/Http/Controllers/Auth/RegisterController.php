@@ -55,6 +55,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => ['required', 'string', 'max:25'],
+            'kelamin' => ['required', 'string', 'max:25'],
+            'bukti_kontrak' => ['nullable', 'file', 'max:2048'], // Aturan validasi untuk file PDF (maksimum 2MB)
         ]);
     }
 
@@ -66,12 +68,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $kontrak = null;
+
+        if (isset($data['bukti_kontrak'])) {
+            $kontrak = $data['bukti_kontrak']->store('/assets/user', 'public');
+        }
+
         return User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => $data['role'],
+            'kelamin' => $data['kelamin'],
+            'bukti_kontrak' => $kontrak,
         ]);
     }
 }
