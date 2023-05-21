@@ -66,6 +66,8 @@ Route::middleware('auth', 'checkrole:pemilik')->group(function () {
     Route::get('/data-kost', [App\Http\Controllers\Pemilik\KostController::class, 'index'])->name('data-kost');
     Route::get('/data-kamar', [App\Http\Controllers\Pemilik\KamarController::class, 'index'])->name('data-kamar');
     Route::get('/transaction', [App\Http\Controllers\Pemilik\transactionController::class, 'index'])->name('transaction');
+
+
     Route::post('/kamarkost-add', [App\Http\Controllers\Pemilik\KamarController::class, 'tambah']);
     Route::delete('/kamarkost-delete/{id}', [App\Http\Controllers\Pemilik\KamarController::class, 'destroy']);
     Route::post('/kostkamar-add', [App\Http\Controllers\Pemilik\KostController::class, 'store']);
