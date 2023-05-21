@@ -51,10 +51,55 @@
                             <th>Alamat</th>
                             <th>No Hp</th>
                             <th>Jenis Kelamin</th>
+                            <th>Surat Kontrak</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        @foreach ($data as $pemilik)
+                        <tr>
+                            <td>{{ $no++; }}</td>
+                            <td>{{ $pemilik->id }}</td>
+                            <td> <img src="{{ Storage::url($pemilik->foto) }}" style="max-height: 48px;" alt="" /></td>
+                            <td>{{ $pemilik->name }}</td>
+                            <td>{{ $pemilik->email }}</td>
+                            <td>{{ $pemilik->username }}</td>
+                            <td>{{ $pemilik->alamat }}</td>
+                            <td>{{ $pemilik->no_hp }}</td>
+                            <td>{{ $pemilik->jenis_kelamin }}</td>
+                            @if($pemilik->bukti_kontrak != 'NULL')
+                            <td>Kontrak Terupload</td>
+                            @elseif($pemilik->bukti_kontrak == 'NULL')
+                            <td>Belum Upload Kontrak</td>
+                            @endif
+
+                            @if($pemilik->statusUser == 'valid')
+                            <td><span class="badge bg-success">Valid</span></td>
+                            @endif
+                            @if($pemilik->statusUser == 'unvalid')
+                            <td><span class="badge bg-danger">Unvalid</span></td>
+                            @endif
+                            @if($pemilik->statusUser == 'pending')
+                            <td> <span class="badge bg-secondary">Pending</span></td>
+                            @endif
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                     Aksi
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li><a data-bs-toggle="modal" data-bs-target="#edit{{$pemilik->id}}" class="dropdown-item">Edit</a></li>
+                                    <li><a href="" class="dropdown-item text-success">Lihat Kontrak</a></li>
+
+                                    </ul>
+                                  </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                        
+                        @include('pages.admin.pemilik.edit')
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -84,42 +129,6 @@
 <script src="/assets/extensions/jquery/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
 <script src="/assets/js/pages/datatables.js"></script>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        var i = 1;
-       $('#UserPemilik').DataTable({
-            processing: true,
-            serverSide: true,
-            // scrollX: true,
-            ajax: '{{ url()->current() }}',
-            columns : [
-                {
-                    "render": function() {
-                        return i++;
-                    }
-                },
-                {data: 'id', name: 'id'},
-                {data: 'foto', name: 'foto'},
-                {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
-                {data: 'username', name: 'username'},
-                // {data: 'nik', name: 'nik'},
-                {data: 'alamat', name: 'alamat'},
-                {data: 'no_hp', name: 'no hp'},
-                {data: 'jenis_kelamin', name: 'jenis kelamin'},
-                {
-                    data: 'action', 
-                    name:'action',
-                    orderable : false,
-                    searcable : false,
-                    width:'15%'
-                },
-            ]
-        });
- });
-    </script>
 
 @endpush
 

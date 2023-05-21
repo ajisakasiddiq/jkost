@@ -15,31 +15,10 @@ class Userpemilik extends Controller
      */
     public function index()
     {
-        if (request()->ajax()) {
-            $query = User::where('role', 'pemilik')->get();
-            return DataTables::of($query)
-                ->addColumn('action', function ($item) {
-                    return '
-                <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                 Aksi
-                                </button>
-                                <ul class="dropdown-menu">
-                                  <li><a href="' . route('data-pemilik.edit', $item->id) . '" method="POST" class="dropdown-item">Edit</a></li>
-                                  <form action="' . route('profile.edit', $item->id) . '" method="POST">
-                                    ' . method_field('delete') . csrf_field() . '
-                                  <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
-                                </form>
-                                </ul>
-                              </div>';
-                })
-                ->editColumn('foto', function ($item) {
-                    return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="" />' : '';
-                })
-                ->rawColumns(['action', 'foto'])
-                ->make();
-        }
-        return view('pages.admin.admin-user-pemilik');
+
+        $data = User::where('role', 'pemilik')->get();
+        $no = 1;
+        return view('pages.admin.admin-user-pemilik', compact('data', 'no'));
     }
 
     /**
@@ -82,7 +61,15 @@ class Userpemilik extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = [
+            'statusUser' => $request->statusUser,
+        ];
+
+        // Lakukan update hanya pada kolom status
+        User::where('id', $id)->update($data);
+
+
+        return redirect()->route('data-pemilik.index');
     }
 
     /**

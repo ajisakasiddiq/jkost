@@ -36,7 +36,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('profile.create') }}" class="btn btn-primary mb-3">
+                <a data-bs-toggle="modal" data-bs-target="#addadmin" class="btn btn-primary mb-3">
                     + Tambah Admin
                 </a>
             </div>
@@ -53,20 +53,43 @@
                             <th>action</th>
                         </tr>
                     </thead>
-                    {{-- @foreach ($item as $profile) --}}
                     <tbody>
+                        @foreach ($data as $profile)
+                        <tr>
+                            <td>{{ $no++; }}</td>
+                            <td>{{ $profile->id }}</td>
+                            <td> <img src="{{ Storage::url($profile->foto) }}" style="max-height: 48px;" alt="" /></td>
+                            <td>{{ $profile->name }}</td>
+                            <td>{{ $profile->email }}</td>
+                            <td>{{ $profile->username }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                     Aksi
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li><a data-bs-toggle="modal" data-bs-target="#editadmin{{$profile->id}}" class="dropdown-item">Edit</a></li>
+                                    <li><a data-bs-toggle="modal" data-bs-target="#deletedata{{$profile->id}}" class="dropdown-item text-danger">Hapus</a></li>
+
+                                    </ul>
+                                  </div>
+                            </td>
+                        </tr>
+                        @endforeach
                         
+                        @include('pages.admin.profile.edit')
                     </tbody>
-                    {{-- @endforeach --}}
                 </table>
             </div>
         </div>
-
+        
     </section>
     <!-- Basic Tables end -->
-{{-- modals tambah --}}
-{{-- @include('pages.admin.profile.create') --}}
-
+    {{-- modals tambah --}}
+    {{-- @include('pages.admin.profile.create') --}}
+    
+    @include('pages.admin.profile.delete')
+    @include('pages.admin.profile.create')
 
 
 
@@ -94,46 +117,5 @@
 <script src="/assets/extensions/jquery/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
 <script src="/assets/js/pages/datatables.js"></script>
-
-<script>
-$('.btn-edit').on('click',function(){
-    console.log($(this).data('id'))
-})
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        var i = 1;
-       $('#ProfileUserTable').DataTable({
-            processing: true,
-            serverSide: true,
-            // scrollX: true,
-            ajax: '{{ url()->current() }}',
-            columns : [
-                {
-                    "render": function() {
-                        return i++;
-                    }
-                },
-                {data: 'id', name: 'id'},
-                {data: 'foto', name: 'foto'},
-                {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
-                {data: 'username', name: 'username'},
-                {
-                    data: 'action', 
-                    name:'action',
-                    orderable : false,
-                    searcable : false,
-                    width:'15%'
-                },
-            ]
-        });
-
- });
-
-
-    </script>
-
 @endpush
 

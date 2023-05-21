@@ -76,16 +76,15 @@
                                      Aksi
                                     </button>
                                     <ul class="dropdown-menu">
-                                    <li><a href="{{ route('datakost.edit', $item->id) }}" class="dropdown-item">Edit</a></li>
-                                    <form action="{{ route('profile.destroy', $item->id) }}" method="POST">
-                                         {{ method_field('delete') . csrf_field() }}
-                                      <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
-                                    </form>
+                                    <li><a data-bs-toggle="modal" data-bs-target="#editkost{{$item->id}}" class="dropdown-item">Edit</a></li>
+
                                     </ul>
                                   </div>
                             </td>
                         </tr>
                         @endforeach
+
+                        @include('pages.admin.kost.edit')
                     </tbody>
                 </table>
             </div>

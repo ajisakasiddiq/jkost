@@ -62,9 +62,13 @@ class DataKostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $item = DataKost::findOrFail($id);
-        $data = $request->status;
-        $item->update($data);
+        $data = [
+            'status' => $request->status,
+        ];
+
+        // Lakukan update hanya pada kolom status
+        DataKost::where('id', $id)->update($data);
+
 
         return redirect()->route('datakost.index');
     }

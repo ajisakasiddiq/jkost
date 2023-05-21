@@ -22,40 +22,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        // $profile = User::where('role', 'admin');
-        if (request()->ajax()) {
-            $query = User::where('role', 'admin')->get();
-            return DataTables::of($query)
-                ->addColumn('action', function ($item) {
-                    return '
-                    <div class="dropdown">
-                      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       Aksi
-                      </button>
-                      <ul class="dropdown-menu">
-                      <li><a href="' . route('profile.edit', $item->id) . '" class="dropdown-item">Edit</a></li>
-                        <form action="' . route('profile.destroy', $item->id) . '" method="PUT">
-                          ' . method_field('DELETE') . csrf_field() . '
-                        <li><a type="submit" class="dropdown-item text-danger">Hapus</a></li>
-                      </form>
-                      </ul>
-                    </div>';
-                })
-                ->editColumn('foto', function ($item) {
-                    return $item->foto ? '<img src="' . Storage::url($item->foto) . '" style="max-height: 48px;" alt="" />' : '';
-                })
-                ->rawColumns(['action', 'foto'])
-                ->make();
-            return response()->json([
-                'data' => $query
-            ]);
-        }
-        return view(
-            'pages.admin.admin-profile-admin',
-            [
-                'item' => User::where('role', 'admin')->first(),
-            ]
-        );
+
+        $data = User::where('role', 'admin')->get();
+        $no = 1;
+        return view('pages.admin.admin-profile-admin', compact('data', 'no'));
     }
 
     /**
@@ -63,7 +33,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.profile.create');
+        // return view('pages.admin.profile.create');
     }
 
     /**
@@ -96,10 +66,10 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $item = User::findOrFail($id);
-        return view('pages.admin.profile.edit', [
-            'item' => $item
-        ]);
+        // $item = User::findOrFail($id);
+        // return view('pages.admin.profile.edit', [
+        //     'item' => $item
+        // ]);
     }
 
     /**
@@ -108,7 +78,12 @@ class ProfileController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->all();
-        $data['foto'] = $request->file('foto')->store('/assets/user', 'public');
+
+        if (isset($data['foto'])) {
+            $data = $data['foto']->file('foto')->store('/assets/user', 'public');
+        }
+
+        // $data['foto'] = $request;
 
         $item = User::findOrFail($id);
         $item->update($data);
