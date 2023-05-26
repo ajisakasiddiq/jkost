@@ -28,5 +28,6 @@ Route::post('register', [AuthController::class, 'register']);
 Route::get('data', [OrderController::class, 'index']);
 Route::post('order', [OrderController::class, 'store']);
 Route::get('user', [UserController::class, 'index']);
+Route::put('user-update', [UserController::class, 'update']);
 // Route::get('kost', [PemesananController::class, 'index']);
 // Route::apiResource('kos', [PemesananController::class, 'index']);
