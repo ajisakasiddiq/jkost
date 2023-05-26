@@ -19,7 +19,6 @@ class DataKamarSeeder extends Seeder
             'jenis_kamar' => 'Bebas',
             'no_kamar' => 20,
             'harga' => 20000,
-            'status' => 1,
             'img_pertama' => '1.jpg',
             'img_kedua' => '2.jpg',
             'img_ketiga' => '3.jpg',

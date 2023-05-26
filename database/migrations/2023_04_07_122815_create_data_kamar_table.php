@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('jenis_kamar');
             $table->integer('no_kamar');
             $table->integer('harga');
-            $table->enum('status', ['0', '1'])->comment('0=disewa,1=tersedia');
+            // $table->enum('status', ['0', '1'])->comment('0=disewa,1=tersedia');
+            $table->string('status')->default('1');
             $table->string('img_pertama');
             $table->string('img_kedua');
             $table->string('img_ketiga');

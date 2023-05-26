@@ -48,10 +48,20 @@
                     </div>
                     <div class="col-lg-2" data-aos="zoom-in">
                                 @if(Auth::user()->role == 'pencari')
-                                <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="{{ $kost->id }}/checkout">Sewa</a>
+
+                                    @if ($kost->status == 1)
+                                    
+                                    <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="{{ $kost->id }}/checkout">Sewa</a>
+                                    @else
+
+                                    <button class="btn btn-custom px-4 btn-block mt-2 mb-3" onclick="alert('Kamar kos tidak tersedia')">Sewa</button>
+                                    @endif
                                 @else
                                 <button class="btn btn-custom px-4 btn-block mt-2 mb-3" data-toggle="modal" data-target=".bd-example-modal-sm">Sewa</button>
                                 @endif
+
+
+                                
 
                             {{-- <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="" onclick="alert('Akses hanya untuk akun penyewa')">Sewa</a> --}}
                      
@@ -98,6 +108,16 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <p class="text-center"><span class="text-danger">Mohon Maaf</span> <br>Fitur Sewa hanya untuk akun pencari!</p>
+      </div>
+    </div>
+  </div>
+
+
+  
+<div class="modal fade status" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <p class="text-center"><span class="text-danger">Mohon Maaf</span> <br>Kamar Kost tidak tersedia!</p>
       </div>
     </div>
   </div>
