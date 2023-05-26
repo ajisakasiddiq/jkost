@@ -58,13 +58,7 @@
                                     @endif
                                 @else
                                 <button class="btn btn-custom px-4 btn-block mt-2 mb-3" data-toggle="modal" data-target=".bd-example-modal-sm">Sewa</button>
-                                @endif
-
-
-                                
-
-                            {{-- <a class="btn btn-custom px-4 btn-block mt-2 mb-3" href="" onclick="alert('Akses hanya untuk akun penyewa')">Sewa</a> --}}
-                     
+                                @endif                     
                     </div>
                 </div>
             </div>
@@ -112,15 +106,6 @@
     </div>
   </div>
 
-
-  
-<div class="modal fade status" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <p class="text-center"><span class="text-danger">Mohon Maaf</span> <br>Kamar Kost tidak tersedia!</p>
-      </div>
-    </div>
-  </div>
 @endsection
 
 
