@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             DataKostSeeder::class,
-            DataKamarSeeder::class
+            DataKamarSeeder::class,
+            TransaksiSeeder::class
         ]);
     }
 }
