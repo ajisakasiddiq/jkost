@@ -46,11 +46,8 @@
                                 @if($kost->status == 1)
                                 <span class="p-1 text-white rounded bg-success">Tersedia</span>
                                 @endif
-                                @if($kost->status == 2)
+                                @if($kost->status == 0)
                                 <span class="p-1 text-white rounded bg-danger">Disewakan</span>
-                                @endif
-                                @if($kost->status == 3)
-                                <span class="p-1 text-black rounded bg-secondary">Booking</span>
                                 @endif
                                 
 
