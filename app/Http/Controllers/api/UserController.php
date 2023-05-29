@@ -15,21 +15,19 @@ class UserController extends Controller
         return response()->json($users);
     }
 
-    public function update(Request $request, $id)
+    public function getdata($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+        if (!$user) {
+            // Jika pengguna tidak ditemukan
+            return response()->json(['message' => 'User not fousnd'], 404);
+        }
+        return response()->json($user);
+    }
+    public function update(Request $request)
+    {
 
-        // Validasi input dari request
-        $request->validate([
-            'name' => 'nullable|string',
-            'username' => 'nullable|string',
-            'alamat' => 'nullable|string',
-            'no_hp' => 'nullable|string',
-            'kelamin' => 'nullable|string',
-            'email' => 'nullable|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:6',
-        ]);
-
+        $user = User::findOrFail($request-> id);
         // Update data pengguna
         $user->name = $request->input('name');
         $user->username = $request->input('username');

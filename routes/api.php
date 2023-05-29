@@ -28,6 +28,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::get('data', [OrderController::class, 'index']);
 Route::post('order', [OrderController::class, 'store']);
 Route::get('user', [UserController::class, 'index']);
-Route::put('user-update', [UserController::class, 'update']);
+Route::get('userdata/{id}', [UserController::class, 'getdata']);
+Route::post('user-update', [UserController::class, 'update']);
 Route::get('midtrans-callback', [PemesananController::class, 'callback']);
 Route::get('riwayat', [OrderController::class, 'riwayat']);

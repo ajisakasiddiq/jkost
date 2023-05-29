@@ -50,6 +50,8 @@ class AuthController extends Controller
             $success['name'] = $auth->name;
             $success['email'] = $auth->email;
             $success['password'] = $auth->password;
+            $success['username'] = $auth->username;
+            $success['id'] = $auth->id;
 
             return response()->json([
                 'success' => true,
