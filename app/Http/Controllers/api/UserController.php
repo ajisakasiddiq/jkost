@@ -21,13 +21,21 @@ class UserController extends Controller
 
         // Validasi input dari request
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'name' => 'nullable|string',
+            'username' => 'nullable|string',
+            'alamat' => 'nullable|string',
+            'no_hp' => 'nullable|string',
+            'kelamin' => 'nullable|string',
+            'email' => 'nullable|email|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:6',
         ]);
 
         // Update data pengguna
         $user->name = $request->input('name');
+        $user->username = $request->input('username');
+        $user->alamat = $request->input('alamat');
+        $user->no_hp = $request->input('no_hp');
+        $user->kelamin = $request->input('kelamin');
         $user->email = $request->input('email');
 
         if ($request->has('password')) {

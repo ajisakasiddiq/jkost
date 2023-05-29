@@ -125,6 +125,12 @@ class PemesananController extends Controller
                 'no' => $no = 1
             ]
         );
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data berhasil tampil',
+            'data' => $data
+        ]);
     }
 
     public function pay(PayRequest $request)
