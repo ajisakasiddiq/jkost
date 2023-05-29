@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('alamat')->nullable();
             $table->string('foto')->nullable();
+            $table->string('nik')->nullable();
             $table->string('no_hp')->nullable();
-            $table->string('jenis_kelamin')->nullable();
             $table->string('bukti_kontrak')->nullable();
             $table->enum('statusUser', ['valid', 'unvalid', 'pending'])->default('pending');
             $table->string('slug')->nullable();

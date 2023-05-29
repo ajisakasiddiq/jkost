@@ -14,7 +14,6 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('number', 16)->nullable();
             $table->foreignId('user_id')->constrained()->cascacadeOnDelete()->cascacadeOnUpdate();
             $table->foreignId('kamar_id')->references('id')->on('data_kamar')->constrained()->cascacadeOnDelete()->cascacadeOnUpdate();
             $table->string('nama_pemesan');
