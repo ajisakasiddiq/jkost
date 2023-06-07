@@ -15,7 +15,7 @@ class orderSeeder extends Seeder
     public function run()
     {
         OrderFactory::factory()
-            ->count(10) // Jumlah data yang ingin Anda buat
+            ->count(100) // Jumlah data yang ingin Anda buat
             ->create();
     }
 }

@@ -1,17 +1,18 @@
 <?php
 
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\Userpemilik;
 use App\Http\Controllers\Admin\Userpencari;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Pemilik\KamarController;
 use App\Http\Controllers\Admin\DataKostController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\TransactionController;
-use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------

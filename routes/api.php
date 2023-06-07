@@ -31,5 +31,5 @@ Route::post('order', [OrderController::class, 'store']);
 Route::get('user', [UserController::class, 'index']);
 Route::get('userdata/{id}', [UserController::class, 'getdata']);
 Route::post('user-update', [UserController::class, 'update']);
-Route::get('midtrans-callback', [PemesananController::class, 'callback']);
+Route::post('/midtrans-callback', [PemesananController::class, 'callback']);
 Route::get('riwayat', [OrderController::class, 'riwayat']);
