@@ -95,7 +95,7 @@ Pemilik | Data Kamar
                         @if($datakamar->status == 3)
                         <td> <span class="badge bg-secondary">Pending</span></td>
                         @endif
-                        <td>
+                        {{-- <td>
                                 <a href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deletedata{{$datakamar->id}}">
                                     Delete
                                 </a>
@@ -103,7 +103,23 @@ Pemilik | Data Kamar
                         <td>
                             <a href="" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#editAdmin{{$datakamar->id}}">
                             Edit
-                        </a>
+                        </a> --}}
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                     Aksi
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li><a data-bs-toggle="modal" data-bs-target="#editAdmin{{$datakamar->id}}" class="dropdown-item btn-danger">Edit</a>
+                                    </li>
+                                    <li><a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletedata{{$datakamar->id}}">
+                                        Delete
+                                    </a>
+                                </li>
+                                    </ul>
+            
+                                  </div>
                             </td>
                     </tr>
 
