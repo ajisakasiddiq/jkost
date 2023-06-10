@@ -27,7 +27,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
 
-        $user = User::findOrFail($request-> id);
+        $user = User::findOrFail($request->id);
         // Update data pengguna
         $user->name = $request->input('name');
         $user->username = $request->input('username');
@@ -35,6 +35,7 @@ class UserController extends Controller
         $user->no_hp = $request->input('no_hp');
         $user->kelamin = $request->input('kelamin');
         $user->email = $request->input('email');
+        $user->email = $request->input('nik');
 
         if ($request->has('password')) {
             $user->password = bcrypt($request->input('password'));
