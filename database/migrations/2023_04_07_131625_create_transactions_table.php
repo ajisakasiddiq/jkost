@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('total_price');
             $table->date('tgl_sewa');
             // $table->enum('status', ['unpaid', 'paid', 'batal']);
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
