@@ -146,6 +146,39 @@ class OrderController extends Controller
         ]);
     }
 
+
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+
+        $data =  DB::table('data_kamar')
+            ->select(
+                'data_kost.status as status_kost',
+                'data_kamar.status as status_kamar',
+                'data_kost.nama_kost',
+                'data_kost.alamat',
+                'data_kost.deskripsi as deskripsi_kost',
+                'data_kost.nama_kost',
+                'data_kost.slug',
+                'data_kost.longitude',
+                'data_kost.latitude',
+                'data_kamar.jenis_kamar',
+                'data_kamar.no_kamar',
+                'data_kamar.harga',
+                'data_kamar.img_pertama',
+                'data_kamar.img_kedua',
+                'data_kamar.img_ketiga',
+                'data_kamar.img_keempat',
+                'data_kamar.deskripsi as deskripsi_kamar'
+            )
+            ->leftJoin('data_kost', 'data_kost.id', '=', 'data_kamar.kost_id')
+            ->where('nama_kost', 'LIKE', '%' . $query . '%')
+            ->orWhere('alamat', 'LIKE', '%' . $query . '%')
+            ->get();
+
+        return response()->json($data);
+    }
+
     /**
      * Display the specified resource.
      */

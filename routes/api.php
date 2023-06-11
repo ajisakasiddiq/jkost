@@ -28,6 +28,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::get('data', [OrderController::class, 'index']);
 Route::get('data/{id}', [OrderController::class, 'details']);
 Route::post('order', [OrderController::class, 'store']);
+Route::post('search', [OrderController::class, 'search']);
 Route::get('user', [UserController::class, 'index']);
 Route::get('userdata/{id}', [UserController::class, 'getdata']);
 Route::post('user-update', [UserController::class, 'update']);
