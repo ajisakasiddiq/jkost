@@ -161,12 +161,6 @@ Pemilik | Data Kamar
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="">Id Kost</label>
-                                                    <input type="text" name="id_kost" value="{{$datakamar->kost_id}}" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
                                                     <label for="">Jenis kamar</label>
                                                     <input type="text" name="jenis_kamar" value="{{$datakamar->jenis_kamar}}" class="form-control" required>
                                                 </div>
@@ -186,7 +180,13 @@ Pemilik | Data Kamar
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="">Status</label>
-                                                    <input  type="text" name="status" value="{{$datakamar->status}}"class="form-control" required>
+                                                    <select name="status" required class="form-control">    
+                                                        <option value="">{{ $datakamar->status}}</option>
+                                                        <option value="2" {{ $datakamar->status == 'Disewa' ? 'selected' : '' }}>Disewakan</option>
+                                                        <option value="1" {{ $datakamar->status == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
+                                                        <option value="3" {{ $datakamar->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                                    
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -313,8 +313,16 @@ Pemilik | Data Kamar
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="">Status</label>
-                            <input  type="text" name="status" class="form-control" required>
+                            <label for="">Status Kamar kost</label> 
+                            <select name="status" required class="form-control">
+                                
+                                
+                                <option value="2">Disewakan</option>
+                                <option value="1">Tersedia</option>
+                                <option value="3">Pending</option>
+                                
+
+                              </select>
                         </div>
                     </div>
 
