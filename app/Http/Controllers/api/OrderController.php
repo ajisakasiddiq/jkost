@@ -48,6 +48,7 @@ class OrderController extends Controller
         $data =  DB::table('data_kamar')
             ->select(
                 'data_kost.status as status_kost',
+                'data_kamar.id as id_kamar',
                 'data_kamar.status as status_kamar',
                 'data_kost.nama_kost',
                 'data_kost.alamat',
@@ -114,7 +115,7 @@ class OrderController extends Controller
     }
 
 
-    public function riwayat()
+    public function riwayat($id)
     {
         $data = DB::table('transactions')
             ->join('users', 'users.id', '=', 'transactions.user_id')
@@ -137,6 +138,7 @@ class OrderController extends Controller
                 'transactions.status',
             )
             ->where('transactions.status', 'paid')
+            ->where('transactions.user_id', $id)
             ->get();
 
         return response()->json([
