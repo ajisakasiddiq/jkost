@@ -32,16 +32,16 @@
                 activePhoto: 0,
                 photos: [{
                     id: 1,
-                    url: "{{ asset('assets-home/img/blog-1.jpg') }}",
+                    url: "{{ asset('assets/kamar/depan/' . $kost['img_pertama']) }}",
                 }, {
                     id: 2,
-                    url: "{{ asset('assets-home/img/blog-1.jpg') }}",
+                    url: "{{ asset('assets/kamar/depan/' . $kost['img_kedua']) }}",
                 }, {
                     id: 3,
-                    url: "{{ asset('assets-home/img/blog-1.jpg') }}",
+                    url: "{{ asset('assets/kamar/depan/' . $kost['img_ketiga']) }}",
                 }, {
                     id: 4,
-                    url: "{{ asset('assets-home/img/blog-1.jpg') }}",
+                    url: "{{ asset('assets/kamar/depan/' . $kost['img_keempat']) }}",
                 }, ],
             },
             methods: {

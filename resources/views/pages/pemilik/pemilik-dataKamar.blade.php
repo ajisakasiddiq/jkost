@@ -89,7 +89,7 @@ Pemilik | Data Kamar
                         @if($datakamar->status == 1)
                         <td><span class="badge bg-success">Tersedia</span></td>
                         @endif
-                        @if($datakamar->status == 2)
+                        @if($datakamar->status == 0)
                         <td><span class="badge bg-danger">Disewa</span></td>
                         @endif
                         @if($datakamar->status == 3)
@@ -162,6 +162,7 @@ Pemilik | Data Kamar
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="">Jenis kamar</label>
+                                                    <input type="text" name="kamar_id" value="{{$datakamar->id}}" class="form-control" required>
                                                     <input type="text" name="jenis_kamar" value="{{$datakamar->jenis_kamar}}" class="form-control" required>
                                                 </div>
                                             </div>
@@ -181,10 +182,10 @@ Pemilik | Data Kamar
                                                 <div class="form-group">
                                                     <label for="">Status</label>
                                                     <select name="status" required class="form-control">    
-                                                        <option value="">{{ $datakamar->status}}</option>
-                                                        <option value="2" {{ $datakamar->status == 'Disewa' ? 'selected' : '' }}>Disewakan</option>
-                                                        <option value="1" {{ $datakamar->status == 'Tersedia' ? 'selected' : '' }}>Tersedia</option>
-                                                        <option value="3" {{ $datakamar->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                                        {{-- <option value="">{{ $datakamar->status}}</option> --}}
+                                                        <option value="0" {{ $datakamar->status == 0 ? 'selected' : '' }}>Disewakan</option>
+                                                        <option value="1" {{ $datakamar->status == 1 ? 'selected' : '' }}>Tersedia</option>
+                                                        <option value="2" {{ $datakamar->status == 2 ? 'selected' : '' }}>Pending</option>
                                                     
                                                     </select>
                                                 </div>
